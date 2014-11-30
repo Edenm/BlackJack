@@ -1,4 +1,4 @@
 
 public class Card {
- int x;
+   int x;	
 }
