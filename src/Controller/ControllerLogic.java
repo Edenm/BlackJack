@@ -38,6 +38,7 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 				return instance;
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.err.println("Error: cannot initialize ModelLogic, please contact you administrator!");
         }
 		return instance;

@@ -22,7 +22,7 @@ public final class ModelLogic implements Serializable{
 	 * Full C'tor, for singleton support. 
 	 */
 	private ModelLogic() {
-		dealer= new Dealer();
+		//dealer= new Dealer();// class not finished wait to finish constructor and then delete the note
 		player= new Player();
 	}
 	//***************************************** Methods ***********************************************
