@@ -9,7 +9,10 @@ public class Dealer {
 	 private ArrayList<Card> cards;
 	 // place to take the next card
 	 private int number=0;
-////////////////////////////////////////////////////////////////// constructor	 
+////////////////////////////////////////////////////////////////// constructor	
+	 /*
+	  * 
+	  */
 	 public Dealer()
 	 {
 		 intalizeDeckCards();
@@ -27,14 +30,17 @@ public class Dealer {
 		return cards.get(++number);
 	}
 	// intalize the cards deck, happend only once 
+	/**
+	 * 
+	 */
 	private void intalizeDeckCards()
 	{
 		for(int i=0;i<14;i++)
 		{
-			cards.add(new Card(i, "black",null));/// need to add suit enum not finish!
-			cards.add(new Card(i, "red",null));
-			cards.add(new Card(i, "black",null));
-			cards.add(new Card(i, "red",null));
+			cards.add(new Card(i, "black"));/// need to add suit enum not finish!
+			cards.add(new Card(i, "red"));
+			cards.add(new Card(i, "black"));
+			cards.add(new Card(i, "red"));
 			
 		}
 	}

@@ -7,13 +7,13 @@ public class Card {
    //
     private String color;
     
-   private ImageView pic;
+   
     
     // constructor 
-	public Card(Integer value, String color,ImageView pic) {
+	public Card(Integer value, String color) {
 		this.value = value;
 		this.color = color;
-		this.pic=pic;
+		
 	}
    
 }
