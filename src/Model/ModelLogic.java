@@ -1,6 +1,5 @@
- package Model;
+package Model;
 
-import java.awt.Window.Type;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -21,10 +20,11 @@ public final class ModelLogic implements Serializable{
 	//***************************************** Constructors ******************************************
 	/**
 	 * Full C'tor, for singleton support. 
+	 * @throws IOException 
 	 */
-	private ModelLogic() {
-		dealer= new Dealer();
-		player= new Player();
+	private ModelLogic() throws IOException {
+		dealer= Dealer.getInstance();
+		player= Player.getInstance("moshe");
 	}
 	//***************************************** Methods ***********************************************
 	/**
@@ -51,12 +51,14 @@ public final class ModelLogic implements Serializable{
 	 * @return the choosen card
 	 */
 	public Card getCard(int user) 
-	{
-		Card card=dealer.getCard();
-			if (user==1)
+	{Card card=dealer.getCard();
+	
+		if (user==1)
 			player.addcard(card);
 		else
 			dealer.addcard(card);
+			
+			
 		return card;
 	}
 	/**
@@ -82,7 +84,4 @@ public final class ModelLogic implements Serializable{
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
-	
-	
-
 }

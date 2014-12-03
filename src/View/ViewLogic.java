@@ -22,7 +22,6 @@ public final class ViewLogic  extends Application {
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
 	/**ControllerLogic reference pointer*/
-	@SuppressWarnings("unused")
 	private static ControllerLogic controller;
 	//***************************************** Constructors ******************************************
 	/**
@@ -45,7 +44,7 @@ public final class ViewLogic  extends Application {
 					controller=instanceController;
 					return instance;
                 }
-                return null;
+                return instance;
 	}
 	
 	public static void startview()

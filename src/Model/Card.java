@@ -1,10 +1,6 @@
 package Model;
 
-import org.omg.PortableInterceptor.INACTIVE;
-
 import Utils.Suits;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 
 
@@ -13,11 +9,11 @@ public class Card {
     *  represent the value of each card(1-14- jack is 11, queen-12,king-13.... and so on)
     */
    private Integer value;
-   
 
-private String color;
+   private String color;
     
    private String url;
+   
    private Suits suit;
     
    /**
@@ -47,3 +43,6 @@ private String color;
 	   
 	
 }
+
+
+

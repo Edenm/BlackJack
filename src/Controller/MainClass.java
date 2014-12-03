@@ -18,7 +18,6 @@ public class MainClass {
 		ControllerLogic.getInstance();
 		ViewLogic.startview();
 	
-         
 	}
 
 }
