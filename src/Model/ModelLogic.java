@@ -1,5 +1,6 @@
  package Model;
 
+import java.awt.Window.Type;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public final class ModelLogic implements Serializable{
 	 * Full C'tor, for singleton support. 
 	 */
 	private ModelLogic() {
-		//dealer= new Dealer();// class not finished wait to finish constructor and then delete the note
+		dealer= new Dealer();
 		player= new Player();
 	}
 	//***************************************** Methods ***********************************************
@@ -37,16 +38,53 @@ public final class ModelLogic implements Serializable{
 				exists = true;
 				instance  = new ModelLogic();
 				return instance;
+				
 		}
 		return null;
 	}													
 
-    //----------------------------------- add methods -------------------------------------------------
+    //----------------------------------- Dealer methods -------------------------------------------------
+	
+	/**
+	 * 
+	 * @param user 1- to add card to  player. other numer to add to  dealer
+	 * @return the choosen card
+	 */
+	public Card getCard(int user) 
+	{Card card=dealer.getCard();
+	
+		if (user==1)
+			player.addcard(card);
+		else
+			dealer.addcard(card);
+			
+			
+		return card;
+	}
+	/**
+	 * 		
+	 * @return the number of chips left to player
+	 */
+	public int getPlayerChiaps()
+	{
+		return player.getChips();
+	}
+	/**
+	 * 
+	 * @param amount- the anount of bets player bet this game
+	 */
+	public void setbets(int amount)
+	{
+		player.setBets(amount);
+	}
 	
 	//----------------------------------- remove methods ----------------------------------------------
-
+		
+	
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
+	
+	
 
 }

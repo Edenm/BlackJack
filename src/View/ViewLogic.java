@@ -36,7 +36,7 @@ public final class ViewLogic  extends Application {
 	 * @return reference to this class's only instance, or null if reference was already returned (singleton).
 	 * @throws GeneralException 
 	 */
-	/*public static ViewLogic getInstance(ControllerLogic instanceController) throws IOException {
+	public static ViewLogic getInstance(ControllerLogic instanceController) throws IOException {
                 if(!exists)
                 {
 					exists = true;
@@ -45,7 +45,7 @@ public final class ViewLogic  extends Application {
 					return instance;
                 }
                 return null;
-	}*/
+	}
 	
 	public static void main(String[] args)
 	{
@@ -55,6 +55,7 @@ public final class ViewLogic  extends Application {
 	@Override
 	public void start(Stage primaryStage) 	 {
 		// TODO Auto-generated method stub
+		ControllerLogic.getInstance();
 		try{
 			
 			

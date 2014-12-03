@@ -1,5 +1,7 @@
 package Model;
 
+import org.omg.PortableInterceptor.INACTIVE;
+
 import Utils.Suits;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,9 +14,10 @@ public class Card {
     */
    private Integer value;
    
-   private String color;
+
+private String color;
     
-   private ImageView pic;
+   private String url;
    private Suits suit;
     
    /**
@@ -27,7 +30,20 @@ public class Card {
 		this.value = value;
 		this.color = color;
 		this.suit=suit;
-		this.pic= new ImageView(new Image(url));
+		this.url=url;
 	}
-   
+	/**
+	 * call by model logic
+	 * @return imageview - pic of this card to be use in the gui part
+	 */
+	//////////////////////////////////////////////////////// getters and setters//////////////////////////////////////////
+	public String getPic()
+	{
+		return this.url;
+	}
+	   public Integer getValue() {
+			return value;
+		}
+	   
+	
 }

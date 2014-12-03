@@ -1,8 +1,10 @@
 package Controller;
 
 import java.util.*;
+
 import Model.*;
 import View.ViewLogic;
+
 
 /**Controller Logic class*/
 public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- for 2nd HW !!
@@ -34,8 +36,7 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 				exists = true;
 				model = ModelLogic.getInstance();
 				instance = new ControllerLogic();
-	 			view = ViewLogic.getInstance(instance);
-				return instance;
+	 		view = ViewLogic.getInstance(instance);// wait to create viewlogic
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,7 +45,34 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 		return instance;
 	}												
 	
-    //----------------------------------- add methods -------------------------------------------------
+    //----------------------------------- Dealer methods -------------------------------------------------
+	//////////// all the logic code of this method  is in modellogic class
+	/**
+	 * 
+	 * @param user 1- to add card to  player. other numer to add to  dealer
+	 * @return the choosen card
+	 */
+	public Card getCard(int user) 
+	{
+		 return model.getCard(user);
+	}
+	/**
+	 * 		
+	 * @return the number of chips left to player
+	 */
+		
+	public int getPlayerChiaps()
+	{
+		return model.getPlayerChiaps();
+	}
+	/**
+	 * 
+	 * @param amount- the anount of bets player bet this game
+	 */
+	public void setbets(int amount)
+	{
+		model.setbets(amount);
+	}
 	
 	//----------------------------------- remove methods ----------------------------------------------
 	
