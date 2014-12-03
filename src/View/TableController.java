@@ -70,11 +70,13 @@ public class TableController {
 	public void Deal()
 	{
 		Card tempCard= ViewLogic.getCardFromDeck(1);
+		System.out.println(tempCard.getPic());
 		firstCardPlayer.setImage(new Image(tempCard.getPic()));
 
 		tempCard= ViewLogic.getCardFromDeck(1);
+		System.out.println(tempCard.getPic());
 		secondCardPlayer.setImage(new Image(tempCard.getPic()));
-		
+		System.out.println(tempCard.getPic());
 		tempCard= ViewLogic.getCardFromDeck(1);
 		firstCardDealer.setImage(new Image(tempCard.getPic()));		
 	}

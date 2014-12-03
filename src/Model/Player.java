@@ -70,9 +70,13 @@ public class Player {
 	public Integer getBets() {
 		return bets;
 	}
-	public void setBets(Integer bets) {
-		if (bets!=null&&bets>0)
+	public boolean setBets(Integer bets) {
+		if (bets!=null&&chips-bets>0)
+		{
 			this.bets = bets;
+			return true;
+		}
+		return false;
 	}
 
 

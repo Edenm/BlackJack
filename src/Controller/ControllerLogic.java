@@ -63,16 +63,32 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 	{
 		return model.getPlayerChiaps();
 	}
+	
+	
+	
+	//----------------------------------- player methods ----------------------------------------------
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getChips() {
+		return model.getChips();
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getBets() {
+		return model.getBets();
+	}
 	/**
 	 * 
 	 * @param amount- the anount of bets player bet this game
 	 */
-	public void setbets(int amount)
+	public boolean setbets(int amount)
 	{
-		model.setbets(amount);
+		 return model.setbets(amount);
 	}
-	
-	//----------------------------------- remove methods ----------------------------------------------
 	
 	//----------------------------------- connect methods ---------------------------------------------
 	

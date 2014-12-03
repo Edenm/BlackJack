@@ -18,7 +18,7 @@ public class Dealer {
 	 /***/
 	 private ArrayList<Card> mycards;
 	 /** place to take the next card*/
-	 private int number=0;
+	 private int number=-1;
 	 
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
 	 public Dealer()
@@ -52,7 +52,14 @@ public class Dealer {
 	// pushe the first card like stack return only one card!
 	protected Card getCard()
 	{
-		return cards.get(++number);
+		if(number>=51)
+		{
+			number=-1;
+			shuffle();
+		}
+		number++;
+		return cards.get(number);
+		
 	}
 	// intalize the cards deck, happend only once 
 	// the pic here is intalize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
@@ -63,9 +70,10 @@ public class Dealer {
 			cards.add(new Card(i, "black","photos/"+i+"-Club.png",Suits.Club));
 			cards.add(new Card(i, "red","photos/"+i+"-Heart.png",Suits.Heart));
 			cards.add(new Card(i, "black","photos/"+i+"-Spade.png",Suits.Spade));
-			cards.add(new Card(i, "red","photos/"+i+"-Daimond.png",Suits.Daimond));
+			cards.add(new Card(i, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
 			
 		}
+	
 	}
 		
 	/////////////////////////////////////////////////////	 getters and setters///////////////////////////////////

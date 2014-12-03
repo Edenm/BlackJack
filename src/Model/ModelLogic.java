@@ -69,18 +69,31 @@ public final class ModelLogic implements Serializable{
 	{
 		return player.getChips();
 	}
+
+	//----------------------------------- remove methods ----------------------------------------------
 	/**
 	 * 
 	 * @param amount- the anount of bets player bet this game
 	 */
-	public void setbets(int amount)
+	public boolean setbets(int amount)
 	{
-		player.setBets(amount);
+		 return player.setBets(amount);
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	public Integer getChips() {
+		return player.getChips();
 	}
 	
-	//----------------------------------- remove methods ----------------------------------------------
-		
-	
+	/**
+	 * 	
+	 * @return
+	 */
+	public Integer getBets() {
+		return player.getBets();
+	}
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
