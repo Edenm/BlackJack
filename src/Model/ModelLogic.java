@@ -51,14 +51,12 @@ public final class ModelLogic implements Serializable{
 	 * @return the choosen card
 	 */
 	public Card getCard(int user) 
-	{Card card=dealer.getCard();
-	
-		if (user==1)
+	{
+		Card card=dealer.getCard();
+			if (user==1)
 			player.addcard(card);
 		else
 			dealer.addcard(card);
-			
-			
 		return card;
 	}
 	/**
