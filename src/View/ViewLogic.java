@@ -71,14 +71,26 @@ public final class ViewLogic  extends Application {
 	}
 	}
 
-       //----------------------------------- add methods -------------------------------------------------
+       //----------------------------------- cards methods -------------------------------------------------
  
 	public static Card getCardFromDeck(int user)
 	{
 		return controller.getCard(user);
 	}
+	
        //----------------------------------- Remove methods ----------------------------------------------
-
+		
+	
+	public static int getChips()
+	{
+	  return controller.getChips();
+	}
+	
+	
+	public static Boolean setBets(int amount)
+	{
+	  return controller.setbets(amount);
+	}
        //----------------------------------- update methods ----------------------------------------------
 	
        //***************************************** other Methods *****************************************

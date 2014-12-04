@@ -78,7 +78,11 @@ public class TableController {
 		secondCardPlayer.setImage(new Image(tempCard.getPic()));
 		System.out.println(tempCard.getPic());
 		tempCard= ViewLogic.getCardFromDeck(1);
-		firstCardDealer.setImage(new Image(tempCard.getPic()));		
+		firstCardDealer.setImage(new Image(tempCard.getPic()));	
+		
+		tempCard= ViewLogic.getCardFromDeck(1);
+		secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
+		
 	}
 	
 	
@@ -104,7 +108,10 @@ public class TableController {
 	}
 	
 	
-	
+	public void UpDatebets()
+	{
+		
+	}
 	
 
 }
