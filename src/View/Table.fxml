@@ -60,24 +60,12 @@
          </textFill>
       </Button>
       <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="449.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Photos/3_of_hearts.png" />
-         </image>
       </ImageView>
       <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="486.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Photos/3_of_spades.png" />
-         </image>
       </ImageView>
       <ImageView fx:id="firstCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="423.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Photos/2_of_clubs.png" />
-         </image>
       </ImageView>
       <ImageView fx:id="secondCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="479.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@Photos/2_of_clubs.png" />
-         </image>
       </ImageView>
       <ImageView fitHeight="47.0" fitWidth="41.0" layoutX="945.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fitHeight="47.0" fitWidth="41.0" layoutX="940.0" layoutY="436.0" pickOnBounds="true" preserveRatio="true">

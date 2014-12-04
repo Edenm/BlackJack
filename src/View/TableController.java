@@ -2,12 +2,14 @@ package View;
 
 import java.awt.Color;
 
+import Model.Card;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -67,8 +69,16 @@ public class TableController {
 	@FXML
 	public void Deal()
 	{
+		Card tempCard= ViewLogic.getCardFromDeck(1);
+		firstCardPlayer.setImage(new Image(tempCard.getPic()));
+
+		tempCard= ViewLogic.getCardFromDeck(1);
+		secondCardPlayer.setImage(new Image(tempCard.getPic()));
 		
+		tempCard= ViewLogic.getCardFromDeck(1);
+		firstCardDealer.setImage(new Image(tempCard.getPic()));		
 	}
+	
 	
 	@FXML
 	public void RaiseBets100()

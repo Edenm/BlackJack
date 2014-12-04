@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
+import Model.Card;
 
 /**
  * View Logic class
@@ -55,7 +56,7 @@ public final class ViewLogic  extends Application {
 	@Override
 	public void start(Stage primaryStage) 	 {
 		// TODO Auto-generated method stub
-		ControllerLogic.getInstance();
+		//ControllerLogic.getInstance();
 		try{
 			
 			
@@ -73,6 +74,10 @@ public final class ViewLogic  extends Application {
 
        //----------------------------------- add methods -------------------------------------------------
  
+	public static Card getCardFromDeck(int user)
+	{
+		return controller.getCard(user);
+	}
        //----------------------------------- Remove methods ----------------------------------------------
 
        //----------------------------------- update methods ----------------------------------------------
