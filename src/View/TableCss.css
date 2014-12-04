@@ -1,0 +1,13 @@
+@CHARSET "ISO-8859-1";
+
+#gameStatus
+{
+	-fx-background-color: #003300;
+	
+}
+
+#lbl_score
+{
+	-fx-color: white;
+	
+}
