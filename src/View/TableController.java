@@ -164,7 +164,8 @@ public class TableController {
 	{
 		if(ViewLogic.setBets(amount))
 		{
-		lblBet.setText("Bets: "+amount);
+	    int totalAmount= amount+ ViewLogic.getBets();
+		lblBet.setText("Bets: "+totalAmount);
 		
 		// get the total chips before rasie the bets;
 		int totalChips= ViewLogic.getChips();

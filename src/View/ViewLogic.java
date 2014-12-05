@@ -3,9 +3,12 @@ package View;
 
 import java.io.IOException;
 
+import com.sun.javafx.css.CssError.StylesheetParsingError;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
@@ -63,7 +66,8 @@ public final class ViewLogic  extends Application {
 	            Scene scene = new Scene(page);
 	            scene.getStylesheets().add("/view/TableCss.css");
 	            primaryStage.setScene(scene);
-	            primaryStage.setTitle("FXML is Simple");
+	            primaryStage.setTitle("BlackJack Enjoy!");
+	            primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 	            primaryStage.show();
 	       
 	} catch(Exception e) {
@@ -71,14 +75,14 @@ public final class ViewLogic  extends Application {
 	}
 	}
 
-       //----------------------------------- cards methods -------------------------------------------------
+    //----------------------------------- cards methods -------------------------------------------------
  
 	public static Card getCardFromDeck(int user)
 	{
 		return controller.getCard(user);
 	}
 	
-       //----------------------------------- Remove methods ----------------------------------------------
+       //----------------------------------- Chip's methods ----------------------------------------------
 		
 	
 	public static int getChips()
@@ -90,6 +94,10 @@ public final class ViewLogic  extends Application {
 	public static Boolean setBets(int amount)
 	{
 	  return controller.setbets(amount);
+	}
+	
+	public static Integer getBets() {
+	return controller.getBets();
 	}
        //----------------------------------- update methods ----------------------------------------------
 	

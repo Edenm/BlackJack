@@ -44,6 +44,19 @@
                   </LinearGradient>
                </textFill>
             </Label>
+            <Label layoutX="657.0" layoutY="15.0" prefHeight="54.0" prefWidth="206.0" text="Value:">
+               <font>
+                  <Font name="AR BLANCA" size="36.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#08f252" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
          </children>
       </Pane>
       <Button fx:id="btnDeal" layoutX="144.0" layoutY="350.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">

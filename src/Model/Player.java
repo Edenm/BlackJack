@@ -73,7 +73,7 @@ public class Player {
 	public boolean setBets(Integer bets) {
 		if (bets!=null&&chips-bets>0)
 		{
-			this.bets = bets;
+			this.bets  = bets;
 			return true;
 		}
 		return false;
