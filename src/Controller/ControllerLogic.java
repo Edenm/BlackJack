@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.*;
+import Utils.User;
 import View.ViewLogic;
 
 
@@ -47,10 +48,10 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 	//////////// all the logic code of this method  is in modellogic class
 	/**
 	 * 
-	 * @param user 1- to add card to  player. other numer to add to  dealer
+	 * @param enum type of user
 	 * @return the choosen card
 	 */
-	public Card getCard(int user) 
+	public Card getCard(User user) 
 	{
 		 return model.getCard(user);
 	}

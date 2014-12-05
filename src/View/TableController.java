@@ -7,6 +7,7 @@ import java.util.Timer;
 import com.sun.prism.ResourceFactory;
 
 import Model.Card;
+import Utils.User;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -105,18 +106,18 @@ public class TableController {
 		// set bet to 0 --> new game
 		lblBet.setText("Bets: "+0);
 		
-		Card tempCard= ViewLogic.getCardFromDeck(1);
+		Card tempCard= ViewLogic.getCardFromDeck(User.Player);
 		System.out.println(tempCard.getPic());
 		firstCardPlayer.setImage(new Image(tempCard.getPic()));
 
-		tempCard= ViewLogic.getCardFromDeck(1);
+		tempCard= ViewLogic.getCardFromDeck(User.Player);
 		System.out.println(tempCard.getPic());
 		secondCardPlayer.setImage(new Image(tempCard.getPic()));
 		System.out.println(tempCard.getPic());
-		tempCard= ViewLogic.getCardFromDeck(2);
+		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
 		firstCardDealer.setImage(new Image(tempCard.getPic()));	
 		
-		tempCard= ViewLogic.getCardFromDeck(2);
+		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
 		secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
 		
 	}

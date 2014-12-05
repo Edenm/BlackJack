@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 
+import Utils.User;
+
 /**Model Logic class*/
 public final class ModelLogic implements Serializable{
 	//***************************************** Variables *********************************************
@@ -17,6 +19,8 @@ public final class ModelLogic implements Serializable{
 	private Dealer dealer;
 	/**Player reference pointer*/
 	private Player player;
+	/** static varibel save the number of games play in courrect round*/
+	private static Integer numOfGame=0;
 	//***************************************** Constructors ******************************************
 	/**
 	 * Full C'tor, for singleton support. 
@@ -47,13 +51,13 @@ public final class ModelLogic implements Serializable{
 	
 	/**
 	 * 
-	 * @param user 1- to add card to  player. other numer to add to  dealer
+	 * @param enum type of user
 	 * @return the choosen card
 	 */
-	public Card getCard(int user) 
+	public Card getCard(User user) 
 	{Card card=dealer.getCard();
 	
-		if (user==1)
+		if (user.equals(User.Player))
 			player.addcard(card);
 		else
 			dealer.addcard(card);
@@ -97,4 +101,20 @@ public final class ModelLogic implements Serializable{
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
+	/**
+	 * do ++ to number of games
+	 * todo: finished method iteration 2
+	 */
+	public void newGame()
+	{
+		numOfGame++;
+	}
+	/**
+	 * intalize zero to number of games
+	 * todo: finished method iteration 2
+	 */
+	public void newRound()
+	{
+		numOfGame=0;
+	}
 }

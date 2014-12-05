@@ -10,13 +10,13 @@ public class Player {
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
 	/** name of player- intalize when new player open app */
-	private String nickname;
+	private String nickname=new String();
 	/** the sum of all cardes in player hand*/
-	private Integer value;
+	private Integer value=new Integer(0);
 	/**  number of chips pkayer have (money)*/
-	private Integer chips;
+	private Integer chips=new Integer(0);
 	/** the sum of money player bets in this game;*/
-	private Integer bets;
+	private Integer bets=new Integer(0);
 	/** my cards*/
 	private ArrayList<Card> mycards;
 	
@@ -73,7 +73,7 @@ public class Player {
 	public boolean setBets(Integer bets) {
 		if (bets!=null&&chips-bets>0)
 		{
-			this.bets  = bets;
+			this.bets  += bets;
 			return true;
 		}
 		return false;

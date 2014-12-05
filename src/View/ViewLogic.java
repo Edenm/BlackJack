@@ -13,6 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
 import Model.Card;
+import Utils.User;
 
 /**
  * View Logic class
@@ -77,7 +78,7 @@ public final class ViewLogic  extends Application {
 
     //----------------------------------- cards methods -------------------------------------------------
  
-	public static Card getCardFromDeck(int user)
+	public static Card getCardFromDeck(User user)
 	{
 		return controller.getCard(user);
 	}
