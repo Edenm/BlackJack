@@ -1,6 +1,10 @@
 package View;
 
 import java.awt.Color;
+import java.net.URL;
+import java.util.Timer;
+
+import com.sun.prism.ResourceFactory;
 
 import Model.Card;
 import javafx.event.Event;
@@ -33,6 +37,19 @@ public class TableController {
 	Label lblBet;
 	
 	/**
+	 * keep the total score off the player
+	 */
+	@FXML
+	Label totalPoints;
+	
+	
+	/**
+	 * Label for display to user msg.
+	 */
+	@FXML
+	Label msgToUser;
+	
+	/**
 	 *  first card of the player
 	 */
 	@FXML
@@ -62,6 +79,22 @@ public class TableController {
 	@FXML
 	ImageView chip50;
 	
+	@FXML
+	ImageView chip25;
+	
+	@FXML
+	ImageView chip5;
+	
+	@FXML
+	ImageView chip1;
+	
+	@FXML
+	public void init(){
+		totalPoints.setText("Total score: "+ViewLogic.getChips());
+		
+		lblBet.setText("Bets: "+0);
+	}
+	
 	
 	/**
 	 * this method will deal the cards (2 cards each) between the dealer and player 
@@ -69,6 +102,9 @@ public class TableController {
 	@FXML
 	public void Deal()
 	{
+		// set bet to 0 --> new game
+		lblBet.setText("Bets: "+0);
+		
 		Card tempCard= ViewLogic.getCardFromDeck(1);
 		System.out.println(tempCard.getPic());
 		firstCardPlayer.setImage(new Image(tempCard.getPic()));
@@ -89,10 +125,7 @@ public class TableController {
 	@FXML
 	public void RaiseBets100()
 	{
-		bet+=100;
-		lblBet.setText("Bet: "+bet);
-		chip100.setVisible(false);
-		chip100.setDisable(false);
+		UpDatebets(100);
 		
 	}
 	
@@ -100,18 +133,59 @@ public class TableController {
 	public void RaiseBets50()
 	{
 		
-		bet+=50;
-		lblBet.setText("Bet: "+bet);
-		chip50.setVisible(false);
-		chip50.setDisable(false);
+		UpDatebets(50);
 		
 	}
 	
 	
-	public void UpDatebets()
+	@FXML
+	public void RaiseBets25()
 	{
+		UpDatebets(25);
 		
 	}
+	
+	@FXML
+	public void RaiseBets5()
+	{
+		UpDatebets(5);
+		
+	}
+	
+	@FXML
+	public void RaiseBets1()
+	{
+		UpDatebets(1);
+		
+	}
+	
+	
+	public void UpDatebets(int amount)
+	{
+		if(ViewLogic.setBets(amount))
+		{
+		lblBet.setText("Bets: "+amount);
+		
+		// get the total chips before rasie the bets;
+		int totalChips= ViewLogic.getChips();
+		
+		int chipsAfterTheRaise= totalChips-amount;
+		
+		totalPoints.setText("Total score: "+ chipsAfterTheRaise);
+		
+		checkChipMin();
+	}
+		else {
+			msgToUser.setText("you are out of chips");
+			
+		}
 	
 
+}
+
+
+	private void checkChipMin() {
+		// TODO Auto-generated method stub
+		
+	}
 }
