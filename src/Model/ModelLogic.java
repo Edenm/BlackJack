@@ -65,16 +65,9 @@ public final class ModelLogic implements Serializable{
 			
 		return card;
 	}
-	/**
-	 * 		
-	 * @return the number of chips left to player
-	 */
-	public int getPlayerChiaps()
-	{
-		return player.getChips();
-	}
+	
 
-	//----------------------------------- remove methods ----------------------------------------------
+	//----------------------------------- player methods ----------------------------------------------
 	/**
 	 * 
 	 * @param amount- the anount of bets player bet this game
@@ -85,12 +78,11 @@ public final class ModelLogic implements Serializable{
 	}
 	/**
 	 * 
-	 * @return
+	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
 		return player.getChips();
 	}
-	
 	/**
 	 * 	
 	 * @return

@@ -55,29 +55,23 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 	{
 		 return model.getCard(user);
 	}
-	/**
-	 * 		
-	 * @return the number of chips left to player
-	 */
+
 		
-	public int getPlayerChiaps()
-	{
-		return model.getPlayerChiaps();
-	}
+	
 	
 	
 	
 	//----------------------------------- player methods ----------------------------------------------
 	/**
 	 * 
-	 * @return
+	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
 		return model.getChips();
 	}
 	/**
 	 * 
-	 * @return
+	 * @return the bets of this player
 	 */
 	public Integer getBets() {
 		return model.getBets();
