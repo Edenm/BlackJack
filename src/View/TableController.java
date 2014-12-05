@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.Timer;
 
@@ -138,7 +139,6 @@ public class TableController {
 		
 	}
 	
-	
 	@FXML
 	public void RaiseBets25()
 	{
@@ -177,7 +177,7 @@ public class TableController {
 		totalPoints.setText("Total score: "+ chipsAfterTheRaise);
 		
 		checkChipMin();
-	}
+		}
 		else {
 			msgToUser.setText("you are out of chips");
 			

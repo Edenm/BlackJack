@@ -3,6 +3,8 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import Utils.Constants;
 import Utils.Suits;
 
 
@@ -45,12 +47,19 @@ public class Dealer {
 	 	            return instance;
 	 	}
 	/////////////////////////////////////////////////////////////methods of this class/////////////////////////////////
-// shuffle the cards array list	
+   
+	 /**
+     *  shuffle the cards array list	
+     */
 	public void shuffle()
 	{
 		Collections.shuffle(cards);
 	}
-	// pushe the first card like stack return only one card!
+	
+	/**
+	 *  pushe the first card like stack return only one card!
+	 * @return
+	 */
 	protected Card getCard()
 	{
 		if(number>=51)
@@ -62,27 +71,31 @@ public class Dealer {
 		return cards.get(number);
 		
 	}
-	// intalize the cards deck, happend only once 
-	// the pic here is intalize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
+	
+	/**
+	 *  intalize the cards deck, happend only once 
+	 *  the pic here is intalize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
+	 */	
 	private void intalizeDeckCards()
 	{
-		for(int i=1;i<14;i++)
+		for(int i=1;i<=Constants.numberOfSuitCard ;i++)
 		{
 			cards.add(new Card(i, "black","photos/"+i+"-Club.png",Suits.Club));
 			cards.add(new Card(i, "red","photos/"+i+"-Heart.png",Suits.Heart));
 			cards.add(new Card(i, "black","photos/"+i+"-Spade.png",Suits.Spade));
 			cards.add(new Card(i, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
-			
 		}
-	
 	}
 		
 	/////////////////////////////////////////////////////	 getters and setters///////////////////////////////////
-	
-	   public void addcard(Card card) {
+	/**
+	 * 
+	 * @param card
+	 */
+	 public void addcard(Card card) {
 				this.value +=card.getValue();
 				mycards.add(card);
-			}
+	}
 	   
 	
 }
