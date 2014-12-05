@@ -84,6 +84,13 @@ public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- fo
 	{
 		 return model.setbets(amount);
 	}
+	/**
+	 * 	
+	 * @return the value of all cards player have
+	 */
+	public Integer playerValueCards() {
+		return model.playerValueCards();
+	}
 	
 	//----------------------------------- connect methods ---------------------------------------------
 	

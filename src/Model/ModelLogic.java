@@ -90,6 +90,13 @@ public final class ModelLogic implements Serializable{
 	public Integer getBets() {
 		return player.getBets();
 	}
+	/**
+	 * 	
+	 * @return the value of all cards player have
+	 */
+	public Integer playerValueCards() {
+		return player.getValue();
+	}
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
