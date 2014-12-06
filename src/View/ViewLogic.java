@@ -1,10 +1,6 @@
 package View;
 
-
 import java.io.IOException;
-
-import com.sun.javafx.css.CssError.StylesheetParsingError;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
 import Model.Card;
+import Utils.User;
 
 /**
  * View Logic class
@@ -45,6 +42,7 @@ public final class ViewLogic  extends Application {
 					exists = true;
 					instance  = new ViewLogic();
 					controller=instanceController;
+					startview();
 					return instance;
                 }
                 return instance;
@@ -56,12 +54,9 @@ public final class ViewLogic  extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) 	 {
-		// TODO Auto-generated method stub
-		//ControllerLogic.getInstance();
+	public void start(Stage primaryStage) 	 
+	{
 		try{
-			
-			
 			    AnchorPane page = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Table.fxml"));
 	            Scene scene = new Scene(page);
 	            scene.getStylesheets().add("/view/TableCss.css");
@@ -69,15 +64,14 @@ public final class ViewLogic  extends Application {
 	            primaryStage.setTitle("BlackJack Enjoy!");
 	            primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 	            primaryStage.show();
-	       
-	} catch(Exception e) {
-		e.printStackTrace();
-	}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
     //----------------------------------- cards methods -------------------------------------------------
  
-	public static Card getCardFromDeck(int user)
+	public static Card getCardFromDeck(User user)
 	{
 		return controller.getCard(user);
 	}
