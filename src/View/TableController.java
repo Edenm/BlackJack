@@ -51,6 +51,13 @@ public class TableController {
 	@FXML
 	Label msgToUser;
 	
+
+	/**
+	 * Label for display the value of the cards of the player.
+	 */
+	@FXML
+	Label playerCardsValue;
+	
 	/**
 	 *  first card of the player
 	 */
@@ -104,26 +111,30 @@ public class TableController {
 	@FXML
 	public void Deal()
 	{
-		// set bet to 0 --> new game
-		lblBet.setText("Bets: "+0);
+		// button deal will disappear after dealing the cards.
+		btnDeal.setVisible(false);
 		
+		// Deal cards to the player//
 		Card tempCard= ViewLogic.getCardFromDeck(User.Player);
-		System.out.println(tempCard.getPic());
 		firstCardPlayer.setImage(new Image(tempCard.getPic()));
 
 		tempCard= ViewLogic.getCardFromDeck(User.Player);
-		System.out.println(tempCard.getPic());
 		secondCardPlayer.setImage(new Image(tempCard.getPic()));
-		System.out.println(tempCard.getPic());
+		
+		
+		// Deal cards to the Dealer//
 		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
 		firstCardDealer.setImage(new Image(tempCard.getPic()));	
 		
+		// the last card to the dealer in back card in the modelView.Dealer the card its save.
 		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
 		secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
 		
+		//update the value cards of the player after deal
+		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		
 	}
-	
-	
+//-------------------------------------------chips Method Raise bets ----------------------------------------------------	
 	@FXML
 	public void RaiseBets100()
 	{
@@ -160,34 +171,82 @@ public class TableController {
 		
 	}
 	
+//-------------------------------------------chips Method Raise bets The End ----------------------------------------------------	
 	
+
+	
+//--------------------------- Update status bar method---------------------------------------------------------
+
 	public void UpDatebets(int amount)
 	{
 		if(ViewLogic.setBets(amount))
 		{
 	   
-		int	totalAmount= ViewLogic.getBets();
-		lblBet.setText("Bets: "+totalAmount);
+		SetPlayerBetsIntheGame(ViewLogic.getBets());
 		
-		// get the total chips before rasie the bets;
-		int totalChips= ViewLogic.getChips();
+		// get the total chips before raise the bets;
+		SetTotalChips(ViewLogic.getChips());
 		
-		int chipsAfterTheRaise= totalChips-amount;
-		
-		totalPoints.setText("Total score: "+ chipsAfterTheRaise);
-		
-		checkChipMin();
 		}
-		else {
-			msgToUser.setText("you are out of chips");
-			
+		else{
+			SetMeg(true, "you are out of chips");
 		}
 	
 
 }
+//--------------------------- Update status bar method the End---------------------------------------------------------
 
-
-	private void checkChipMin() {
-		
+	
+//--------------------------- set Message method---------------------------------------------------------
+	/**
+	 * the message to user will disappear when the mouse is move on the background picture.
+	 */
+  public void DisapearMsg() {
+	msgToUser.setVisible(false);
+  }
+	
+	
+  /**
+   * make message will show when visible is True and set the text to arg in the msg parameter
+   * @param visible
+   * @param msg
+   */
+	private void SetMeg(Boolean visible, String msg ) {
+		msgToUser.setVisible(visible);
+		msgToUser.setText(msg);
 	}
+	
+	
+	 /**
+	  * set player value on the status bar
+	  * @param value
+	  */
+		private void SetPlayerCradsValue(int value)
+     	 {
+			playerCardsValue.setText("Value:"+ value);
+		 }
+		
+		/**
+		 * update the current bet in the game in status bar
+		 * @param value
+		 */
+		private void SetPlayerBetsIntheGame(int value)
+    	 {
+			lblBet.setText("Bets: "+value);
+		 }
+		
+		/**
+		 * update total chips of the player on status bar
+		 * @param value
+		 */
+		private void SetTotalChips(int value)
+   	    {
+			totalPoints.setText("Total chips: "+value);
+		 }
+		
+		
+	
+	
+//--------------------------- set Message method the End---------------------------------------------------------
+
 }

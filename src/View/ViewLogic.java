@@ -1,6 +1,7 @@
 package View;
 
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -76,7 +77,15 @@ public final class ViewLogic  extends Application {
 		return controller.getCard(user);
 	}
 	
-       //----------------------------------- Chip's methods ----------------------------------------------
+	/**
+	 * 	
+	 * @return the value of all cards player have
+	 */
+	public static Integer playerValueCards() {
+		return controller.playerValueCards();
+	}
+	
+     //----------------------------------- Chip's methods ----------------------------------------------
 		
 	
 	public static int getChips()
