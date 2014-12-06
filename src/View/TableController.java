@@ -113,10 +113,10 @@ public class TableController {
 		System.out.println(tempCard.getPic());
 		secondCardPlayer.setImage(new Image(tempCard.getPic()));
 		System.out.println(tempCard.getPic());
-		tempCard= ViewLogic.getCardFromDeck(1);
+		tempCard= ViewLogic.getCardFromDeck(2);
 		firstCardDealer.setImage(new Image(tempCard.getPic()));	
 		
-		tempCard= ViewLogic.getCardFromDeck(1);
+		tempCard= ViewLogic.getCardFromDeck(2);
 		secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
 		
 	}

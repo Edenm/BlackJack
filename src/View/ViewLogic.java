@@ -62,7 +62,7 @@ public final class ViewLogic  extends Application {
 		try{
 			
 			
-			  AnchorPane page = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Table.fxml"));
+			    AnchorPane page = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Table.fxml"));
 	            Scene scene = new Scene(page);
 	            scene.getStylesheets().add("/view/TableCss.css");
 	            primaryStage.setScene(scene);

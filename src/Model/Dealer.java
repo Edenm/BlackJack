@@ -27,6 +27,7 @@ public class Dealer {
 		 mycards=new ArrayList<Card>();
 		 intalizeDeckCards();
 		 shuffle();
+		 value= new Integer(0);
 	 }
 	 
 	 /**
