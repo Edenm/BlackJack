@@ -164,7 +164,8 @@ public class TableController {
 	{
 		if(ViewLogic.setBets(amount))
 		{
-	    int totalAmount= amount+ ViewLogic.getBets();
+	   
+		int	totalAmount= ViewLogic.getBets();
 		lblBet.setText("Bets: "+totalAmount);
 		
 		// get the total chips before rasie the bets;
@@ -186,7 +187,6 @@ public class TableController {
 
 
 	private void checkChipMin() {
-		// TODO Auto-generated method stub
 		
 	}
 }
