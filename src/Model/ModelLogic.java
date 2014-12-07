@@ -1,6 +1,9 @@
 package Model;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -22,11 +25,18 @@ public final class ModelLogic implements Serializable{
 	/** static varibel save the number of games play in courrect round*/
 	private static Integer numOfGame=0;
 	//***************************************** Constructors ******************************************
+    /**
+     * create txt file for the tests
+     */
+       File file = new File("example.txt");
+       BufferedWriter output = new BufferedWriter(new FileWriter(file));
+    
 	/**
 	 * Full C'tor, for singleton support. 
 	 * @throws IOException 
 	 */
 	private ModelLogic() throws IOException {
+		
 		dealer= Dealer.getInstance();
 		player= Player.getInstance("moshe");
 	}
@@ -57,10 +67,25 @@ public final class ModelLogic implements Serializable{
 	public Card getCard(User user) 
 	{Card card=dealer.getCard();
 	
-		if (user.equals(User.Player))
+		if (user.equals(User.Player)){
 			player.addcard(card);
-		else
+			try {
+				output.newLine();
+				output.write("the player get:"+card.getValue());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		else{
 			dealer.addcard(card);
+			try {
+				output.newLine();
+				output.write("the dealer get:"+card.getValue());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			}
 			
 			
 		return card;
@@ -74,13 +99,27 @@ public final class ModelLogic implements Serializable{
 	 */
 	public boolean setbets(int amount)
 	{
+		try {
+			output.newLine();
+			output.write("the player bet:"+amount);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		 return player.setBets(amount);
+		
 	}
 	/**
 	 * 
 	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
+		try {
+			output.newLine();
+			output.write("the player have "+player.getChips()+" chips");
+		} catch (IOException e) {
+		
+			e.printStackTrace();
+		}
 		return player.getChips();
 	}
 	/**
@@ -95,6 +134,14 @@ public final class ModelLogic implements Serializable{
 	 * @return the value of all cards player have
 	 */
 	public Integer playerValueCards() {
+		try {
+			output.newLine();
+			output.write("the player have"+player.getValue());
+			output.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 		return player.getValue();
 	}
 	//----------------------------------- update methods ----------------------------------------------

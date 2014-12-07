@@ -59,7 +59,7 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="btnDeal" layoutX="144.0" layoutY="350.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
+      <Button fx:id="btnDeal" layoutX="73.0" layoutY="406.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
@@ -124,10 +124,49 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="msgToUser" layoutX="293.0" layoutY="283.0" prefHeight="84.0" prefWidth="448.0" textFill="#bc0d0d">
+      <Label fx:id="msgToUser" layoutX="336.0" layoutY="308.0" prefHeight="84.0" prefWidth="373.0" textFill="#bc0d0d">
          <font>
-            <Font name="Aldhabi" size="83.0" />
+            <Font size="48.0" />
          </font>
       </Label>
+      <Button fx:id="btnHit" layoutX="195.0" layoutY="406.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Hit">
+         <font>
+            <Font name="Andalus" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="btnNewGame" layoutX="18.0" layoutY="185.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="btnNewRound" layoutX="18.0" layoutY="241.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
    </children>
 </AnchorPane>
