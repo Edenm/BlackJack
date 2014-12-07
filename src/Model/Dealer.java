@@ -21,7 +21,8 @@ public class Dealer {
 	 private ArrayList<Card> mycards;
 	 /** place to take the next card*/
 	 private int number=-1;
-	 
+	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
+	 private boolean isFirstAce=true;
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
 	 public Dealer()
 	 {
@@ -78,24 +79,47 @@ public class Dealer {
 	 */	
 	private void intalizeDeckCards()
 	{
-		for(int i=1;i<=Constants.numberOfSuitCard ;i++)
+
+
+		for(int i=1,j=1;i<=Constants.numberOfSuitCard ;i++,j++)
 		{
-			cards.add(new Card(i, "black","photos/"+i+"-Club.png",Suits.Club));
-			cards.add(new Card(i, "red","photos/"+i+"-Heart.png",Suits.Heart));
-			cards.add(new Card(i, "black","photos/"+i+"-Spade.png",Suits.Spade));
-			cards.add(new Card(i, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
+
+
+			// jack, queen,king are equals 10 and not 11,12,13
+			if(j>11)
+				j=10;
+			
+			cards.add(new Card(j, "black","photos/"+i+"-Club.png",Suits.Club));
+			cards.add(new Card(j, "red","photos/"+i+"-Heart.png",Suits.Heart));
+			cards.add(new Card(j, "black","photos/"+i+"-Spade.png",Suits.Spade));
+			cards.add(new Card(j, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
 		}
+
+		
 	}
 		
 	/////////////////////////////////////////////////////	 getters and setters///////////////////////////////////
 	/**
-	 * 
+<<<<<<< HEAD
+	 * add card to player value and array of card, check if the player have ace or its first card of ace and do += to the value for 11 or 1
 	 * @param card
 	 */
-	 public void addcard(Card card) {
-				this.value +=card.getValue();
-				mycards.add(card);
-	}
+	
+	   public void addcard(Card card) {
+		   // if the card is ace, check if its the first ace
+		   if(card.getValue()==1)
+			   if(isFirstAce)
+			   {
+				   this.value+=11;// if first ace, += 11 to th value
+				   isFirstAce=false;
+			   }
+			   else
+				   this.value+=1;// if its the second card ace add only 1
+		   else
+			   this.value +=card.getValue();
+	   }
+
+
 	   
 	
 }

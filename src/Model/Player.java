@@ -10,15 +10,17 @@ public class Player {
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
 	/** name of player- intalize when new player open app */
-	private String nickname=new String();
+	private String nickname;
 	/** the sum of all cardes in player hand*/
-	private Integer value=new Integer(0);
+	private Integer value;
 	/**  number of chips pkayer have (money)*/
-	private Integer chips=new Integer(0);
+	private Integer chips;
 	/** the sum of money player bets in this game;*/
-	private Integer bets=new Integer(0);
+	private Integer bets;
 	/** my cards*/
 	private ArrayList<Card> mycards;
+	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
+	 private boolean isFirstAce=true;
 	
 	
 	
@@ -29,10 +31,14 @@ public class Player {
  * @param nickname
  */
 	public   Player(String nickname ){
-		this.nickname=nickname;
+		nickname=new String();
+		this.mycards=new ArrayList<Card>();
+		value=new Integer(0);
+		bets=new Integer(0);
+		chips=new Integer(0);
 		// player atart with 500 chips every round;
 		this.chips=500;
-		this.mycards=new ArrayList<Card>();
+		this.nickname=nickname;
 	}
 
 /**
@@ -57,10 +63,7 @@ public class Player {
 	public Integer getValue() {
 		return value;
 	}
-	public void addcard(Card card) {
-		//this.value +=card.getValue();
-	//	mycards.add(card);
-	}
+	
 	public Integer getChips() {
 		return chips;
 	}
@@ -70,14 +73,38 @@ public class Player {
 	public Integer getBets() {
 		return bets;
 	}
-	public boolean setBets(Integer bets) {
-		if (bets!=null&&chips-bets>0)
+
+
+	//////////////////////////////////////////////////////////////// methods for player///////////////////////////
+
+	public boolean setBets(Integer bet) {
+		
+		if (bets!=null&&chips-(bets+bet)>=0)
 		{ 
-			this.bets  += bets;
+			this.bets  += bet;
 			return true;
 		}
 		return false;
 	}
+	/**
+	 * add card to player value and array of card, check if the player have ace or its first card of ace and do += to the value for 11 or 1
+	 * @param card
+	 */
+	
+	   public void addcard(Card card) {
+		   // if the card is ace, check if its the first ace
+		   if(card.getValue()==1)
+			   if(isFirstAce)
+			   {
+				   this.value+=11;// if first ace, += 11 to th value
+				   isFirstAce=false;
+			   }
+			   else
+				   this.value+=1;// if its the second card ace add only 1
+		   else
+			   this.value +=card.getValue();
+				mycards.add(card);
+			}
 
 
 }

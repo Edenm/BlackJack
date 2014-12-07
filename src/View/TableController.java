@@ -138,6 +138,7 @@ public class TableController {
 	@FXML
 	public void RaiseBets100()
 	{
+		
 		UpDatebets(100);
 		
 	}
@@ -181,6 +182,7 @@ public class TableController {
 	{
 		if(ViewLogic.setBets(amount))
 		{
+			
 	   
 		SetPlayerBetsIntheGame(ViewLogic.getBets());
 		
