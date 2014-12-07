@@ -59,7 +59,7 @@
             </Label>
          </children>
       </Pane>
-      <Button fx:id="btnDeal" layoutX="73.0" layoutY="406.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
+      <Button fx:id="btnDeal" layoutX="35.0" layoutY="406.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
@@ -129,7 +129,7 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Button fx:id="btnHit" layoutX="195.0" layoutY="406.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Hit">
+      <Button fx:id="btnHit" layoutX="157.0" layoutY="406.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Hit">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
@@ -158,6 +158,19 @@
       <Button fx:id="btnNewRound" layoutX="18.0" layoutY="241.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Stand">
+         <font>
+            <Font name="Andalus" size="24.0" />
          </font>
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
