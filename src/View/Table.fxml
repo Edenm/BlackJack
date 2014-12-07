@@ -124,7 +124,7 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="msgToUser" layoutX="336.0" layoutY="308.0" prefHeight="84.0" prefWidth="373.0" textFill="#bc0d0d">
+      <Label fx:id="msgToUser" layoutX="238.0" layoutY="308.0" prefHeight="84.0" prefWidth="471.0" textFill="#bc0d0d">
          <font>
             <Font size="48.0" />
          </font>
