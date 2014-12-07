@@ -86,7 +86,7 @@ public class Dealer {
 
 
 			// jack, queen,king are equals 10 and not 11,12,13
-			if(j>11)
+			if(j>=11)
 				j=10;
 			
 			cards.add(new Card(j, "black","photos/"+i+"-Club.png",Suits.Club));
