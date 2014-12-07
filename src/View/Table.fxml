@@ -131,7 +131,7 @@
       </Label>
       <Label fx:id="lblOptions" onMouseEntered="#ShowNewButtonPanel" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33;" text="Options" textFill="#033c0a">
          <font>
-            <Font name="AR BERKLEY" size="36.0" />
+            <Font size="24.0" />
          </font>
       </Label>
       <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
