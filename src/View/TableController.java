@@ -248,6 +248,7 @@ public class TableController {
 @FXML
   public void DisapearMsg() {
 	msgToUser.setVisible(false);
+	HideNewButtonPanel();
   }
 	
 	

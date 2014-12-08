@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="800.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TableController">
    <children>
-      <ImageView fx:id="backgroudTable" fitHeight="600.0" fitWidth="1000.0" layoutX="1.0" layoutY="8.0" nodeOrientation="INHERIT" onMouseMoved="#DisapearMsg" onRotationStarted="#init" pickOnBounds="true" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="8.0">
+      <ImageView fx:id="backgroudTable" fitHeight="613.0" fitWidth="1000.0" layoutX="1.0" nodeOrientation="INHERIT" onMouseMoved="#DisapearMsg" onRotationStarted="#init" pickOnBounds="true" AnchorPane.bottomAnchor="87.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@MainTablePic.png" />
          </image>
@@ -134,7 +134,33 @@
             <Font name="AR BERKLEY" size="36.0" />
          </font>
       </Label>
-      <Pane fx:id="panelNewButtons" onMouseExited="#HideNewButtonPanel" prefHeight="134.0" prefWidth="111.0" style="-fx-background-color: #966F33; visibility: false;">
+      <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
+         <font>
+            <Font name="Andalus" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Stand" visible="false">
+         <font>
+            <Font name="Andalus" size="24.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Pane fx:id="panelNewButtons" layoutY="50.0" onMouseExited="#HideNewButtonPanel" prefHeight="133.0" prefWidth="111.0" style="-fx-background-color: #966F33;" visible="false">
          <children>
             <Button fx:id="btnNewGame" mnemonicParsing="false" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
                <font>
@@ -164,31 +190,5 @@
             </Button>
          </children>
       </Pane>
-      <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
-         <font>
-            <Font name="Andalus" size="24.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#08f252" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Button>
-      <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Stand" visible="false">
-         <font>
-            <Font name="Andalus" size="24.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#08f252" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Button>
    </children>
 </AnchorPane>
