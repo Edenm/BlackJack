@@ -6,7 +6,7 @@ import View.ViewLogic;
 
 
 /**Controller Logic class*/
-public final class ControllerLogic {// implements I_ControllerLogic {  <<<--- for 2nd HW !!
+public final class ControllerLogic {
 	//***************************************** Variables *********************************************
 	/**Singleton instance of this class, loaded on the first execution of ControllerLogic.getInstance()*/
 	private static ControllerLogic instance;

@@ -24,8 +24,8 @@ public class Card {
     */
 	public Card(Integer value, String color,String url,Suits suit) {
 		this.value = value;
-		this.color = color;
-		this.suit=suit;
+		this.setColor(color);
+		this.setSuit(suit);
 		this.url=url;
 	}
 	/**
@@ -40,6 +40,18 @@ public class Card {
 	   public Integer getValue() {
 			return value;
 		}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
+	}
+	public Suits getSuit() {
+		return suit;
+	}
+	public void setSuit(Suits suit) {
+		this.suit = suit;
+	}
 	   
 	
 }
