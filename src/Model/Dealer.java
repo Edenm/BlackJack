@@ -117,6 +117,7 @@ public class Dealer {
 				   this.value+=1;// if its the second card ace add only 1
 		   else
 			   this.value +=card.getValue();
+		   mycards.add(card);
 	   }
 
 
