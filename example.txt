@@ -1,0 +1,17 @@
+
+the player have 500 chips
+the player bet:100
+the player have 500 chips
+the player bet:100
+the player have 500 chips
+the player bet:100
+the player have 500 chips
+the player bet:100
+the player have 500 chips
+the player bet:100
+the player have 500 chips
+the player get:4
+the player get:3
+the dealer get:6
+the dealer get:2
+the player have7

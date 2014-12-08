@@ -12,8 +12,6 @@ public final class ControllerLogic {
 	private static ControllerLogic instance;
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
-	/**ViewLogic reference pointer*/
-	private static ViewLogic view; //assuming we've only one.
 	/**ModelLogic reference pointer*/
 	private static ModelLogic model; //assuming we've only one.
 	//***************************************** Constructors ******************************************
@@ -35,7 +33,7 @@ public final class ControllerLogic {
 				exists = true;
 				model = ModelLogic.getInstance();
 				instance = new ControllerLogic();
-	 		view = ViewLogic.getInstance(instance);// wait to create viewlogic
+				ViewLogic.getInstance(instance);// wait to create viewlogic
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
