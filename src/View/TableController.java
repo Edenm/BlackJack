@@ -3,6 +3,7 @@ package View;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.Timer;
 
 import com.sun.prism.ResourceFactory;
@@ -12,6 +13,7 @@ import Utils.User;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,10 +25,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class TableController {
+public class TableController implements Initializable {
 	
-	// will be delete when we connected MVC
-	int bet=0;
+	
 	/**
 	 * the button that start the dealing action
 	 */
@@ -118,6 +119,14 @@ public class TableController {
 	
 	@FXML
 	Label lblOptions;
+	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
+	/**
+	 * method intalize table form ( load)- intalize the total chips show to player
+	 */
+	public void initialize(URL location, ResourceBundle resources) {
+		init();
+		
+	}
 	
 	@FXML
 	public void init(){
@@ -229,7 +238,7 @@ public class TableController {
 		SetPlayerBetsIntheGame(ViewLogic.getBets());
 		
 		// get the total chips before raise the bets;
-		SetTotalChips(ViewLogic.getChips());
+		SetTotalChips(ViewLogic.getChips()-ViewLogic.getBets());
 		
 		}
 		else{
@@ -305,6 +314,9 @@ public void ShowNewButtonPanel()
 {
 	panelNewButtons.setVisible(true);
 }
+
+
+
 
 	
 		
