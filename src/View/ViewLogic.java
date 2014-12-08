@@ -64,12 +64,25 @@ public final class ViewLogic  extends Application {
 	            primaryStage.setScene(scene);
 	            primaryStage.setTitle("BlackJack Enjoy!");
 	            primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+	           setWindowSize(primaryStage, 1000, 700);
 	            primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 
+	//-----------------------------------Window method--------------------------------------------------
+	
+	public static void setWindowSize(Stage primaryStage,int width, int height)
+	{
+		// max
+		primaryStage.setMaxWidth(width);
+        primaryStage.setMaxHeight(height);
+        
+        // min
+        primaryStage.setMinHeight(height);
+        primaryStage.setMinWidth(width);
+	}
     //----------------------------------- cards methods -------------------------------------------------
  
 	public static Card getCardFromDeck(User user)

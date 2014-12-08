@@ -111,8 +111,11 @@ public class TableController {
 	@FXML
 	public void Deal()
 	{
+		if(ViewLogic.getBets()>0)
+		{
 		// button deal will disappear after dealing the cards.
 		btnDeal.setVisible(false);
+		HideChips();
 		
 		// Deal cards to the player//
 		Card tempCard= ViewLogic.getCardFromDeck(User.Player);
@@ -132,7 +135,20 @@ public class TableController {
 		
 		//update the value cards of the player after deal
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		}
+		else
+			SetMeg(true, "bet before deal");
 		
+	}
+	
+	
+	public void HideChips()
+	{
+		chip1.setVisible(false);
+		chip5.setVisible(false);
+		chip25.setVisible(false);
+		chip50.setVisible(false);
+		chip100.setVisible(false);
 	}
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
 	@FXML
