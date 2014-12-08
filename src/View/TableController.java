@@ -20,6 +20,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class TableController {
@@ -31,6 +32,17 @@ public class TableController {
 	 */
 	@FXML
 	Button btnDeal;
+	
+	/**
+	 * 
+	 */
+	@FXML
+	Button btnHit;
+	/**
+	 * 
+	 */
+	@FXML
+	Button btnStand;
 	
 	/**
 	 * showing what is the current bet in the game
@@ -98,10 +110,16 @@ public class TableController {
 	ImageView chip1;
 	
 	@FXML
+	Pane panelNewButtons;
+	
+	@FXML
+	Label lblOptions;
+	
+	@FXML
 	public void init(){
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		
-		lblBet.setText("Bets: "+0);
+		lblBet.setText("Bet: "+0);
 	}
 	
 	
@@ -135,6 +153,10 @@ public class TableController {
 		
 		//update the value cards of the player after deal
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		
+		// show buttons hot and stands
+		btnHit.setVisible(true);
+		btnStand.setVisible(true);
 		}
 		else
 			SetMeg(true, "bet before deal");
@@ -266,5 +288,19 @@ public class TableController {
 	
 	
 //--------------------------- set Message method the End---------------------------------------------------------
+@FXML
+public void HideNewButtonPanel()
+{
+	panelNewButtons.setVisible(false);
+}
 
+@FXML
+public void ShowNewButtonPanel()
+{
+	panelNewButtons.setVisible(true);
+}
+
+	
+		
+		
 }
