@@ -94,6 +94,10 @@ public class TableController {
 	@FXML
 	ImageView secondCardDealer;
 	
+	
+	@FXML
+	ImageView backgroudTable;
+	
 	@FXML
 	ImageView chip100;
 	
@@ -241,6 +245,7 @@ public class TableController {
 	/**
 	 * the message to user will disappear when the mouse is move on the background picture.
 	 */
+@FXML
   public void DisapearMsg() {
 	msgToUser.setVisible(false);
   }
