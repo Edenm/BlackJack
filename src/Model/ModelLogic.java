@@ -5,15 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.Serializable;
+
 
 import Utils.User;
 
 /**Model Logic class*/
-public final class ModelLogic implements Serializable{
+public final class ModelLogic {
 	//***************************************** Variables *********************************************
-	/** ModelLogic's serialVersionUID*/
-	private static final long serialVersionUID = 6141521813577450598L;
+
 	/**Singleton instance of this class, loaded on the first execution of ModelLogic.getInstance()*/
 	private static ModelLogic instance;
 	/**Boolean flag for class instance existence (singleton)*/
