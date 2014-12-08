@@ -25,12 +25,7 @@ public final class ViewLogic  extends Application {
 	/**ControllerLogic reference pointer*/
 	private static ControllerLogic controller;
 	//***************************************** Constructors ******************************************
-	/**
-	 * Full C'tor, for singleton support. 
-	 */
-	/*private ViewLogic() {
-            
-	}*/
+
 	//***************************************** Methods ***********************************************
 	/**
 	 * The method creates this class's instance & provides access to it, by returning a reference (singleton).
