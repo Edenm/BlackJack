@@ -51,9 +51,8 @@ public final class ModelLogic {
 				exists = true;
 				instance  = new ModelLogic();
 				return instance;
-				
 		}
-		return null;
+		return instance;
 	}													
 
     //----------------------------------- Dealer methods -------------------------------------------------

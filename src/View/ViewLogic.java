@@ -25,7 +25,12 @@ public final class ViewLogic  extends Application {
 	/**ControllerLogic reference pointer*/
 	private static ControllerLogic controller;
 	//***************************************** Constructors ******************************************
-
+	/**
+	 * full C'tur
+	 */
+	public ViewLogic() {
+	}
+	
 	//***************************************** Methods ***********************************************
 	/**
 	 * The method creates this class's instance & provides access to it, by returning a reference (singleton).
@@ -43,7 +48,7 @@ public final class ViewLogic  extends Application {
                 }
                 return instance;
 	}
-	
+
 	public static void startview()
 	{
 		launch();

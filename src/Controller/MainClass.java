@@ -6,6 +6,10 @@ public class MainClass {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ControllerLogic.getInstance();
+		try{
+			ControllerLogic.getInstance();
+		}catch(Exception e){
+			System.err.println("Error: cannot initialize ModelLogic, please contact you administrator!");
+		}
 	}
 }
