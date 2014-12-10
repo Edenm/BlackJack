@@ -3,6 +3,10 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
+import Controller.ControllerLogic;
+import Exceptions.PlayerEndOfGameException;
 import Model.Card;
 import Utils.User;
 import javafx.fxml.FXML;
@@ -202,8 +206,15 @@ public class TableController implements Initializable {
 		ViewLogic.getPage().getChildren().add(pic);
 		playerx=pic.getLayoutX();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		try {
+			ViewLogic.isOver21();
+		} catch (PlayerEndOfGameException e) {
+			flipDealerCard();
+			SetMeg(true, e.getMessage());
+		}
+			
 		
-		
+			
 	}
 	/**
 	 * method set buttons hit and stand unvisble
@@ -213,19 +224,25 @@ public class TableController implements Initializable {
 	@FXML
 	public void StandCard()
 	{
+		flipDealerCard();
+		while(ViewLogic.isDealerNeedMoreCard())
+		{
+			Card c=ViewLogic.getCardFromDeck(User.Dealer);
+			ImageView pic=new ImageView(new Image(c.getPic()));
+			pic.setFitHeight(firstCardDealer.getFitHeight());
+			pic.setFitWidth(firstCardDealer.getFitWidth()-28);
+			pic.setLayoutX(dealerx+32);
+			pic.setLayoutY(firstCardDealer.getLayoutY());
+			ViewLogic.getPage().getChildren().add(pic);
+			dealerx=pic.getLayoutX();
+		}
+	}
+	
+	private void flipDealerCard()
+	{
 		btnStand.setVisible(false);
 		btnHit.setVisible(false);
-		Card c=ViewLogic.getCardFromDeck(User.Dealer);
-		ImageView pic=new ImageView(new Image(c.getPic()));
-		pic.setFitHeight(firstCardDealer.getFitHeight());
-		pic.setFitWidth(firstCardDealer.getFitWidth()-28);
-		pic.setLayoutX(dealerx+32);
-		pic.setLayoutY(firstCardDealer.getLayoutY());
-		ViewLogic.getPage().getChildren().add(pic);
-		dealerx=pic.getLayoutX();
-		
-		
-		
+		secondCardDealer.setImage(new Image(ViewLogic.getSecondCardOfDealer().getPic()));
 	}
 	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	

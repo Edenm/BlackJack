@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
+import Exceptions.PlayerEndOfGameException;
 import Model.Card;
 import Utils.User;
 
@@ -102,6 +103,25 @@ public final class ViewLogic  extends Application {
 	public static Integer playerValueCards() {
 		return controller.playerValueCards();
 	}
+	 /**
+	  * @throws PlayerEndOfGameException if value of player is over 21
+	  */
+	  public static void isOver21() throws PlayerEndOfGameException{
+		   controller.isOver21();
+	  }
+		 /**
+		 * @return true if Dealer can take one more card, else otherwise
+		 */	
+		public static Boolean isDealerNeedMoreCard(){
+			return controller.isDealerNeedMoreCard();
+		}
+		
+		/**
+		 * The method return the second card of the Dealer
+		*/
+		public static Card getSecondCardOfDealer(){
+			return controller.getSecondCardOfDealer();
+		}
 	
      //----------------------------------- Chip's methods ----------------------------------------------
 		
