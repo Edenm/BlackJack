@@ -9,7 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
-import Exceptions.PlayerEndOfGameException;
 import Model.Card;
 import Utils.User;
 
@@ -72,7 +71,6 @@ public final class ViewLogic  extends Application {
 		       primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 		        setWindowSize(primaryStage, 1000, 700);
 		        primaryStage.show();
-	           
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -90,16 +88,15 @@ public final class ViewLogic  extends Application {
         primaryStage.setMinHeight(height);
         primaryStage.setMinWidth(width);
 	}
-    //----------------------------------- cards methods -------------------------------------------------
+    
+	//----------------------------------- cards methods -------------------------------------------------
  
-	public static Card getCardFromDeck(User user) throws PlayerEndOfGameException
+	public static Card getCardFromDeck(User user)
 	{
 			return controller.getCard(user);
-		
 	}
 	
 	/**
-	 * 	
 	 * @return the value of all cards player have
 	 */
 	public static Integer playerValueCards() {
@@ -121,11 +118,12 @@ public final class ViewLogic  extends Application {
 	}
 	
 	public static Integer getBets() {
-	return controller.getBets();
+		return controller.getBets();
 	}
-       //----------------------------------- update methods ----------------------------------------------
 	
-       //***************************************** other Methods *****************************************
+   //----------------------------------- update methods ----------------------------------------------
+	
+   //***************************************** other Methods *****************************************
 	public static AnchorPane getPage() {
 		return page;
 	}

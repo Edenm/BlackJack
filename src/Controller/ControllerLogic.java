@@ -50,7 +50,7 @@ public final class ControllerLogic {
 	 * @return the choosen card
 	 * @throws PlayerEndOfGameException 
 	 */
-	public Card getCard(User user) throws PlayerEndOfGameException 
+	public Card getCard(User user)
 	{
 		 return model.getCard(user);
 	}
@@ -78,6 +78,7 @@ public final class ControllerLogic {
 	public Integer getChips() {
 		return model.getChips();
 	}
+	
 	/**
 	 * 
 	 * @return the bets of this player
@@ -85,6 +86,7 @@ public final class ControllerLogic {
 	public Integer getBets() {
 		return model.getBets();
 	}
+	
 	/**
 	 * 
 	 * @param amount- the anount of bets player bet this game
@@ -93,6 +95,7 @@ public final class ControllerLogic {
 	{
 		 return model.setbets(amount);
 	}
+	
 	/**
 	 * 	
 	 * @return the value of all cards player have
@@ -101,6 +104,12 @@ public final class ControllerLogic {
 		return model.playerValueCards();
 	}
 	
+	 /**
+	  * @throws PlayerEndOfGameException if value of player is over 21
+	  */
+	  public void isOver21() throws PlayerEndOfGameException{
+		   model.isOver21();
+	  }
 	
 	
 	

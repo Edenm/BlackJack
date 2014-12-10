@@ -91,7 +91,7 @@ public class Player {
 	 * @param card
 	 */
 	
-	   public void addcard(Card card) throws PlayerEndOfGameException{
+	   public void addcard(Card card) {
 		   // if the card is ace, check if its the first ace
 		   if(card.getValue()==1)
 			   if(isFirstAce)
@@ -104,10 +104,15 @@ public class Player {
 		   else
 			   this.value +=card.getValue();
 				mycards.add(card);
-				
-			if (value>21)
-				throw new PlayerEndOfGameException("Player Is Busted");
 		}
+	   
+	   /**
+	    * @throws PlayerEndOfGameException if value of player is over 21
+	    */
+	   public void isOver21() throws PlayerEndOfGameException{
+		   if (value>21)
+			   throw new PlayerEndOfGameException("Player Is Busted");
+	   }
 
 
 }

@@ -121,7 +121,7 @@ public class Dealer {
 	   /**
 	    * @return true if Dealer can take one more card, else otherwise
 	    */
-	   public Boolean isDealerNeedMoreCard(){
+	   public boolean isDealerNeedMoreCard(){
 			if (value<Constants.limitOfDealer)
 				return true;
 			return false;
@@ -131,7 +131,7 @@ public class Dealer {
 	    * The method return the second card of the Dealer
 	    */
 	   public Card getSecondCardOfDealer(){
-			return mycards.get(2);
+			return mycards.get(1);
 	   }
 	   
 	

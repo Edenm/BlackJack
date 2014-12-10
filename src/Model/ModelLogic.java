@@ -59,8 +59,9 @@ public final class ModelLogic {
 	 * @return the choosen card
 	 * @throws PlayerEndOfGameException 
 	 */
-	public Card getCard(User user) throws PlayerEndOfGameException 
-	{Card card=dealer.getCard();
+	public Card getCard(User user)
+	{
+		Card card=dealer.getCard();
 	
 		if (user.equals(User.Player)){
 			player.addcard(card);
@@ -160,6 +161,14 @@ public final class ModelLogic {
 		*/
 		return player.getValue();
 	}
+	
+	 /**
+	  * @throws PlayerEndOfGameException if value of player is over 21
+	  */
+	  public void isOver21() throws PlayerEndOfGameException{
+		   player.isOver21();
+	  }
+	  
 	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
