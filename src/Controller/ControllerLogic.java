@@ -1,5 +1,6 @@
 package Controller;
 
+import Exceptions.PlayerEndOfGameException;
 import Model.*;
 import Utils.User;
 import View.ViewLogic;
@@ -45,18 +46,28 @@ public final class ControllerLogic {
     //----------------------------------- Dealer methods -------------------------------------------------
 	//////////// all the logic code of this method  is in modellogic class
 	/**
-	 * 
 	 * @param enum type of user
 	 * @return the choosen card
+	 * @throws PlayerEndOfGameException 
 	 */
-	public Card getCard(User user) 
+	public Card getCard(User user) throws PlayerEndOfGameException 
 	{
 		 return model.getCard(user);
 	}
 
-		
+	 /**
+	 * @return true if Dealer can take one more card, else otherwise
+	 */	
+	public Boolean isDealerNeedMoreCard(){
+		return model.isDealerNeedMoreCard();
+	}
 	
-	
+	/**
+	 * The method return the second card of the Dealer
+	*/
+	public Card getSecondCardOfDealer(){
+		return model.getSecondCardOfDealer();
+	}
 	
 	
 	//----------------------------------- player methods ----------------------------------------------
@@ -90,11 +101,7 @@ public final class ControllerLogic {
 		return model.playerValueCards();
 	}
 	
-	//----------------------------------- connect methods ---------------------------------------------
 	
-	//----------------------------------- disconnect methods ------------------------------------------
-	
-	//----------------------------------- update methods ----------------------------------------------
 	
 	
     //***************************************** other Methods *****************************************

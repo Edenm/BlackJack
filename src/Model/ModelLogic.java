@@ -1,12 +1,8 @@
 package Model;
 
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-
-
+import Exceptions.PlayerEndOfGameException;
 import Utils.User;
 
 /**Model Logic class*/
@@ -61,8 +57,9 @@ public final class ModelLogic {
 	 * 
 	 * @param enum type of user
 	 * @return the choosen card
+	 * @throws PlayerEndOfGameException 
 	 */
-	public Card getCard(User user) 
+	public Card getCard(User user) throws PlayerEndOfGameException 
 	{Card card=dealer.getCard();
 	
 		if (user.equals(User.Player)){
@@ -91,6 +88,19 @@ public final class ModelLogic {
 		return card;
 	}
 	
+	/**
+	 * @return true if Dealer can take one more card, else otherwise
+	 */
+	public Boolean isDealerNeedMoreCard(){
+		return dealer.isDealerNeedMoreCard();
+	}
+	
+	/**
+	 * The method return the second card of the Dealer
+	*/
+	public Card getSecondCardOfDealer(){
+		return dealer.getSecondCardOfDealer();
+	}
 
 	//----------------------------------- player methods ----------------------------------------------
 	/**

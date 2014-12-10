@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
+import Exceptions.PlayerEndOfGameException;
 import Model.Card;
 import Utils.User;
 
@@ -91,9 +92,10 @@ public final class ViewLogic  extends Application {
 	}
     //----------------------------------- cards methods -------------------------------------------------
  
-	public static Card getCardFromDeck(User user)
+	public static Card getCardFromDeck(User user) throws PlayerEndOfGameException
 	{
-		return controller.getCard(user);
+			return controller.getCard(user);
+		
 	}
 	
 	/**

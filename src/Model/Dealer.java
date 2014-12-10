@@ -23,6 +23,7 @@ public class Dealer {
 	 private int number=-1;
 	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
 	 private boolean isFirstAce=true;
+	 
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
 	 public Dealer()
 	 {
@@ -47,6 +48,11 @@ public class Dealer {
 	 	            }
 	 	            return instance;
 	 	}
+	 	
+	/////////////////////////////////////////////////////getters and setters////////////////////////////////////////////
+	 	
+	 	
+	 	
 	/////////////////////////////////////////////////////////////methods of this class/////////////////////////////////
    
 	 /**
@@ -79,12 +85,8 @@ public class Dealer {
 	 */	
 	private void intalizeDeckCards()
 	{
-
-
 		for(int i=1,j=1;i<=Constants.numberOfSuitCard ;i++,j++)
 		{
-
-
 			// jack, queen,king are equals 10 and not 11,12,13
 			if(j>=11)
 				j=10;
@@ -94,13 +96,9 @@ public class Dealer {
 			cards.add(new Card(j, "black","photos/"+i+"-Spade.png",Suits.Spade));
 			cards.add(new Card(j, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
 		}
-
-		
 	}
-		
-	/////////////////////////////////////////////////////	 getters and setters///////////////////////////////////
+	
 	/**
-<<<<<<< HEAD
 	 * add card to player value and array of card, check if the player have ace or its first card of ace and do += to the value for 11 or 1
 	 * @param card
 	 */
@@ -120,7 +118,21 @@ public class Dealer {
 		   mycards.add(card);
 	   }
 
-
+	   /**
+	    * @return true if Dealer can take one more card, else otherwise
+	    */
+	   public Boolean isDealerNeedMoreCard(){
+			if (value<Constants.limitOfDealer)
+				return true;
+			return false;
+		}
+	   
+	   /**
+	    * The method return the second card of the Dealer
+	    */
+	   public Card getSecondCardOfDealer(){
+			return mycards.get(2);
+	   }
 	   
 	
 }

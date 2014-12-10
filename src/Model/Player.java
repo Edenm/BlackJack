@@ -3,26 +3,26 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Exceptions.PlayerEndOfGameException;
+
 public class Player {
 	////////////////////////////////////////////////////////////Variables/////////////////////////////////////////////////////////////
 	/**Singleton instance of this class, loaded on the first execution of ModelLogic.getInstance()*/
 	private static Player instance ;
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
-	/** name of player- intalize when new player open app */
+	/** name of player- initialize when new player open app */
 	private String nickname;
-	/** the sum of all cardes in player hand*/
+	/** the sum of all cards in player hand*/
 	private Integer value;
-	/**  number of chips pkayer have (money)*/
+	/**  number of chips player have (money)*/
 	private Integer chips;
 	/** the sum of money player bets in this game;*/
 	private Integer bets;
 	/** my cards*/
 	private ArrayList<Card> mycards;
 	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
-	 private boolean isFirstAce=true;
-	
-	
+	private boolean isFirstAce=true;
 	
 ///////////////////////////////////////////////////////////////// constructor to player ///////////////////////////////////////
 /**
@@ -91,7 +91,7 @@ public class Player {
 	 * @param card
 	 */
 	
-	   public void addcard(Card card) {
+	   public void addcard(Card card) throws PlayerEndOfGameException{
 		   // if the card is ace, check if its the first ace
 		   if(card.getValue()==1)
 			   if(isFirstAce)
@@ -104,7 +104,10 @@ public class Player {
 		   else
 			   this.value +=card.getValue();
 				mycards.add(card);
-			}
+				
+			if (value>21)
+				throw new PlayerEndOfGameException("Player Is Busted");
+		}
 
 
 }
