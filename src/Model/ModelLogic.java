@@ -27,8 +27,8 @@ public final class ModelLogic {
     /**
      * create txt file for the tests
      */
-       File file = new File("example.txt");
-       BufferedWriter output = new BufferedWriter(new FileWriter(file));
+       //File file = new File("example.txt");
+       //BufferedWriter output = new BufferedWriter(new FileWriter(file));
     
 	/**
 	 * Full C'tor, for singleton support. 
@@ -67,21 +67,23 @@ public final class ModelLogic {
 	
 		if (user.equals(User.Player)){
 			player.addcard(card);
+			/*
 			try {
 				output.newLine();
 				output.write("the player get:"+card.getValue());
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		else{
 			dealer.addcard(card);
+			/*
 			try {
 				output.newLine();
 				output.write("the dealer get:"+card.getValue());
 			} catch (IOException e) {
 				e.printStackTrace();
-			}
+			}*/
 			
 			}
 			
@@ -97,12 +99,14 @@ public final class ModelLogic {
 	 */
 	public boolean setbets(int amount)
 	{
+		/*
 		try {
 			output.newLine();
 			output.write("the player bet:"+amount);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 		 return player.setBets(amount);
 		
 	}
@@ -111,6 +115,7 @@ public final class ModelLogic {
 	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
+		/*
 		try {
 			output.newLine();
 			output.write("the player have "+player.getChips()+" chips");
@@ -118,6 +123,7 @@ public final class ModelLogic {
 		
 			e.printStackTrace();
 		}
+		*/
 		return player.getChips();
 	}
 	/**
@@ -132,6 +138,7 @@ public final class ModelLogic {
 	 * @return the value of all cards player have
 	 */
 	public Integer playerValueCards() {
+		/*
 		try {
 			output.newLine();
 			output.write("the player have"+player.getValue());
@@ -140,6 +147,7 @@ public final class ModelLogic {
 			
 			e.printStackTrace();
 		}
+		*/
 		return player.getValue();
 	}
 	//----------------------------------- update methods ----------------------------------------------

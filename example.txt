@@ -1,9 +1,9 @@
 
 the player have 500 chips
-the player bet:25
+the player bet:100
 the player have 500 chips
-the player get:10
+the player get:8
 the player get:10
 the dealer get:3
 the dealer get:10
-the player have20
+the player have18
