@@ -19,6 +19,10 @@ public class TableController implements Initializable {
 	 * varible save to place of the last card for player
 	 */
 	private Double playerx;
+	/**
+	 * varible save to place of the last card for player
+	 */
+	private Double dealerx;
 	
 	/**
 	 * the button that start the dealing action
@@ -126,6 +130,7 @@ public class TableController implements Initializable {
 		
 		lblBet.setText("Bet: "+0);
 		playerx=new Double(secondCardPlayer.getLayoutX());
+		dealerx=new Double(secondCardDealer.getLayoutX());
 	}
 	
 	
@@ -179,17 +184,47 @@ public class TableController implements Initializable {
 		chip50.setVisible(false);
 		chip100.setVisible(false);
 	}
+	/**
+	 
+	 * method add one card to player every push
+	 * method use global parmter playerx to put the card in the right place
+	 */
 	
 	@FXML
 	public void hitCard()
 	{
-		ImageView pic=new ImageView(new Image(ViewLogic.getCardFromDeck(User.Player).getPic()));
+		Card c=ViewLogic.getCardFromDeck(User.Player);
+		ImageView pic=new ImageView(new Image(c.getPic()));
 		pic.setFitHeight(firstCardPlayer.getFitHeight());
 		pic.setFitWidth(secondCardPlayer.getFitWidth()-28);
 		pic.setLayoutX(playerx+32);
 		pic.setLayoutY(firstCardPlayer.getLayoutY());
 		ViewLogic.getPage().getChildren().add(pic);
 		playerx=pic.getLayoutX();
+		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		
+		
+	}
+	/**
+	 * method set buttons hit and stand unvisble
+	 * method add card to dealer until 17
+	 * method use global parmter dealerx to put the card in the right place
+	 */
+	@FXML
+	public void StandCard()
+	{
+		btnStand.setVisible(false);
+		btnHit.setVisible(false);
+		Card c=ViewLogic.getCardFromDeck(User.Dealer);
+		ImageView pic=new ImageView(new Image(c.getPic()));
+		pic.setFitHeight(firstCardDealer.getFitHeight());
+		pic.setFitWidth(firstCardDealer.getFitWidth()-28);
+		pic.setLayoutX(dealerx+32);
+		pic.setLayoutY(firstCardDealer.getLayoutY());
+		ViewLogic.getPage().getChildren().add(pic);
+		dealerx=pic.getLayoutX();
+		
+		
 		
 	}
 	

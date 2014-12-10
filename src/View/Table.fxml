@@ -78,7 +78,7 @@
       </ImageView>
       <ImageView fx:id="firstCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="423.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <ImageView fx:id="secondCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="479.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="secondCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="456.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <ImageView fitHeight="47.0" fitWidth="41.0" layoutX="945.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="chip1" fitHeight="47.0" fitWidth="41.0" layoutX="940.0" layoutY="436.0" onMouseClicked="#RaiseBets1" pickOnBounds="true" preserveRatio="true">
@@ -147,7 +147,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Stand" visible="false">
+      <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" onAction="#StandCard" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Stand" visible="false">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
