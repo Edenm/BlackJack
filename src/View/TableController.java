@@ -15,7 +15,10 @@ import javafx.scene.layout.Pane;
 
 
 public class TableController implements Initializable {
-	
+	/**
+	 * varible save to place of the last card for player
+	 */
+	private Double playerx;
 	
 	/**
 	 * the button that start the dealing action
@@ -116,12 +119,13 @@ public class TableController implements Initializable {
 		init();
 		
 	}
-	
+/////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		
 		lblBet.setText("Bet: "+0);
+		playerx=new Double(secondCardPlayer.getLayoutX());
 	}
 	
 	
@@ -166,6 +170,7 @@ public class TableController implements Initializable {
 	}
 	
 	
+	
 	public void HideChips()
 	{
 		chip1.setVisible(false);
@@ -174,6 +179,20 @@ public class TableController implements Initializable {
 		chip50.setVisible(false);
 		chip100.setVisible(false);
 	}
+	
+	@FXML
+	public void hitCard()
+	{
+		ImageView pic=new ImageView(new Image(ViewLogic.getCardFromDeck(User.Player).getPic()));
+		pic.setFitHeight(firstCardPlayer.getFitHeight());
+		pic.setFitWidth(secondCardPlayer.getFitWidth()-28);
+		pic.setLayoutX(playerx+32);
+		pic.setLayoutY(firstCardPlayer.getLayoutY());
+		ViewLogic.getPage().getChildren().add(pic);
+		playerx=pic.getLayoutX();
+		
+	}
+	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
 	@FXML
 	public void RaiseBets100()

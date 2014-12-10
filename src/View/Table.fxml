@@ -74,7 +74,7 @@
       </Button>
       <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="486.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="452.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <ImageView fx:id="firstCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="423.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
@@ -134,7 +134,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
+      <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" onAction="#hitCard" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
