@@ -52,7 +52,24 @@ public class Card {
 	public void setSuit(Suits suit) {
 		this.suit = suit;
 	}
-	   
+	
+	///////////////////////////////////////////////Override method///////////////////////////////////////////////////////////
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((suit == null) ? 0 : suit.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Card)
+			return ((suit.equals(((Card)obj).suit) && value.equals(((Card)obj).value)));
+		return false;
+	}
 	
 }
 
