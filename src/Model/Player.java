@@ -2,7 +2,7 @@ package Model;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import Utils.Constants;
 import Exceptions.PlayerEndOfGameException;
 
 public class Player {
@@ -25,27 +25,20 @@ public class Player {
 	private boolean isFirstAce=true;
 	
 ///////////////////////////////////////////////////////////////// constructor to player ///////////////////////////////////////
-/**
- * c'tor
- *  need only name all the other data intalize every game with new data
- * @param nickname
- */
+	/**
+	 * c'tor
+	 *  need only name all the other data initialize every game with new data
+	 * @param nickname
+	 */
 	public   Player(String nickname ){
-		nickname=new String();
-		this.mycards=new ArrayList<Card>();
-		value=new Integer(0);
-		bets=new Integer(0);
-		chips=new Integer(0);
-		// player atart with 500 chips every round;
-		this.chips=500;
-		this.nickname=nickname;
+		newGamePlayer(nickname);
 	}
 
-/**
- * The method creates this class's instance & provides access to it, by returning a reference (singleton).
- * @return reference to this class's only instance, or null if reference was already returned (singleton).
- * @throws GeneralException 
- */
+	/**
+	 * The method creates this class's instance & provides access to it, by returning a reference (singleton).
+	 * @return reference to this class's only instance, or null if reference was already returned (singleton).
+	 * @throws GeneralException 
+	 */
 	public static Player getInstance(String nick) throws IOException {
 	            if(!exists)
 	            {
@@ -56,42 +49,82 @@ public class Player {
 	            return instance;
 	}
 //////////////////////////////////////////////////////geters and seters/////////////////////////////////////////////////////
-
+	/**
+	 * @return Nickname
+	 */
 	public String getNickname() {
 		return nickname;
 	}
+	/**
+	 * @return Value of cards
+	 */
 	public Integer getValue() {
 		return value;
 	}
-	
+	/**
+	 * @return Chips
+	 */
 	public Integer getChips() {
 		return chips;
 	}
+	/**
+	 * set Chips
+	 * @param points
+	 */
 	public void setPoints(Integer points) {
 		this.chips = points;
 	}
+	
+	/**
+	 * @return Bets
+	 */
 	public Integer getBets() {
 		return bets;
 	}
 
-
-	//////////////////////////////////////////////////////////////// methods for player///////////////////////////
-
+	/**
+	 * @param bet
+	 * @return true if can set more bets, false othrwise
+	 */
 	public boolean setBets(Integer bet) {
 		
 		if (bets!=null&&chips-(bets+bet)>=0)
 		{ 
-			this.bets  += bet;
+			this.bets+= bet;
 			return true;
 		}
 		return false;
 	}
+
+	/////////////////////////////// methods for player////////////////////////////////////////////////
+
+	/**
+	 * the method initialize the player for a new game
+	 * @param nickname
+	 */
+	public void newGamePlayer(String nickname){
+		nickname=new String();
+		newRoundPlayer();
+		chips=new Integer(0);
+		// player start with 500 chips every round;
+		this.chips=Constants.limitOfChips$;
+		this.nickname=nickname;
+	}
+	
+	/**
+	 * the method initialize the player for a new round
+	 */
+	public void newRoundPlayer(){
+		this.mycards=new ArrayList<Card>();
+		value=new Integer(0);
+		bets=new Integer(0);
+	}
+	
 	/**
 	 * add card to player value and array of card, check if the player have ace or its first card of ace and do += to the value for 11 or 1
 	 * @param card
 	 */
-	
-	   public void addcard(Card card) {
+	 public void addcard(Card card) {
 		   // if the card is ace, check if its the first ace
 		   if(card.getValue()==1)
 			   if(isFirstAce)
@@ -104,15 +137,27 @@ public class Player {
 		   else
 			   this.value +=card.getValue();
 				mycards.add(card);
-		}
+	}
 	   
-	   /**
-	    * @throws PlayerEndOfGameException if value of player is over 21
-	    */
-	   public void isOver21() throws PlayerEndOfGameException{
-		   if (value>21)
+	 /**
+	  * @throws PlayerEndOfGameException if value of player is over 21
+	 */
+	 public void isOver21() throws PlayerEndOfGameException{
+		   if (value>21){
+			   playerLose();
 			   throw new PlayerEndOfGameException("Player Is Busted");
-	   }
-
-
+		   }
+	  }
+	 
+	 public void playerLose(){
+		 this.chips-=this.bets;
+	 }
+	 
+	 public void playerWin(){
+		// this.chips+=this.bets;
+	 }
+	 
+	 public void nobodyWin(){
+		 this.chips+=this.bets;
+	 }
 }

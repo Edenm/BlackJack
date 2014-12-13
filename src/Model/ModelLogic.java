@@ -2,7 +2,9 @@ package Model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
 import Exceptions.PlayerEndOfGameException;
+import Exceptions.WhoWinException;
 import Utils.User;
 
 /**Model Logic class*/
@@ -18,7 +20,7 @@ public final class ModelLogic {
 	/**Player reference pointer*/
 	private Player player;
 	/** static varibel save the number of games play in courrect round*/
-	private static Integer numOfGame=0;
+	private static Integer numOfRounds=0;
 	//***************************************** Constructors ******************************************
     /**
      * create txt file for the tests
@@ -173,19 +175,42 @@ public final class ModelLogic {
 
     //***************************************** other Methods *****************************************
 	/**
+	 * initialize player and dealer for new game
 	 * do ++ to number of games
-	 * todo: finished method iteration 2
 	 */
 	public void newGame()
 	{
-		numOfGame++;
+		dealer.initializeDealer();
+		player.newGamePlayer("moshe");
+		numOfRounds=0;
 	}
+	
 	/**
-	 * intalize zero to number of games
-	 * todo: finished method iteration 2
+	 * initialize player and dealer for new round
+	 * initialize zero to number of games
 	 */
 	public void newRound()
 	{
-		numOfGame=0;
+		dealer.initializeDealer();
+		player.newRoundPlayer();
+		numOfRounds++;
+	}
+	
+	/**
+	 * @throws WhoWinException with message of who win!?
+	 */
+	public void checkWin() throws WhoWinException{
+		if (dealer.getValue()>player.getValue()){
+			player.playerLose();
+			throw new WhoWinException("Dealer is Win!");
+		}
+		else if (dealer.getValue()<player.getValue()){
+			player.playerWin();
+			throw new WhoWinException("Player is Win!");
+		}
+		else{
+			player.nobodyWin();
+			throw new WhoWinException("The game end! Nobody won");
+		}
 	}
 }

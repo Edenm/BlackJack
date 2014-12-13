@@ -25,13 +25,13 @@ public class Dealer {
 	 private boolean isFirstAce=true;
 	 
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
+	 /**
+	  * full ctu'r
+	  */
 	 public Dealer()
 	 {
-		 cards= new ArrayList<Card>();
-		 mycards=new ArrayList<Card>();
 		 intalizeDeckCards();
-		 shuffle();
-		 value= new Integer(0);
+		 initializeDealer();
 	 }
 	 
 	 /**
@@ -50,11 +50,43 @@ public class Dealer {
 	 	}
 	 	
 	/////////////////////////////////////////////////////getters and setters////////////////////////////////////////////
+	 	/**
+	 	 * @return value of cards
+	 	 */
+	 	protected Integer getValue() {
+			return value;
+		}
 	 	
-	 	
+	 	/**
+		 *  Push the first card like stack return only one card!
+		 * @return
+		 */
+		protected Card getCard()
+		{
+			/*
+			if(number>=51)
+			{
+				number=-1;
+				shuffle();
+			}
+			*/
+			number++;
+			return cards.get(number);
+			
+		}	
 	 	
 	/////////////////////////////////////////////////////////////methods of this class/////////////////////////////////
-   
+
+	/**
+	  * the method is initialize the dealer for new game or new round
+	  */
+	 public void initializeDealer(){
+		 shuffle();
+		 mycards=new ArrayList<Card>();
+		 value= new Integer(0);
+	 }
+	 	
+	 	
 	 /**
      *  shuffle the cards array list	
      */
@@ -64,27 +96,12 @@ public class Dealer {
 	}
 	
 	/**
-	 *  pushe the first card like stack return only one card!
-	 * @return
-	 */
-	protected Card getCard()
-	{
-		if(number>=51)
-		{
-			number=-1;
-			shuffle();
-		}
-		number++;
-		return cards.get(number);
-		
-	}
-	
-	/**
-	 *  intalize the cards deck, happend only once 
-	 *  the pic here is intalize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
+	 *  initialize the cards deck, happened only once 
+	 *  the pic here is initialize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
 	 */	
 	private void intalizeDeckCards()
 	{
+		cards= new ArrayList<Card>();
 		for(int i=1,j=1;i<=Constants.numberOfSuitCard ;i++,j++)
 		{
 			// jack, queen,king are equals 10 and not 11,12,13

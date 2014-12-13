@@ -1,6 +1,7 @@
 package Controller;
 
 import Exceptions.PlayerEndOfGameException;
+import Exceptions.WhoWinException;
 import Model.*;
 import Utils.User;
 import View.ViewLogic;
@@ -115,4 +116,26 @@ public final class ControllerLogic {
 	
     //***************************************** other Methods *****************************************
       
+	  	/**
+		 * initialize player and dealer for new game
+		 */
+		public void newGame()
+		{
+			model.newGame();
+		}
+		
+		/**
+		 * initialize player and dealer for new round
+		 */
+		public void newRound()
+		{
+			model.newRound();
+		}
+		
+		/**
+		 * @throws WhoWinException with message of who win!?
+		 */
+		public void checkWin() throws WhoWinException{
+			model.checkWin();
+		}
 }
