@@ -6,7 +6,7 @@ import Utils.Constants;
 import Exceptions.PlayerEndOfGameException;
 
 public class Player {
-	////////////////////////////////////////////////////////////Variables/////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////Variables/////////////////////////////////////////////////////////////
 	/**Singleton instance of this class, loaded on the first execution of ModelLogic.getInstance()*/
 	private static Player instance ;
 	/**Boolean flag for class instance existence (singleton)*/
@@ -21,7 +21,7 @@ public class Player {
 	private Integer bets;
 	/** my cards*/
 	private ArrayList<Card> mycards;
-	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
+	/** boolean variable check if player already have an ace card* true- if there isn't card ( first card), false- if player have ace in the cards*/
 	private boolean isFirstAce=true;
 	
 ///////////////////////////////////////////////////////////////// constructor to player ///////////////////////////////////////
@@ -48,7 +48,7 @@ public class Player {
 	            }
 	            return instance;
 	}
-//////////////////////////////////////////////////////geters and seters/////////////////////////////////////////////////////
+//////////////////////////////////////////////////////Getters and setters/////////////////////////////////////////////////////
 	/**
 	 * @return Nickname
 	 */
@@ -84,11 +84,11 @@ public class Player {
 
 	/**
 	 * @param bet
-	 * @return true if can set more bets, false othrwise
+	 * @return true if can set more bets, false otherwise
 	 */
 	public boolean setBets(Integer bet) {
 		
-		if (bets!=null&&chips-(bets+bet)>=0)
+		if (bets!=null && chips-(bets+bet)>=0)
 		{ 
 			this.bets+= bet;
 			return true;
@@ -96,7 +96,7 @@ public class Player {
 		return false;
 	}
 
-	/////////////////////////////// methods for player////////////////////////////////////////////////
+//////////////////////////////////// methods for player//////////////////////////////////////////////////////////
 
 	/**
 	 * the method initialize the player for a new game
@@ -137,7 +137,7 @@ public class Player {
 		   else
 			   this.value +=card.getValue();
 				mycards.add(card);
-	}
+	 }
 	   
 	 /**
 	  * @throws PlayerEndOfGameException if value of player is over 21
@@ -147,7 +147,7 @@ public class Player {
 			   playerLose();
 			   throw new PlayerEndOfGameException("Player Is Busted!");
 		   }
-	  }
+	 }
 	 
 	 /**
 	  * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
@@ -159,16 +159,18 @@ public class Player {
 		   }
 	 }
 	 
+///////////////////////////////////Calculate chips every round/////////////////////////////////////////////////////
 	 /**
 	  * update the chips for black jack case
 	  */
 	 public void playerBlackJack(){
-		 this.chips+=this.bets*3;
+		 this.chips+=this.bets*2;
 	 }
 	 
 	 /**
 	  * update the chips for lose case
 	  */
+	 
 	 public void playerLose(){
 		 this.chips-=this.bets;
 	 }
@@ -177,7 +179,7 @@ public class Player {
 	  * update the chips for win case
 	  */
 	 public void playerWin(){
-		this.chips+=this.bets*2;
+		this.chips+=this.bets;
 	 }
 	 
 	 /**

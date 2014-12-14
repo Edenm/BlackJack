@@ -63,13 +63,6 @@ public class Dealer {
 		 */
 		protected Card getCard()
 		{
-			/*
-			if(number>=51)
-			{
-				number=-1;
-				shuffle();
-			}
-			*/
 			number++;
 			return cards.get(number);
 			
@@ -93,6 +86,7 @@ public class Dealer {
 	public void shuffle()
 	{
 		Collections.shuffle(cards);
+		number=-1;
 	}
 	
 	/**
