@@ -145,18 +145,44 @@ public class Player {
 	 public void isOver21() throws PlayerEndOfGameException{
 		   if (value>21){
 			   playerLose();
-			   throw new PlayerEndOfGameException("Player Is Busted");
+			   throw new PlayerEndOfGameException("Player Is Busted!");
 		   }
 	  }
 	 
+	 /**
+	  * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
+	 */
+	 public void isBlackJack() throws PlayerEndOfGameException{
+		 if (value==21 && mycards.size()==2){
+			   playerBlackJack();
+			   throw new PlayerEndOfGameException("You got a black jack!!");
+		   }
+	 }
+	 
+	 /**
+	  * update the chips for black jack case
+	  */
+	 public void playerBlackJack(){
+		 this.chips+=this.bets*3;
+	 }
+	 
+	 /**
+	  * update the chips for lose case
+	  */
 	 public void playerLose(){
 		 this.chips-=this.bets;
 	 }
 	 
+	 /**
+	  * update the chips for win case
+	  */
 	 public void playerWin(){
-		// this.chips+=this.bets;
+		this.chips+=this.bets*2;
 	 }
 	 
+	 /**
+	  * update the chips for nobody win case
+	  */
 	 public void nobodyWin(){
 		 this.chips+=this.bets;
 	 }

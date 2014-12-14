@@ -19,7 +19,7 @@ public final class ModelLogic {
 	private Dealer dealer;
 	/**Player reference pointer*/
 	private Player player;
-	/** static varibel save the number of games play in courrect round*/
+	/** static variable save the number of games play in correct round*/
 	private static Integer numOfRounds=0;
 	//***************************************** Constructors ******************************************
     /**
@@ -169,6 +169,13 @@ public final class ModelLogic {
 	  */
 	  public void isOver21() throws PlayerEndOfGameException{
 		   player.isOver21();
+	  }
+	  
+	  /**
+	   * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
+	   */
+	  public void isBlackJack() throws PlayerEndOfGameException{
+		  player.isBlackJack();
 	  }
 	  
 	//----------------------------------- update methods ----------------------------------------------

@@ -112,7 +112,12 @@ public final class ControllerLogic {
 		   model.isOver21();
 	  }
 	
-	
+	  /**
+	   * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
+	   */
+	  public void isBlackJack() throws PlayerEndOfGameException{
+		  model.isBlackJack();
+	  }
 	
     //***************************************** other Methods *****************************************
       
