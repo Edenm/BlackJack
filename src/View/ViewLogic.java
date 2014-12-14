@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import Controller.*;
 import Exceptions.PlayerEndOfGameException;
+import Exceptions.WhoWinException;
 import Model.Card;
 import Utils.User;
 
@@ -77,7 +78,7 @@ public final class ViewLogic  extends Application {
 		}
 	}
 
-	//-----------------------------------Window method--------------------------------------------------
+	//-----------------------------------Window method and reset games methods--------------------------------------------------
 	
 	public static void setWindowSize(Stage primaryStage,int width, int height)
 	{
@@ -89,6 +90,22 @@ public final class ViewLogic  extends Application {
         primaryStage.setMinHeight(height);
         primaryStage.setMinWidth(width);
 	}
+	
+  	/**
+		 * initialize player and dealer for new game
+		 */
+		public static void newGame()
+		{
+			controller.newGame();
+		}
+		
+		/**
+		 * initialize player and dealer for new round
+		 */
+		public static void newRound()
+		{
+			controller.newRound();
+		}
     
 	//----------------------------------- cards methods -------------------------------------------------
  
@@ -122,6 +139,12 @@ public final class ViewLogic  extends Application {
 		public static Card getSecondCardOfDealer(){
 			return controller.getSecondCardOfDealer();
 		}
+		  /**
+		   * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
+		   */
+		  public static void isBlackJack() throws PlayerEndOfGameException{
+			  controller.isBlackJack();
+		  }
 	
      //----------------------------------- Chip's methods ----------------------------------------------
 		
@@ -146,6 +169,13 @@ public final class ViewLogic  extends Application {
    //***************************************** other Methods *****************************************
 	public static AnchorPane getPage() {
 		return page;
+	}
+
+	/**
+	 * @throws WhoWinException with message of who win!?
+	 */
+	public static void checkWin() throws WhoWinException{
+		controller.checkWin();
 	}
 
 		

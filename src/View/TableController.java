@@ -5,17 +5,25 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.media.jfxmedia.Media;
+
 import Controller.ControllerLogic;
 import Exceptions.PlayerEndOfGameException;
+import Exceptions.WhoWinException;
 import Model.Card;
 import Utils.User;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 
 public class TableController implements Initializable {
@@ -33,6 +41,8 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Button btnDeal;
+	@FXML
+	 Label playerMsg;
 	
 	/**
 	 * 
@@ -57,7 +67,8 @@ public class TableController implements Initializable {
 	@FXML
 	Label totalPoints;
 	
-	
+	@FXML
+	AnchorPane wall;
 	/**
 	 * Label for display to user msg.
 	 */
@@ -119,6 +130,7 @@ public class TableController implements Initializable {
 	
 	@FXML
 	Label lblOptions;
+	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
 	 * method intalize table form ( load)- intalize the total chips show to player
@@ -133,8 +145,16 @@ public class TableController implements Initializable {
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		
 		lblBet.setText("Bet: "+0);
+		playerCardsValue.setText("Value:"+0);
 		playerx=new Double(secondCardPlayer.getLayoutX());
 		dealerx=new Double(secondCardDealer.getLayoutX());
+		playerMsg.setVisible(false);
+		playerMsg.setVisible(false);
+		firstCardDealer.setVisible(false);
+		secondCardDealer.setVisible(false);
+		firstCardPlayer.setVisible(false);
+		secondCardPlayer.setVisible(false);
+			
 	}
 	
 	
@@ -146,41 +166,59 @@ public class TableController implements Initializable {
 	{
 		if(ViewLogic.getBets()>0)
 		{
-		// button deal will disappear after dealing the cards.
-		btnDeal.setVisible(false);
-		HideChips();
-		
-		// Deal cards to the player//
-		Card tempCard= ViewLogic.getCardFromDeck(User.Player);
-		firstCardPlayer.setImage(new Image(tempCard.getPic()));
-
-		tempCard= ViewLogic.getCardFromDeck(User.Player);
-		secondCardPlayer.setImage(new Image(tempCard.getPic()));
-		
-		
-		// Deal cards to the Dealer//
-		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
-		firstCardDealer.setImage(new Image(tempCard.getPic()));	
-		
-		// the last card to the dealer in back card in the modelView.Dealer the card its save.
-		tempCard= ViewLogic.getCardFromDeck(User.Dealer);
-		secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
-		
-		//update the value cards of the player after deal
-		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		
-		// show buttons hot and stands
-		btnHit.setVisible(true);
-		btnStand.setVisible(true);
+			dealCardsToGame();
+			firstCardDealer.setVisible(true);
+			secondCardDealer.setVisible(true);
+			firstCardPlayer.setVisible(true);
+			secondCardPlayer.setVisible(true);
+				
+			
 		}
 		else
 			SetMeg(true, "bet before deal");
 		
 	}
+	/**
+	 * this method will deal the cards (2 cards each) between the dealer and player 
+	 */
 	
-	
-	
-	public void HideChips()
+	 private void dealCardsToGame()
+	{
+		// button deal will disappear after dealing the cards.
+			btnDeal.setVisible(false);
+			HideChips();
+			
+			// Deal cards to the player//
+			Card tempCard= ViewLogic.getCardFromDeck(User.Player);
+			firstCardPlayer.setImage(new Image(tempCard.getPic()));
+
+			tempCard= ViewLogic.getCardFromDeck(User.Player);
+			secondCardPlayer.setImage(new Image(tempCard.getPic()));
+			
+			
+			// Deal cards to the Dealer//
+			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
+			firstCardDealer.setImage(new Image(tempCard.getPic()));	
+			
+			// the last card to the dealer in back card in the modelView.Dealer the card its save.
+			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
+			secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
+			
+			//update the value cards of the player after deal
+			SetPlayerCradsValue(ViewLogic.playerValueCards());
+			
+			// show buttons hot and stands
+			btnHit.setVisible(true);
+			btnStand.setVisible(true);
+			// if black jack
+			try {
+				ViewLogic.isBlackJack();
+			} catch (PlayerEndOfGameException e) {
+				playerMsg.setText(e.getMessage());
+				playerMsg.setVisible(true);
+			}
+	}
+	private void HideChips()
 	{
 		chip1.setVisible(false);
 		chip5.setVisible(false);
@@ -188,6 +226,25 @@ public class TableController implements Initializable {
 		chip50.setVisible(false);
 		chip100.setVisible(false);
 	}
+	private void newTable()
+	{
+		playerMsg.setVisible(false);
+		chip1.setVisible(true);
+		chip5.setVisible(true);
+		chip25.setVisible(true);
+		chip50.setVisible(true);
+		chip100.setVisible(true);
+		btnDeal.setVisible(true);
+		btnHit.setVisible(false);
+		btnStand.setVisible(false);
+		// clear all the crds add to dealear and player
+		for(Object c: wall.getChildren().toArray())
+			if(c instanceof ImageView&&((ImageView)c).getId()==null)
+				wall.getChildren().remove(c);
+	
+	}
+	
+	
 	/**
 	 
 	 * method add one card to player every push
@@ -209,11 +266,18 @@ public class TableController implements Initializable {
 		try {
 			ViewLogic.isOver21();
 		} catch (PlayerEndOfGameException e) {
+			playerMsg.setText(e.getMessage());
+			playerMsg.setVisible(true);
 			flipDealerCard();
-			SetMeg(true, e.getMessage());
+			try {
+				ViewLogic.checkWin();
+			} catch (WhoWinException e1) {
+				SetMeg(true, e.getMessage());
+			}
+			
 		}
 			
-		
+	
 			
 	}
 	/**
@@ -235,6 +299,12 @@ public class TableController implements Initializable {
 			pic.setLayoutY(firstCardDealer.getLayoutY());
 			ViewLogic.getPage().getChildren().add(pic);
 			dealerx=pic.getLayoutX();
+		}
+		try {
+			ViewLogic.checkWin();
+		} catch (WhoWinException e) {
+			playerMsg.setText(e.getMessage());
+			playerMsg.setVisible(true);
 		}
 	}
 	
@@ -307,9 +377,29 @@ public class TableController implements Initializable {
 	
 
 }
-//--------------------------- Update status bar method the End---------------------------------------------------------
+//--------------------------- other methods---------------------------------------------------------
+	/**
+	 * wwhen button new game clicking intalize new game with all new parmeter
+	 */
+	@FXML
+	public void clickNewGame()
+	{
+		ViewLogic.newGame();
+		init();
+		newTable();
 
-	
+	}
+	/**
+	 * wwhen button new game clicking intalize new game with all new parmeter
+	 */
+	@FXML
+	public void clickNewRound()
+	{
+		ViewLogic.newRound();
+		init();
+		newTable();
+		
+	}
 //--------------------------- set Message method---------------------------------------------------------
 	/**
 	 * the message to user will disappear when the mouse is move on the background picture.
