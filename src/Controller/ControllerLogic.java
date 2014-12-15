@@ -119,6 +119,19 @@ public final class ControllerLogic {
 		  model.isBlackJack();
 	  }
 	
+	  /**
+	   * @return number of wins of player
+	   */
+	  public int getNumberOfWins(){
+		  return model.getNumberOfWins();
+	  }
+	  
+	  /**
+	   * @return number of loses of player
+	   */
+	  public int getNumberOfLoses(){
+		  return model.getNumberOfLoses();
+	  }
     //***************************************** other Methods *****************************************
       
 	  	/**

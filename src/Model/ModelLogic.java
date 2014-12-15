@@ -65,28 +65,10 @@ public final class ModelLogic {
 	{
 		Card card=dealer.getCard();
 	
-		if (user.equals(User.Player)){
+		if (user.equals(User.Player))
 			player.addcard(card);
-			/*
-			try {
-				output.newLine();
-				output.write("the player get:"+card.getValue());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-		}
-		else{
+		else
 			dealer.addcard(card);
-			/*
-			try {
-				output.newLine();
-				output.write("the dealer get:"+card.getValue());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}*/
-			
-			}
-			
 			
 		return card;
 	}
@@ -112,31 +94,13 @@ public final class ModelLogic {
 	 */
 	public boolean setbets(int amount)
 	{
-		/*
-		try {
-			output.newLine();
-			output.write("the player bet:"+amount);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 		 return player.setBets(amount);
-		
 	}
 	/**
 	 * 
 	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
-		/*
-		try {
-			output.newLine();
-			output.write("the player have "+player.getChips()+" chips");
-		} catch (IOException e) {
-		
-			e.printStackTrace();
-		}
-		*/
 		return player.getChips();
 	}
 	/**
@@ -151,16 +115,6 @@ public final class ModelLogic {
 	 * @return the value of all cards player have
 	 */
 	public Integer playerValueCards() {
-		/*
-		try {
-			output.newLine();
-			output.write("the player have"+player.getValue());
-			output.close();
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-		*/
 		return player.getValue();
 	}
 	
@@ -176,6 +130,20 @@ public final class ModelLogic {
 	   */
 	  public void isBlackJack() throws PlayerEndOfGameException{
 		  player.isBlackJack();
+	  }
+	  
+	  /**
+	   * @return number of wins of player
+	   */
+	  public int getNumberOfWins(){
+		  return player.getNumberOfWins();
+	  }
+	  
+	  /**
+	   * @return number of loses of player
+	   */
+	  public int getNumberOfLoses(){
+		  return player.getNumberOfLoses();
 	  }
 	  
 	//----------------------------------- update methods ----------------------------------------------

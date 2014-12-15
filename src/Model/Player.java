@@ -23,7 +23,10 @@ public class Player {
 	private ArrayList<Card> mycards;
 	/** boolean variable check if player already have an ace card* true- if there isn't card ( first card), false- if player have ace in the cards*/
 	private boolean isFirstAce=true;
-	
+	/** int variable that represent number wins of player*/
+	private int numberOfWins=0;
+	/** int variable that represent number loses of player*/
+	private int numberOfLoses=0;
 ///////////////////////////////////////////////////////////////// constructor to player ///////////////////////////////////////
 	/**
 	 * c'tor
@@ -80,6 +83,20 @@ public class Player {
 	 */
 	public Integer getBets() {
 		return bets;
+	}
+	
+	/**
+	 * @return NumberOfWins
+	 */
+	public int getNumberOfWins() {
+		return numberOfWins;
+	}
+	
+	/**
+	 * @return NumberOfLoses
+	 */
+	public int getNumberOfLoses() {
+		return numberOfLoses;
 	}
 
 	/**
@@ -165,6 +182,7 @@ public class Player {
 	  */
 	 public void playerBlackJack(){
 		 this.chips+=this.bets*2;
+		 numberOfWins++;
 	 }
 	 
 	 /**
@@ -173,6 +191,7 @@ public class Player {
 	 
 	 public void playerLose(){
 		 this.chips-=this.bets;
+		 numberOfLoses++;
 	 }
 	 
 	 /**
@@ -180,6 +199,7 @@ public class Player {
 	  */
 	 public void playerWin(){
 		this.chips+=this.bets;
+		numberOfWins++;
 	 }
 	 
 	 /**
