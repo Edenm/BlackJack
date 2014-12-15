@@ -61,7 +61,9 @@ public class Card {
 	}
 	
 	///////////////////////////////////////////////Override method///////////////////////////////////////////////////////////
-	
+	/**
+	 * hashCode method for card class
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -71,7 +73,9 @@ public class Card {
 		result = prime * result + ((suit == null) ? 0 : suit.hashCode());
 		return result;
 	}
-	
+	/**
+	 * equals method for card class
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Card)

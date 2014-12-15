@@ -172,8 +172,6 @@ public class Player {
 	  */
 	 
 	 public void playerLose(){
-		 System.out.println(this.bets);
-		 System.out.println(this.chips);
 		 this.chips-=this.bets;
 	 }
 	 
