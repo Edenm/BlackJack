@@ -96,16 +96,15 @@ public class Dealer {
 	private void intalizeDeckCards()
 	{
 		cards= new ArrayList<Card>();
-		for(int i=1,j=1;i<=Constants.numberOfSuitCard ;i++,j++)
+		for(int i=1,j=1,realIndex=1 ;i<=Constants.numberOfSuitCard ;i++,j++,realIndex++)
 		{
 			// jack, queen,king are equals 10 and not 11,12,13
 			if(j>=11)
 				j=10;
-			
-			cards.add(new Card(j, "black","photos/"+i+"-Club.png",Suits.Club));
-			cards.add(new Card(j, "red","photos/"+i+"-Heart.png",Suits.Heart));
-			cards.add(new Card(j, "black","photos/"+i+"-Spade.png",Suits.Spade));
-			cards.add(new Card(j, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
+			cards.add(new Card(realIndex,j, "black","photos/"+i+"-Club.png",Suits.Club));
+			cards.add(new Card(realIndex,j, "red","photos/"+i+"-Heart.png",Suits.Heart));
+			cards.add(new Card(realIndex,j, "black","photos/"+i+"-Spade.png",Suits.Spade));
+			cards.add(new Card(realIndex,j, "red","photos/"+i+"-Diamond.png",Suits.Daimond));
 		}
 	}
 	
