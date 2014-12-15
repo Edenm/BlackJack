@@ -33,7 +33,7 @@ public final class TestsHelper {
 	{
 		Card[] cards={
 				new Card(2,2, "Red", "", Suits.Club),
-				new Card(2,2, "Red", "", Suits.Club),
+				new Card(5,2, "Black", "", Suits.Spade),
 				
 		};
 		return cards;
