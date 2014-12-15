@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -130,6 +131,8 @@ public class TableController implements Initializable {
 	
 	@FXML
 	Label lblOptions;
+	
+	
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
@@ -269,11 +272,7 @@ public class TableController implements Initializable {
 			playerMsg.setText(e.getMessage());
 			playerMsg.setVisible(true);
 			flipDealerCard();
-			try {
-				ViewLogic.checkWin();
-			} catch (WhoWinException e1) {
-				SetMeg(true, e.getMessage());
-			}
+			
 			
 		}
 			
@@ -466,6 +465,12 @@ public void ShowNewButtonPanel()
 }
 
 
+////////////////////////////////////////////// rules intailze data////////////////////////////
+
+
+
+			
+			
 
 
 	
