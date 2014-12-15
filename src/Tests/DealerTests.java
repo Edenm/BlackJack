@@ -40,14 +40,14 @@ public class DealerTests {
 	public void TestsDealerAddCardFirstAceAndSecondAce()
 	{
 	 Dealer dealer= new Dealer();
-	 Card card= new Card(1, "Red", "", Suits.Club);
+	 Card card= new Card(1,1, "Red", "", Suits.Club);
 	 
 	 dealer.addcard(card);
 	 
 	 int dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
 	 assertEquals(11, dealerCardValue);
 	 
-	 Card card2= new Card(1, "Black", "", Suits.Spade);
+	 Card card2= new Card(1,1, "Black", "", Suits.Spade);
 	 
 	 dealer.addcard(card2);
 	 
@@ -62,13 +62,13 @@ public class DealerTests {
 	 Dealer dealer= new Dealer();
 	 
 	 // create cards and adding them to the dealer
-	 Card[] cardsForCheck= {new Card(10, "Black", "", Suits.Club),new Card(6, "Black", "", Suits.Spade)};
+	 Card[] cardsForCheck= {new Card(10,10, "Black", "", Suits.Club),new Card(6,6, "Black", "", Suits.Spade)};
 	 TestsHelper.AddCardsToDealer(cardsForCheck, dealer);
 	 
 	 //Aseert
 	 assertTrue(dealer.isDealerNeedMoreCard());
 	 
-	 dealer.addcard(new Card(2, "Red", "", Suits.Club));
+	 dealer.addcard(new Card(2,2, "Red", "", Suits.Club));
 	 
 	 //Aseert
 	 assertFalse(dealer.isDealerNeedMoreCard());
@@ -82,7 +82,7 @@ public class DealerTests {
 	 Dealer dealer= new Dealer();
 	 
 	 // create cards and adding them to the dealer
-	 Card[] cardsForCheck= {new Card(10, "Black", "", Suits.Club),new Card(10, "Black", "", Suits.Spade)};
+	 Card[] cardsForCheck= {new Card(10,10, "Black", "", Suits.Club),new Card(10,10, "Black", "", Suits.Spade)};
 	 TestsHelper.AddCardsToDealer(cardsForCheck, dealer);
 	 
 	 // assert

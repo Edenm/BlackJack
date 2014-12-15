@@ -20,9 +20,9 @@ public final class TestsHelper {
 	public static Card[] getCardsOver21()
 	{
 		Card[] cards={
-				new Card(1, "Red", "", Suits.Club),
-				new Card(8, "Red", "", Suits.Club),
-				new Card(9, "Red", "", Suits.Club),
+				new Card(1,1, "Red", "", Suits.Club),
+				new Card(8,8, "Red", "", Suits.Club),
+				new Card(9,9, "Red", "", Suits.Club),
 				
 		};
 		return cards;
@@ -32,8 +32,8 @@ public final class TestsHelper {
 	public static Card[] getCardsUnder21()
 	{
 		Card[] cards={
-				new Card(2, "Red", "", Suits.Club),
-				new Card(2, "Red", "", Suits.Club),
+				new Card(2,2, "Red", "", Suits.Club),
+				new Card(2,2, "Red", "", Suits.Club),
 				
 		};
 		return cards;
@@ -42,8 +42,8 @@ public final class TestsHelper {
 	public static Card[] getCards20Value()
 	{
 		Card[] cards={
-				new Card(10, "Red", "", Suits.Club),
-				new Card(10, "Red", "", Suits.Daimond),
+				new Card(10,10, "Red", "", Suits.Club),
+				new Card(10,10, "Red", "", Suits.Daimond),
 				
 		};
 		return cards;
@@ -52,8 +52,8 @@ public final class TestsHelper {
 	public static Card[] getCards18Value()
 	{
 		Card[] cards={
-				new Card(9, "Red", "", Suits.Club),
-				new Card(9, "Red", "", Suits.Daimond),
+				new Card(9,9, "Red", "", Suits.Club),
+				new Card(9,9, "Red", "", Suits.Daimond),
 				
 		};
 		return cards;
@@ -62,8 +62,8 @@ public final class TestsHelper {
 	public static Card[] getCardsForBlackJackTwoCards()
 	{
 		Card[] cards={
-				new Card(1, "Red", "", Suits.Club),
-				new Card(10, "Red", "", Suits.Club),
+				new Card(1,1, "Red", "", Suits.Club),
+				new Card(10,10, "Red", "", Suits.Club),
 				
 		};
 		return cards;

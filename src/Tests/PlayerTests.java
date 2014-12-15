@@ -80,7 +80,7 @@ public class PlayerTests {
 	{
 	// arrange 
 	 Player player= new Player("test");
-	 Card card= new Card(1, "Red", "", Suits.Club);
+	 Card card= new Card(1,1, "Red", "", Suits.Club);
 	 
 	 //action
 	 player.addcard(card);
@@ -91,7 +91,7 @@ public class PlayerTests {
 	 assertEquals(11, playerCardValue);
 	 
 	 // arrange the second ace
-	 Card card2= new Card(1, "Black", "", Suits.Spade);
+	 Card card2= new Card(1,1, "Black", "", Suits.Spade);
 	  
 	 //action
 	 player.addcard(card2);
