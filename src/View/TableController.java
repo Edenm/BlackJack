@@ -15,9 +15,11 @@ import Utils.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.stage.Stage;
 
 
 public class TableController implements Initializable {
@@ -132,6 +135,22 @@ public class TableController implements Initializable {
 	@FXML
 	Label lblOptions;
 	
+	@FXML
+	MenuItem mndeal;
+	@FXML
+	MenuItem mnstand;
+	@FXML
+	MenuItem mnhit;
+	@FXML
+	Button btnNewRound;
+	@FXML
+	Button btnNewGame;
+	
+	
+	
+	
+	
+	
 	
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
@@ -145,8 +164,12 @@ public class TableController implements Initializable {
 /////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
+		btnNewGame.setVisible(false);
+		btnNewRound.setVisible(false);
+		mnhit.setDisable(true);
+		mnstand.setDisable(true);
+		mndeal.setDisable(false);
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
-		
 		lblBet.setText("Bet: "+0);
 		playerCardsValue.setText("Value:"+0);
 		playerx=new Double(secondCardPlayer.getLayoutX());
@@ -169,6 +192,9 @@ public class TableController implements Initializable {
 	{
 		if(ViewLogic.getBets()>0)
 		{
+			mnhit.setDisable(false);
+			mnstand.setDisable(false);
+			mndeal.setDisable(true);
 			dealCardsToGame();
 			firstCardDealer.setVisible(true);
 			secondCardDealer.setVisible(true);
@@ -272,6 +298,8 @@ public class TableController implements Initializable {
 			playerMsg.setText(e.getMessage());
 			playerMsg.setVisible(true);
 			flipDealerCard();
+			btnNewGame.setVisible(true);
+			btnNewRound.setVisible(true);
 			
 			
 		}
@@ -304,6 +332,8 @@ public class TableController implements Initializable {
 		} catch (WhoWinException e) {
 			playerMsg.setText(e.getMessage());
 			playerMsg.setVisible(true);
+			btnNewGame.setVisible(true);
+			btnNewRound.setVisible(true);
 		}
 	}
 	
@@ -406,7 +436,7 @@ public class TableController implements Initializable {
 @FXML
   public void DisapearMsg() {
 	msgToUser.setVisible(false);
-	HideNewButtonPanel();
+	
   }
 	
 	
@@ -452,11 +482,7 @@ public class TableController implements Initializable {
 	
 	
 //--------------------------- set Message method the End---------------------------------------------------------
-@FXML
-public void HideNewButtonPanel()
-{
-	panelNewButtons.setVisible(false);
-}
+
 
 @FXML
 public void ShowNewButtonPanel()
@@ -465,7 +491,28 @@ public void ShowNewButtonPanel()
 }
 
 
-////////////////////////////////////////////// rules intailze data////////////////////////////
+////////////////////////////////////////////// open rules stage////////////////////////////
+@FXML
+
+public void clickRules()
+{
+	
+	System.out.println("IN");
+	try{
+	  AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
+	    Scene scene = new Scene(page);
+        scene.getStylesheets().add("/view/TableCss.css");
+        Stage  primaryStage=new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("BlackJack Enjoy!");
+       primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+       primaryStage.show();
+       
+} catch(Exception e) {
+	e.printStackTrace();
+}
+}
+
 
 
 

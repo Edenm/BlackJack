@@ -59,6 +59,9 @@
                </textFill>
             </Label>
          </children>
+         <effect>
+            <InnerShadow choke="0.29" color="#0c391a" height="6.17" radius="12.2225" width="44.72" />
+         </effect>
       </Pane>
       <Button fx:id="btnDeal" layoutX="35.0" layoutY="406.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
          <font>
@@ -72,6 +75,9 @@
                </stops>
             </LinearGradient>
          </textFill>
+         <effect>
+            <InnerShadow choke="0.52" color="#402d2d" radius="35.2025" width="121.81" />
+         </effect>
       </Button>
       <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
@@ -130,11 +136,6 @@
             <Font size="48.0" />
          </font>
       </Label>
-      <Label fx:id="lblOptions" onMouseEntered="#ShowNewButtonPanel" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33;" text="Options" textFill="#033c0a">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
       <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" onAction="#hitCard" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
          <font>
             <Font name="Andalus" size="24.0" />
@@ -147,6 +148,9 @@
                </stops>
             </LinearGradient>
          </textFill>
+         <effect>
+            <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
+         </effect>
       </Button>
       <Button fx:id="btnStand" layoutX="280.0" layoutY="406.0" mnemonicParsing="false" onAction="#StandCard" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Stand" visible="false">
          <font>
@@ -160,42 +164,75 @@
                </stops>
             </LinearGradient>
          </textFill>
+         <effect>
+            <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
+         </effect>
       </Button>
-      <Pane fx:id="panelNewButtons" layoutY="50.0" onMouseExited="#HideNewButtonPanel" prefHeight="133.0" prefWidth="111.0" style="-fx-background-color: #966F33;" visible="false">
-         <children>
-            <Button fx:id="btnNewGame" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
-               <font>
-                  <Font name="Andalus" size="16.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#08f252" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Button>
-            <Button fx:id="btnNewRound" layoutY="88.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="35.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
-               <font>
-                  <Font name="Andalus" size="16.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#08f252" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Button>
-         </children>
-      </Pane>
-      <MediaView fx:id="movie" fitHeight="200.0" fitWidth="200.0" layoutX="166.0" layoutY="150.0" />
       <Label fx:id="playerMsg" layoutX="363.0" layoutY="513.0" prefHeight="48.0" prefWidth="376.0" underline="true">
          <font>
             <Font name="Gisha Bold" size="39.0" />
          </font>
       </Label>
+      <MenuBar layoutX="3.0" layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Games option">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#clickNewRound" text="New round" />
+                  <MenuItem mnemonicParsing="false" onAction="#clickNewGame" text="New game" />
+            </items>
+          </Menu>
+          <Menu fx:id="mndeal" mnemonicParsing="false" text="Deal card">
+               <items>
+                  <MenuItem fx:id="mndeal" mnemonicParsing="false" onAction="#Deal" text="Deal " />
+               </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Actions">
+              <items>
+                <MenuItem fx:id="mnhit" mnemonicParsing="false" onAction="#hitCard" text="Hit" />
+                  <MenuItem fx:id="mnstand" mnemonicParsing="false" onAction="#StandCard" text="Stand" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Game rules">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#clickRules" text="how to play" />
+               </items>
+          </Menu>
+        </menus>
+         <effect>
+            <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
+         </effect>
+      </MenuBar>
+      <Button fx:id="btnNewGame" layoutX="306.0" layoutY="285.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <effect>
+            <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
+         </effect>
+      </Button>
+      <Button fx:id="btnNewRound" layoutX="512.0" layoutY="285.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <effect>
+            <InnerShadow choke="0.52" color="#402e2e" height="71.41" radius="47.805" width="121.81" />
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
