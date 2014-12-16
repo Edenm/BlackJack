@@ -12,7 +12,10 @@ import Utils.Suits;
 
 public class DealerTests {
 
-	// this test check if there duplicate card in the  deck.
+	/**
+	 * this test check if there duplicate card in the  deck.s
+	 * @throws Throwable
+	 */
 	@Test
 	public void TestsDealerDuplicateCardInDeck() throws Throwable {
 
@@ -36,6 +39,9 @@ public class DealerTests {
 		
 	}
 	
+	/**
+	 * test if the first ace will be value 11 and second ace will be value  1
+	 */
 	@Test
 	public void TestsDealerAddCardFirstAceAndSecondAce()
 	{
@@ -56,6 +62,9 @@ public class DealerTests {
 	 
 	}
 	
+	/**
+	 * check if the dealer need more card should return true in the first time and false on the second time
+	 */
 	@Test
 	public void TestsDealerisDealerNeedMoreCard()
 	{
@@ -76,6 +85,9 @@ public class DealerTests {
 	 
 	}
 	
+	/**
+	 *  check if the dealer need more card should return false on the first time
+	 */
 	@Test
 	public void TestsDealerNotNeedMoreCard()
 	{
@@ -89,7 +101,9 @@ public class DealerTests {
 	 assertFalse(dealer.isDealerNeedMoreCard());
 	}
 	
-	
+	/**
+	 * check if the method actual return the second card of the dealer
+	 */
 	@Test
 	public void TestsDealerGetsecondCard()
 	{
