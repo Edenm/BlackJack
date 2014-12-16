@@ -88,5 +88,21 @@ public class DealerTests {
 	 // assert
 	 assertFalse(dealer.isDealerNeedMoreCard());
 	}
+	
+	
+	@Test
+	public void TestsDealerGetsecondCard()
+	{
+	 Dealer dealer= new Dealer();
+	 
+	 // create cards and adding them to the dealer
+	 Card[] cardsForCheck= TestsHelper.getCardsUnder21();
+	 TestsHelper.AddCardsToDealer(cardsForCheck, dealer);
+	 
+	 Card card= dealer.getSecondCardOfDealer();
+	 
+	 // assert
+	 assertEquals(card, cardsForCheck[1]);
+	}
 	 
 }
