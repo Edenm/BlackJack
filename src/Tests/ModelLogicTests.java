@@ -43,7 +43,7 @@ public class ModelLogicTests {
 	public void PlayerWin() throws Throwable {
 		
 		 expectedEx.expect(WhoWinException.class);
-		 expectedEx.expectMessage("Player is Win!");
+		 expectedEx.expectMessage("Player has Won!");
 		
 		 // create new game
 		model.newGame();
@@ -67,7 +67,7 @@ public class ModelLogicTests {
 	public void DealerrWin() throws Throwable {
 		
 		 expectedEx.expect(WhoWinException.class);
-		 expectedEx.expectMessage("Dealer is Win!");
+		 expectedEx.expectMessage("Dealer has Won!");
 		
 		 // create new game
 		model.newGame();
