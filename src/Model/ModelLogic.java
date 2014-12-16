@@ -177,15 +177,15 @@ public final class ModelLogic {
 	public void checkWin() throws WhoWinException{
 		if (dealer.getValue()>21){
 			player.playerWin();
-			throw new WhoWinException("Player is Win!");
+			throw new WhoWinException("Player has Won!");
 		}
 		if (dealer.getValue()>player.getValue()){
 			player.playerLose();
-			throw new WhoWinException("Dealer is Win!");
+			throw new WhoWinException("Dealer has Won!");
 		}
 		else if (dealer.getValue()<player.getValue()){
 			player.playerWin();
-			throw new WhoWinException("Player is Win!");
+			throw new WhoWinException("Player has Won!");
 		}
 		else{
 			player.nobodyWin();
