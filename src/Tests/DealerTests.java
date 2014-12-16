@@ -67,6 +67,13 @@ public class DealerTests {
 	 
 	 //Aseert
 	 assertTrue(dealer.isDealerNeedMoreCard());
+	 
+	 dealer.addcard(new Card(2, "Red", "", Suits.Club));
+	 
+	 //Aseert
+	 assertFalse(dealer.isDealerNeedMoreCard());
+	 
+	 
 	}
 	
 	@Test
