@@ -6,6 +6,7 @@ import Model.Card;
 import Model.Player;
 import Model.Dealer;
 import Utils.Suits;
+import View.ViewLogic;
 import Model.ModelLogic;
 
 public final class TestsHelper {
@@ -118,4 +119,11 @@ public final class TestsHelper {
 
    //------------------ End Dealer Help Method ------------------------------------------------------------//
 
+		
+		public static ViewLogic getViewLogic(ModelLogic instance) throws Throwable {
+			 Field field=instance.getClass().getDeclaredField("player");
+			 field.setAccessible(true);
+		     return (Player)field.get(instance);
+	       
+	   }
 }

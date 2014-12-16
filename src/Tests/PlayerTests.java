@@ -23,8 +23,7 @@ public class PlayerTests {
 		int testBets= player.getBets();
 		assertEquals(400, testBets);
 		
-		int amountAfterSerBets= player.getChips();
-		assertEquals(100, amountAfterSerBets);
+	
 		
 		
 	}
@@ -41,9 +40,7 @@ public class PlayerTests {
 		assertFalse(res);
 		
 		int bets=player.getBets();
-		assertEquals("the bets should NOT change", 0, bets);
-		
-		
+		assertEquals("the bets should NOT change", 0, bets);	
 	}
 	
 	
