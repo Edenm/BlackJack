@@ -114,7 +114,6 @@ public class Player {
 	}
 
 //////////////////////////////////// methods for player//////////////////////////////////////////////////////////
-
 	/**
 	 * the method initialize the player for a new game
 	 * @param nickname
@@ -125,7 +124,6 @@ public class Player {
 		chips=new Integer(0);
 		// player start with 500 chips every round;
 		this.chips=Constants.limitOfChips$;
-		System.out.println("ff");
 		this.nickname=nickname;
 	}
 	
@@ -139,6 +137,13 @@ public class Player {
 	}
 	
 	/**
+	 * reset bet to zero
+	 */
+	public void resetBet(){
+		this.bets=0;
+	}
+	
+	/**
 	 * add card to player value and array of card, check if the player have ace or its first card of ace and do += to the value for 11 or 1
 	 * @param card
 	 */
@@ -147,7 +152,7 @@ public class Player {
 		   if(card.getValue()==1)
 			   if(isFirstAce)
 			   {
-				   this.value+=11;// if first ace, += 11 to th value
+				   this.value+=11;// if first ace, += 11 to the value
 				   isFirstAce=false;
 			   }
 			   else
@@ -189,10 +194,8 @@ public class Player {
 	 /**
 	  * update the chips for lose case
 	  */
-	 
 	 public void playerLose(){
 		 this.chips-=this.bets;
-		 System.out.println("b:"+this.chips+" c:" +this.bets);
 		 numberOfLoses++;
 	 }
 	 
@@ -207,7 +210,7 @@ public class Player {
 	 /**
 	  * update the chips for nobody win case
 	  */
-	 public void nobodyWin(){
-		 this.chips+=this.bets;
-	 }
+	// public void nobodyWin(){
+		 
+	// }
 }

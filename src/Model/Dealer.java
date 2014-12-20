@@ -21,7 +21,7 @@ public class Dealer {
 	 private ArrayList<Card> mycards;
 	 /** place to take the next card*/
 	 private int number=-1;
-	 /** boolean varible check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
+	 /** boolean variable check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
 	 private boolean isFirstAce=true;
 	 
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
@@ -59,13 +59,12 @@ public class Dealer {
 	 	
 	 	/**
 		 *  Push the first card like stack return only one card!
-		 * @return
+		 * @return card from deck
 		 */
 		protected Card getCard()
 		{
 			number++;
 			return cards.get(number);
-			
 		}	
 	 	
 	/////////////////////////////////////////////////////////////methods of this class/////////////////////////////////
@@ -91,7 +90,7 @@ public class Dealer {
 	
 	/**
 	 *  initialize the cards deck, happened only once 
-	 *  the pic here is initialize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
+	 *  the picture here is initialize by string name, the names of the cards pic should be 1.jpg,2.jpg....52.jpg
 	 */	
 	private void intalizeDeckCards()
 	{

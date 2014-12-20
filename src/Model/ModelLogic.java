@@ -89,7 +89,6 @@ public final class ModelLogic {
 
 	//----------------------------------- player methods ----------------------------------------------
 	/**
-	 * 
 	 * @param amount- the anount of bets player bet this game
 	 */
 	public boolean setbets(int amount)
@@ -97,21 +96,18 @@ public final class ModelLogic {
 		 return player.setBets(amount);
 	}
 	/**
-	 * 
 	 * @return the number of chips left to player
 	 */
 	public Integer getChips() {
 		return player.getChips();
 	}
 	/**
-	 * 	
-	 * @return
+	 * @return bets
 	 */
 	public Integer getBets() {
 		return player.getBets();
 	}
 	/**
-	 * 	
 	 * @return the value of all cards player have
 	 */
 	public Integer playerValueCards() {
@@ -145,8 +141,6 @@ public final class ModelLogic {
 	  public int getNumberOfLoses(){
 		  return player.getNumberOfLoses();
 	  }
-	  
-	//----------------------------------- update methods ----------------------------------------------
 
     //***************************************** other Methods *****************************************
 	/**
@@ -172,6 +166,13 @@ public final class ModelLogic {
 	}
 	
 	/**
+	 * reset bet to zero
+	 */
+	public void resetBet(){
+		player.resetBet();
+	}
+	
+	/**
 	 * @throws WhoWinException with message of who win!?
 	 */
 	public void checkWin() throws WhoWinException{
@@ -188,7 +189,7 @@ public final class ModelLogic {
 			throw new WhoWinException("Player has Won!");
 		}
 		else{
-			player.nobodyWin();
+			//player.nobodyWin();
 			throw new WhoWinException("The game end! Nobody won");
 		}
 	}

@@ -115,6 +115,13 @@ public final class ViewLogic  extends Application {
 		{
 			controller.newRound();
 		}
+		
+		/**
+		 * reset bet to zero
+		 */
+		public static void resetBet(){
+			controller.resetBet();
+		}
     
 	//----------------------------------- cards methods -------------------------------------------------
  
@@ -172,8 +179,6 @@ public final class ViewLogic  extends Application {
 	public static Integer getBets() {
 		return controller.getBets();
 	}
-	
-   //----------------------------------- update methods ----------------------------------------------
 	
    //***************************************** other Methods *****************************************
 	public static AnchorPane getPage() {

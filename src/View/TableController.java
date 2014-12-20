@@ -33,11 +33,11 @@ import javafx.stage.Stage;
 
 public class TableController implements Initializable {
 	/**
-	 * varible save to place of the last card for player
+	 * variable save to place of the last card for player
 	 */
 	private Double playerx;
 	/**
-	 * varible save to place of the last card for player
+	 * variable save to place of the last card for player
 	 */
 	private Double dealerx;
 	
@@ -138,27 +138,28 @@ public class TableController implements Initializable {
 	
 	@FXML
 	MenuItem mndeal;
+	
 	@FXML
 	MenuItem mnstand;
+	
 	@FXML
 	MenuItem mnhit;
+	
 	@FXML
 	Button btnNewRound;
+	
 	@FXML
 	Button btnNewGame;
+	
 	@FXML
 	Button btnExit;
 	
-	
-	
-	
-	
-	
-	
+	@FXML
+	Button btnResetBet;
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
-	 * method intalize table form ( load)- intalize the total chips show to player
+	 * method initialize table form ( load)- initialize the total chips show to player
 	 */
 	public void initialize(URL location, ResourceBundle resources) {
 		init();
@@ -169,6 +170,7 @@ public class TableController implements Initializable {
 	public void init(){
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
+		btnResetBet.setVisible(true);
 		mnhit.setDisable(true);
 		mnstand.setDisable(true);
 		mndeal.setDisable(false);
@@ -185,7 +187,6 @@ public class TableController implements Initializable {
 		secondCardPlayer.setVisible(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
-			
 	}
 	
 	
@@ -259,6 +260,7 @@ public class TableController implements Initializable {
 		chip25.setVisible(false);
 		chip50.setVisible(false);
 		chip100.setVisible(false);
+		btnResetBet.setVisible(false);
 	}
 	private void newTable()
 	{
@@ -268,6 +270,7 @@ public class TableController implements Initializable {
 		chip25.setVisible(true);
 		chip50.setVisible(true);
 		chip100.setVisible(true);
+		btnResetBet.setVisible(true);
 		btnDeal.setVisible(true);
 		btnHit.setVisible(false);
 		btnStand.setVisible(false);
@@ -349,7 +352,6 @@ public class TableController implements Initializable {
 			btnExit.setVisible(true);
 			btnExit.setDisable(false);
 			disAbledHitAndStandMenu(true);
-			
 		}
 	}
 	
@@ -357,8 +359,8 @@ public class TableController implements Initializable {
 	{
 		mnhit.setDisable(value);
 		mnstand.setDisable(value);
-		
 	}
+	
 	private void flipDealerCard()
 	{
 		btnStand.setVisible(false);
@@ -370,31 +372,25 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets100()
 	{
-		
 		UpDatebets(100);
-		
 	}
 	
 	@FXML
 	public void RaiseBets50()
 	{
-		
 		UpDatebets(50);
-		
 	}
 	
 	@FXML
 	public void RaiseBets25()
 	{
 		UpDatebets(25);
-		
 	}
 	
 	@FXML
 	public void RaiseBets5()
 	{
 		UpDatebets(5);
-		
 	}
 	
 	@FXML
@@ -402,34 +398,35 @@ public class TableController implements Initializable {
 	{
 		UpDatebets(1);
 	}
-	
-//-------------------------------------------chips Method Raise bets The End ----------------------------------------------------	
-	
 
 	
 //--------------------------- Update status bar method---------------------------------------------------------
-
+	/**
+	 * set value of bets after chose chip
+	 * @param amount
+	 */
 	public void UpDatebets(int amount)
 	{
 		if(ViewLogic.setBets(amount))
 		{
-			
-	   
-		SetPlayerBetsIntheGame(ViewLogic.getBets());
-		
-		// get the total chips before raise the bets;
-		SetTotalChips(ViewLogic.getChips()-ViewLogic.getBets());
-		
+			updateBetValueOnTable();
 		}
 		else{
 			SetMeg(true, "you are out of chips");
 		}
+	}
 	
-
-}
+	/**
+	 * set the value of bets on the screen
+	 */
+	public void updateBetValueOnTable(){
+		SetPlayerBetsIntheGame(ViewLogic.getBets());
+		// get the total chips before raise the bets;
+		SetTotalChips(ViewLogic.getChips()-ViewLogic.getBets());
+	}
 //--------------------------- other methods---------------------------------------------------------
 	/**
-	 * wwhen button new game clicking intalize new game with all new parmeter
+	 * when button new game clicking initialize new game with all new parameter
 	 */
 	@FXML
 	public void clickNewGame()
@@ -439,10 +436,9 @@ public class TableController implements Initializable {
 		ViewLogic.newGame();
 		init();
 		newTable();
-
 	}
 	/**
-	 * wwhen button new game clicking intalize new game with all new parmeter
+	 * when button new game clicking initialize new game with all new parameter
 	 */
 	@FXML
 	public void clickNewRound()
@@ -450,7 +446,15 @@ public class TableController implements Initializable {
 		ViewLogic.newRound();
 		init();
 		newTable();
-		
+	}
+	
+	/**
+	 * when button Reset Bet clicking initialize bets Of Player with zero
+	 */
+	@FXML
+	public void clickResetBet(){
+		ViewLogic.resetBet();
+		updateBetValueOnTable();
 	}
 //--------------------------- set Message method---------------------------------------------------------
 	/**
@@ -458,26 +462,25 @@ public class TableController implements Initializable {
 	 */
 @FXML
   public void DisapearMsg() {
-	msgToUser.setVisible(false);
-	
+		msgToUser.setVisible(false);
   }
 	
 	
-  /**
-   * make message will show when visible is True and set the text to arg in the msg parameter
-   * @param visible
-   * @param msg
-   */
-	private void SetMeg(Boolean visible, String msg ) {
-		msgToUser.setVisible(visible);
-		msgToUser.setText(msg);
-	}
-	
-	
-	 /**
-	  * set player value on the status bar
-	  * @param value
-	  */
+	  /**
+	   * make message will show when visible is True and set the text to arg in the msg parameter
+	   * @param visible
+	   * @param msg
+	   */
+		private void SetMeg(Boolean visible, String msg ) {
+			msgToUser.setVisible(visible);
+			msgToUser.setText(msg);
+		}
+		
+		
+		/**
+	    * set player value on the status bar
+	    * @param value
+	 `  */
 		private void SetPlayerCradsValue(int value)
      	 {
 			playerCardsValue.setText("Value:"+ value);
@@ -516,11 +519,8 @@ public void ShowNewButtonPanel()
 
 ////////////////////////////////////////////// open rules stage////////////////////////////
 @FXML
-
 public void clickRules()
 {
-	
-	System.out.println("IN");
 	try{
 	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
 	    Scene scene = new Scene(page);
@@ -528,9 +528,9 @@ public void clickRules()
         Stage  primaryStage=new Stage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("BlackJack Enjoy!");
-       primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
-       setWindowSize(primaryStage, 573, 510);
-       primaryStage.show();
+        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+        setWindowSize(primaryStage, 573, 510);
+        primaryStage.show();
        
 } catch(Exception e) {
 	e.printStackTrace();
@@ -548,6 +548,7 @@ public void setWindowSize(Stage primaryStage,int width, int height)
     primaryStage.setMinHeight(height);
     primaryStage.setMinWidth(width);
 }
+
  @FXML
 public void CloseWindow()
 {

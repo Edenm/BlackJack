@@ -45,10 +45,10 @@ public final class ControllerLogic {
 	}												
 	
     //----------------------------------- Dealer methods -------------------------------------------------
-	//////////// all the logic code of this method  is in modellogic class
+	//////////// all the logic code of this method  is in model logic class
 	/**
 	 * @param enum type of user
-	 * @return the choosen card
+	 * @return the chosen card
 	 * @throws PlayerEndOfGameException 
 	 */
 	public Card getCard(User user)
@@ -90,7 +90,7 @@ public final class ControllerLogic {
 	
 	/**
 	 * 
-	 * @param amount- the anount of bets player bet this game
+	 * @param amount- the amount of bets player bet this game
 	 */
 	public boolean setbets(int amount)
 	{
@@ -148,6 +148,13 @@ public final class ControllerLogic {
 		public void newRound()
 		{
 			model.newRound();
+		}
+		
+		/**
+		 * reset bet to zero
+		 */
+		public void resetBet(){
+			model.resetBet();
 		}
 		
 		/**

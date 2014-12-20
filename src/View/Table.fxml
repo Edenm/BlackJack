@@ -62,7 +62,7 @@
             <InnerShadow choke="0.29" color="#022c0e" height="25.45" radius="17.0425" width="44.72" />
          </effect>
       </Pane>
-      <Button fx:id="btnDeal" layoutX="116.0" layoutY="396.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
+      <Button fx:id="btnDeal" layoutX="436.0" layoutY="514.0" mnemonicParsing="false" onAction="#Deal" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Deal">
          <font>
             <Font name="Andalus" size="24.0" />
          </font>
@@ -167,7 +167,7 @@
             <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Label fx:id="playerMsg" layoutX="363.0" layoutY="513.0" prefHeight="48.0" prefWidth="376.0" underline="true">
+      <Label fx:id="playerMsg" layoutX="232.0" layoutY="513.0" prefHeight="48.0" prefWidth="545.0" underline="true">
          <font>
             <Font name="Gisha Bold" size="39.0" />
          </font>
@@ -201,7 +201,7 @@
             <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
          </effect>
       </MenuBar>
-      <Button fx:id="btnNewGame" layoutX="450.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
+      <Button fx:id="btnNewGame" layoutX="436.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -217,7 +217,7 @@
             <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Button fx:id="btnNewRound" layoutX="450.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
+      <Button fx:id="btnNewRound" layoutX="436.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -233,7 +233,23 @@
             <InnerShadow choke="0.52" color="#402e2e" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Button fx:id="btnExit" layoutX="450.0" layoutY="340.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Exit" visible="false">
+      <Button fx:id="btnExit" layoutX="436.0" layoutY="340.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Exit" visible="false">
+         <effect>
+            <InnerShadow choke="0.52" color="#402e2e" height="71.41" radius="47.805" width="121.81" />
+         </effect>
+         <font>
+            <Font name="Andalus" size="16.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#08f252" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Button>
+      <Button fx:id="btnResetBet" layoutX="834.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickResetBet" prefHeight="25.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="Reset Bet">
          <effect>
             <InnerShadow choke="0.52" color="#402e2e" height="71.41" radius="47.805" width="121.81" />
          </effect>
