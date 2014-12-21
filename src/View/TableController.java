@@ -300,12 +300,8 @@ public class TableController implements Initializable {
 			flipDealerCard();
 			btnNewGame.setVisible(true);
 			btnNewRound.setVisible(true);
-			
-			
+			loseLayOut();
 		}
-			
-	
-			
 	}
 	/**
 	 * method set buttons hit and stand unvisble
@@ -332,11 +328,21 @@ public class TableController implements Initializable {
 		} catch (WhoWinException e) {
 			playerMsg.setText(e.getMessage());
 			playerMsg.setVisible(true);
-			btnNewGame.setVisible(true);
 			btnNewRound.setVisible(true);
+			btnNewGame.setDisable(true);
+			loseLayOut();
 		}
 	}
 	
+	private void loseLayOut()
+	{
+		if(ViewLogic.getChips() == 0)
+		{
+			btnNewRound.setVisible(false);
+			btnNewGame.setVisible(true);
+			btnNewGame.setDisable(false);
+		}
+	}
 	private void flipDealerCard()
 	{
 		btnStand.setVisible(false);
