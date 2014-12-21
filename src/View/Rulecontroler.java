@@ -18,6 +18,7 @@ public class Rulecontroler implements Initializable {
 	private void ruleIntalize()
 	{
 		
+		
 		txtrules.setText("The object of Blackjack is for the total of your cards to be closer to 21 than the dealer’s cards, without exceeding 21. In Blackjack, aces count as either 1 or 11, face cards as 10, and number cards at their face value"+"\n"+
 							"In the beginning of a new game you must choose your bet:"+"\n"+
 							"•	white chips = $1"+"\n"+

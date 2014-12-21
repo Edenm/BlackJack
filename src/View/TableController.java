@@ -505,13 +505,14 @@ public void clickRules()
 	
 	System.out.println("IN");
 	try{
-	  AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
+	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
 	    Scene scene = new Scene(page);
         scene.getStylesheets().add("/view/TableCss.css");
         Stage  primaryStage=new Stage();
         primaryStage.setScene(scene);
         primaryStage.setTitle("BlackJack Enjoy!");
        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+       setWindowSize(primaryStage, 573, 510);
        primaryStage.show();
        
 } catch(Exception e) {
@@ -520,7 +521,16 @@ public void clickRules()
 }
 
 
-
+public static void setWindowSize(Stage primaryStage,int width, int height)
+{
+	// max
+	primaryStage.setMaxWidth(width);
+    primaryStage.setMaxHeight(height);
+    
+    // min
+    primaryStage.setMinHeight(height);
+    primaryStage.setMinWidth(width);
+}
 
 			
 			
