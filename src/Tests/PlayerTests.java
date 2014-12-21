@@ -97,6 +97,14 @@ public class PlayerTests {
 	 playerCardValue= player.getValue();
 	 assertEquals(12, playerCardValue);
 	 
+	  
+	 //action
+	 player.addcard(card2);
+	 
+	 // assert the second ace should count as 1; 
+	 playerCardValue= player.getValue();
+	 assertEquals(13, playerCardValue);
+	 
 	}
 	
 	@Test(expected= PlayerEndOfGameException.class) 

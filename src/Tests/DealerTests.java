@@ -60,6 +60,11 @@ public class DealerTests {
 	 dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
 	 assertEquals(12, dealerCardValue);
 	 
+     dealer.addcard(card2);
+	 
+	 dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
+	 assertEquals(13, dealerCardValue);
+	 
 	}
 	
 	/**

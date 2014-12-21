@@ -2,17 +2,23 @@ package Tests;
 
 
 
+import static org.junit.Assert.assertEquals;
+import junit.framework.Assert;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runners.MethodSorters;
 
 import Exceptions.WhoWinException;
 import Model.ModelLogic;
 import Model.Player;
 import Model.Dealer;
 
+import org.junit.FixMethodOrder;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ModelLogicTests {
 
 	ModelLogic model;
@@ -32,8 +38,6 @@ public class ModelLogicTests {
 		 dealer = TestsHelper.getDelaer(model);
 	}
 	
-	@Rule
-	public ExpectedException expectedEx = ExpectedException.none();
 	
 	/**
 	 * check that the right exception is throwing
@@ -42,12 +46,11 @@ public class ModelLogicTests {
 	@Test
 	public void PlayerWin() throws Throwable {
 		
-		 expectedEx.expect(WhoWinException.class);
-		 expectedEx.expectMessage("Player has Won!");
-		
 		 // create new game
 		model.newGame();
-		
+		int chips= player.getChips();
+		int betsGame=2;
+		model.setbets(betsGame);
 		// set the value of cards for the dealer and player
 		TestsHelper.AddCardsToPlayer(TestsHelper.getCards20Value() , player);
 		TestsHelper.AddCardsToDealer(TestsHelper.getCards18Value(), dealer);
@@ -55,7 +58,16 @@ public class ModelLogicTests {
 		
 		System.out.println("p1: "+player.getValue());
 		// action
+		try{
 		model.checkWin();
+		}
+		catch (Exception e) {
+			 assertEquals(e.getMessage(), "Player has Won!");
+			 int playerChipAfterWiningGame= player.getChips();
+			 assertEquals(chips+betsGame, playerChipAfterWiningGame);
+			 
+		}
+	
 	}
 	
 
@@ -66,19 +78,28 @@ public class ModelLogicTests {
 	@Test
 	public void DealerrWin() throws Throwable {
 		
-		 expectedEx.expect(WhoWinException.class);
-		 expectedEx.expectMessage("Dealer has Won!");
 		
+	     int betsGame=2;
+	    
 		 // create new game
 		model.newGame();
-		
+		 int chips= player.getChips();
+		System.out.println("ddd:"+chips);
+		model.setbets(betsGame);
 		// set the value of cards for the dealer and player
 		TestsHelper.AddCardsToPlayer(TestsHelper.getCards18Value() , player);
 		TestsHelper.AddCardsToDealer(TestsHelper.getCards20Value() , dealer);
-		System.out.println("p:"+player.getValue());
 		
 		// action
-		model.checkWin();
+		try{
+			model.checkWin();
+			}
+			catch (Exception e) {
+				 assertEquals(e.getMessage(), "Dealer has Won!");
+				 int playerChipAfterWiningGame= player.getChips();
+				 assertEquals(chips-betsGame, playerChipAfterWiningGame);
+				 
+			}
 	}
 	
 
@@ -89,18 +110,27 @@ public class ModelLogicTests {
 	@Test
 	public void NoBodyWin() throws Throwable {
 		
-		 expectedEx.expect(WhoWinException.class);
-		 expectedEx.expectMessage("The game end! Nobody won");
 		
+	     int betsGame=2;
+	     
 		 // create new game
 		model.newGame();
-		
+		 int chips= player.getChips();
+		 model.setbets(betsGame);
 		// set the value of cards for the dealer and player
 		TestsHelper.AddCardsToPlayer(TestsHelper.getCards18Value() , player);
 		TestsHelper.AddCardsToDealer(TestsHelper.getCards18Value() , dealer);
 		
 		// action
-		model.checkWin();
+		try{
+			model.checkWin();
+			}
+			catch (Exception e) {
+				 assertEquals(e.getMessage(), "The game end! Nobody won");
+				 int playerChipAfterWiningGame= player.getChips();
+				 assertEquals(chips, playerChipAfterWiningGame);
+				 
+			}
 	}
 
 }

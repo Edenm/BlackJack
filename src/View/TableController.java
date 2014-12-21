@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
+import com.sun.javafx.fxml.expression.VariableExpression;
 import com.sun.media.jfxmedia.Media;
 
 import Controller.ControllerLogic;
@@ -145,6 +146,8 @@ public class TableController implements Initializable {
 	Button btnNewRound;
 	@FXML
 	Button btnNewGame;
+	@FXML
+	Button btnExit;
 	
 	
 	
@@ -180,6 +183,8 @@ public class TableController implements Initializable {
 		secondCardDealer.setVisible(false);
 		firstCardPlayer.setVisible(false);
 		secondCardPlayer.setVisible(false);
+		btnExit.setVisible(false);
+		btnExit.setDisable(true);
 			
 	}
 	
@@ -341,7 +346,18 @@ public class TableController implements Initializable {
 			btnNewRound.setVisible(false);
 			btnNewGame.setVisible(true);
 			btnNewGame.setDisable(false);
+			btnExit.setVisible(true);
+			btnExit.setDisable(false);
+			disAbledHitAndStandMenu(true);
+			
 		}
+	}
+	
+	private void disAbledHitAndStandMenu(boolean value)
+	{
+		mnhit.setDisable(value);
+		mnstand.setDisable(value);
+		
 	}
 	private void flipDealerCard()
 	{
@@ -385,7 +401,6 @@ public class TableController implements Initializable {
 	public void RaiseBets1()
 	{
 		UpDatebets(1);
-		
 	}
 	
 //-------------------------------------------chips Method Raise bets The End ----------------------------------------------------	
@@ -419,6 +434,8 @@ public class TableController implements Initializable {
 	@FXML
 	public void clickNewGame()
 	{
+		btnExit.setVisible(false);
+		btnExit.setDisable(true);
 		ViewLogic.newGame();
 		init();
 		newTable();
@@ -521,7 +538,7 @@ public void clickRules()
 }
 
 
-public static void setWindowSize(Stage primaryStage,int width, int height)
+public void setWindowSize(Stage primaryStage,int width, int height)
 {
 	// max
 	primaryStage.setMaxWidth(width);
@@ -530,6 +547,12 @@ public static void setWindowSize(Stage primaryStage,int width, int height)
     // min
     primaryStage.setMinHeight(height);
     primaryStage.setMinWidth(width);
+}
+ @FXML
+public void CloseWindow()
+{
+  if(btnExit.isVisible())
+	 ViewLogic.close();
 }
 
 			

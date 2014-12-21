@@ -125,6 +125,7 @@ public class Player {
 		chips=new Integer(0);
 		// player start with 500 chips every round;
 		this.chips=Constants.limitOfChips$;
+		System.out.println("ff");
 		this.nickname=nickname;
 	}
 	
@@ -191,6 +192,7 @@ public class Player {
 	 
 	 public void playerLose(){
 		 this.chips-=this.bets;
+		 System.out.println("b:"+this.chips+" c:" +this.bets);
 		 numberOfLoses++;
 	 }
 	 

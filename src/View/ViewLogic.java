@@ -3,6 +3,7 @@ package View;
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -65,7 +66,6 @@ public final class ViewLogic  extends Application {
 	public void start(Stage primaryStage) 	 
 	{
 		try{
-		
 			    page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Table.fxml"));
 			    Scene scene = new Scene(page);
 		        scene.getStylesheets().add("/view/TableCss.css");
@@ -78,6 +78,14 @@ public final class ViewLogic  extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	public static void close() 	 
+	{
+	
+            Platform.exit();
+    }
+
 
 	//-----------------------------------Window method and reset games methods--------------------------------------------------
 	
