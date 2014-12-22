@@ -16,12 +16,12 @@
             <Image url="@../photos/cards.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="139.0" layoutY="26.0" text="Games rules" textFill="#3ba825">
+      <Label layoutX="139.0" layoutY="26.0" text="Game rules" textFill="#3ba825">
          <font>
             <Font name="Gisha Bold" size="46.0" />
          </font>
       </Label>
-      <TextArea fx:id="txtrules" editable="false" layoutX="23.0" layoutY="151.0" prefHeight="304.0" prefWidth="464.0" text="njndjsndjsnd" wrapText="true">
+      <TextArea fx:id="txtrules" editable="false" layoutX="58.0" layoutY="148.0" prefHeight="304.0" prefWidth="464.0" wrapText="true">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -30,9 +30,6 @@
          </opaqueInsets>
          <cursor>
             <Cursor fx:constant="DEFAULT" />
-         </cursor>
-         <effect>
-            <InnerShadow blurType="GAUSSIAN" choke="0.77" color="#0c2bb094" height="204.59" offsetX="4.5" offsetY="4.5" radius="85.55000000000001" width="139.61" />
-         </effect></TextArea>
+         </cursor></TextArea>
    </children>
 </AnchorPane>
