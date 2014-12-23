@@ -145,15 +145,7 @@ public class PlayerTests {
 	 TestsHelper.AddCardsToPlayer(cardsOfPlayer, player);
 	 
 	 // action
-	 try{
-	 player.isBlackJack();
-	 }catch(PlayerEndOfGameException e)
-	 {
-	 // assert catch the right exception + check update of the total chips
-	 int totalChips=player.getChips();
-	 int expectTotalChips= bets*2+ Constants.limitOfChips$;
-	 assertEquals(totalChips, expectTotalChips);
-	 }
+	 assertTrue("The shoud have a blackjack but the method return false", player.isBlackJack());
 	 
 	}
 }

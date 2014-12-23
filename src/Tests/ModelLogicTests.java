@@ -128,8 +128,7 @@ public class ModelLogicTests {
 			catch (Exception e) {
 				 assertEquals(e.getMessage(), "The game end! Nobody won");
 				 int playerChipAfterWiningGame= player.getChips();
-				 assertEquals(chips, playerChipAfterWiningGame);
-				 
+				 assertEquals(chips, playerChipAfterWiningGame); 
 			}
 	}
 

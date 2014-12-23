@@ -3,7 +3,6 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-
 import Utils.Constants;
 import Utils.Suits;
 
@@ -61,6 +60,7 @@ public class Dealer {
 		 *  Push the first card like stack return only one card!
 		 * @return card from deck
 		 */
+	 	int count =1;
 		protected Card getCard()
 		{
 			number++;
@@ -143,7 +143,15 @@ public class Dealer {
 			return mycards.get(1);
 	   }
 	   
-	
+	    /**
+	     * @return true if the dealer got a blackJack
+	     */
+		public boolean isBlackJack() {
+			 if (value==21 && mycards.size()==2){
+				   return true;
+			   }
+			 return false;
+		 }
 }
 
 

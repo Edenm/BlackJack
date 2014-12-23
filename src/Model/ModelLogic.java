@@ -22,11 +22,6 @@ public final class ModelLogic {
 	/** static variable save the number of games play in correct round*/
 	private static Integer numOfRounds=0;
 	//***************************************** Constructors ******************************************
-    /**
-     * create txt file for the tests
-     */
-       //File file = new File("example.txt");
-       //BufferedWriter output = new BufferedWriter(new FileWriter(file));
     
 	/**
 	 * Full C'tor, for singleton support. 
@@ -125,7 +120,10 @@ public final class ModelLogic {
 	   * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
 	   */
 	  public void isBlackJack() throws PlayerEndOfGameException{
-		  player.isBlackJack();
+		  if (player.isBlackJack() && !dealer.isBlackJack()){
+			  player.playerBlackJack();
+			  throw new PlayerEndOfGameException("You got a black jack!!");
+		  }
 	  }
 	  
 	  /**
@@ -189,7 +187,6 @@ public final class ModelLogic {
 			throw new WhoWinException("Player has Won!");
 		}
 		else{
-			//player.nobodyWin();
 			throw new WhoWinException("The game end! Nobody won");
 		}
 	}

@@ -134,7 +134,6 @@ public class Player {
 		this.mycards=new ArrayList<Card>();
 		value=new Integer(0);
 		bets=new Integer(0);
-		isFirstAce=true;
 	}
 	
 	/**
@@ -174,14 +173,14 @@ public class Player {
 	 }
 	 
 	 /**
-	  * @throws PlayerEndOfGameException if value of player is exactly 21 by 2 cards
-	 */
-	 public void isBlackJack() throws PlayerEndOfGameException{
-		 if (value==21 && mycards.size()==2){
-			   playerBlackJack();
-			   throw new PlayerEndOfGameException("You got a black jack!!");
-		   }
-	 }
+	     * @return true if the player got a blackJack
+	     */
+		public boolean isBlackJack() {
+			 if (value==21 && mycards.size()==2){
+				   return true;
+			   }
+			 return false;
+		 }
 	 
 ///////////////////////////////////Calculate chips every round/////////////////////////////////////////////////////
 	 /**
