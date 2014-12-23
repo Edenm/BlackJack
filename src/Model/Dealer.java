@@ -12,7 +12,7 @@ public class Dealer {
 	private static Dealer instance ;
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
-	/** the sum of all cardes in player hand*/
+	/** the sum of all cards in player hand*/
 	private Integer value;
     /**  deck cards  */
 	 private ArrayList<Card> cards;
@@ -57,7 +57,7 @@ public class Dealer {
 		}
 	 	
 	 	/**
-		 *  Push the first card like stack return only one card!
+		 * Push the first card like stack return only one card!
 		 * @return card from deck
 		 */
 		protected Card getCard()
@@ -66,11 +66,11 @@ public class Dealer {
 			return cards.get(number);
 		}	
 	 	
-	/////////////////////////////////////////////////////////////methods of this class/////////////////////////////////
+	//////////////////////////////////////////methods of this class////////////////////////////////////////
 
 	/**
-	  * the method is initialize the dealer for new game or new round
-	  */
+	 * the method is initialize the dealer for new game or new round
+	 */
 	 public void initializeDealer(){
 		 shuffle();
 		 mycards=new ArrayList<Card>();
@@ -133,7 +133,7 @@ public class Dealer {
 			if (value<Constants.limitOfDealer)
 				return true;
 			return false;
-		}
+	    }
 	   
 	   /**
 	    * The method return the second card of the Dealer

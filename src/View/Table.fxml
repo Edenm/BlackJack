@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="wall" maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="800.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TableController">
    <children>
-      <ImageView fx:id="backgroudTable" fitHeight="722.0" fitWidth="1000.0" layoutX="1.0" nodeOrientation="INHERIT"  onMouseMoved="#DisapearMsg" onRotationStarted="#init" pickOnBounds="true" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="backgroudTable" fitHeight="722.0" fitWidth="1000.0" layoutX="1.0" nodeOrientation="INHERIT" onMouseMoved="#DisapearMsg" onRotationStarted="#init" pickOnBounds="true" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@MainTablePic.png" />
          </image>
@@ -167,10 +167,17 @@
             <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Label fx:id="playerMsg" layoutX="232.0" layoutY="513.0" prefHeight="48.0" prefWidth="545.0" underline="true">
+      <Label fx:id="playerMsg" alignment="CENTER" layoutX="236.0" layoutY="544.0" prefHeight="48.0" prefWidth="543.0" textFill="#1a1a1b">
          <font>
-            <Font name="Gisha Bold" size="39.0" />
+            <Font name="Gisha Bold" size="40.0" />
          </font>
+         <effect>
+            <Lighting bumpInput="$null">
+               <light>
+                  <Light.Distant color="#e33322" />
+               </light>
+            </Lighting>
+         </effect>
       </Label>
       <MenuBar layoutX="3.0" layoutY="2.0">
         <menus>
