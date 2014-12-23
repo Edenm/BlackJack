@@ -3,12 +3,6 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
-
-import com.sun.javafx.fxml.expression.VariableExpression;
-import com.sun.media.jfxmedia.Media;
-
-import Controller.ControllerLogic;
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -18,16 +12,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 
@@ -168,18 +158,12 @@ public class TableController implements Initializable {
 /////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
+		
+		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
-		btnResetBet.setVisible(true);
-		mnhit.setDisable(true);
-		mnstand.setDisable(true);
-		mndeal.setDisable(false);
-		totalPoints.setText("Total score: "+ViewLogic.getChips());
-		lblBet.setText("Bet: "+0);
-		playerCardsValue.setText("Value:"+0);
-		playerx=new Double(secondCardPlayer.getLayoutX());
-		dealerx=new Double(secondCardDealer.getLayoutX());
-		playerMsg.setVisible(false);
+		EnabledDealMenuAndBtn(true);
+		EnbledHitAndStandMenu(false);
 		playerMsg.setVisible(false);
 		firstCardDealer.setVisible(false);
 		secondCardDealer.setVisible(false);
@@ -187,6 +171,15 @@ public class TableController implements Initializable {
 		secondCardPlayer.setVisible(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
+		
+		// set status bar
+		totalPoints.setText("Total score: "+ViewLogic.getChips());
+		lblBet.setText("Bet: "+0);
+		playerCardsValue.setText("Value:"+0);
+		
+		// init location of cards
+		playerx=new Double(secondCardPlayer.getLayoutX());
+		dealerx=new Double(secondCardDealer.getLayoutX());
 	}
 	
 	
@@ -198,14 +191,15 @@ public class TableController implements Initializable {
 	{
 		if(ViewLogic.getBets()>0)
 		{
-			mnhit.setDisable(false);
-			mnstand.setDisable(false);
-			mndeal.setDisable(true);
+			// button deal will disappear after dealing the cards.
+			EnabledDealMenuAndBtn(false);
 			dealCardsToGame();
 			firstCardDealer.setVisible(true);
 			secondCardDealer.setVisible(true);
 			firstCardPlayer.setVisible(true);
 			secondCardPlayer.setVisible(true);
+			// show buttons hot and stands
+			EnbledHitAndStandMenu(true);
 				
 			
 		}
@@ -219,9 +213,6 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
-		// button deal will disappear after dealing the cards.
-			btnDeal.setVisible(false);
-			HideChips();
 			
 			// Deal cards to the player//
 			Card tempCard= ViewLogic.getCardFromDeck(User.Player);
@@ -242,39 +233,27 @@ public class TableController implements Initializable {
 			//update the value cards of the player after deal
 			SetPlayerCradsValue(ViewLogic.playerValueCards());
 			
-			// show buttons hot and stands
-			btnHit.setVisible(true);
-			btnStand.setVisible(true);
+			
 			// if black jack
 			try {
 				ViewLogic.isBlackJack();
 			} catch (PlayerEndOfGameException e) {
-				playerMsg.setText(e.getMessage());
-				playerMsg.setVisible(true);
+				endOfRoundLayOut(e.getMessage());
+				EnbledHitAndStandMenu(false);
+				loseLayOut();
 			}
 	}
-	private void HideChips()
-	{
-		chip1.setVisible(false);
-		chip5.setVisible(false);
-		chip25.setVisible(false);
-		chip50.setVisible(false);
-		chip100.setVisible(false);
-		btnResetBet.setVisible(false);
-	}
+	 
+	 /**
+	  * create layout of a new table
+	  */
 	private void newTable()
 	{
 		playerMsg.setVisible(false);
-		chip1.setVisible(true);
-		chip5.setVisible(true);
-		chip25.setVisible(true);
-		chip50.setVisible(true);
-		chip100.setVisible(true);
-		btnResetBet.setVisible(true);
-		btnDeal.setVisible(true);
-		btnHit.setVisible(false);
-		btnStand.setVisible(false);
-		// clear all the crds add to dealear and player
+		EnabledDealMenuAndBtn(true);
+		EnbledHitAndStandMenu(false);;
+		
+		// clear all the cards add to dealer and player
 		for(Object c: wall.getChildren().toArray())
 			if(c instanceof ImageView&&((ImageView)c).getId()==null)
 				wall.getChildren().remove(c);
@@ -285,36 +264,25 @@ public class TableController implements Initializable {
 	/**
 	 
 	 * method add one card to player every push
-	 * method use global parmter playerx to put the card in the right place
+	 * method use global parameter playerx to put the card in the right place
 	 */
 	
 	@FXML
 	public void hitCard()
 	{
-		Card c=ViewLogic.getCardFromDeck(User.Player);
-		ImageView pic=new ImageView(new Image(c.getPic()));
-		pic.setFitHeight(firstCardPlayer.getFitHeight());
-		pic.setFitWidth(secondCardPlayer.getFitWidth()-28);
-		pic.setLayoutX(playerx+32);
-		pic.setLayoutY(firstCardPlayer.getLayoutY());
-		ViewLogic.getPage().getChildren().add(pic);
-		playerx=pic.getLayoutX();
+		playerx = SetCardOntheTable(User.Player, firstCardPlayer, playerx);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
 		try {
 			ViewLogic.isOver21();
 		} catch (PlayerEndOfGameException e) {
-			playerMsg.setText(e.getMessage());
-			playerMsg.setVisible(true);
 			flipDealerCard();
-			btnNewGame.setVisible(true);
-			btnNewRound.setVisible(true);
-			loseLayOut();
+			endOfRoundLayOut(e.getMessage());
 		}
 	}
 	/**
-	 * method set buttons hit and stand unvisble
+	 * method set buttons hit and stand invisible
 	 * method add card to dealer until 17
-	 * method use global parmter dealerx to put the card in the right place
+	 * method use global parameter dealerx to put the card in the right place
 	 */
 	@FXML
 	public void StandCard()
@@ -322,26 +290,52 @@ public class TableController implements Initializable {
 		flipDealerCard();
 		while(ViewLogic.isDealerNeedMoreCard())
 		{
-			Card c=ViewLogic.getCardFromDeck(User.Dealer);
-			ImageView pic=new ImageView(new Image(c.getPic()));
-			pic.setFitHeight(firstCardDealer.getFitHeight());
-			pic.setFitWidth(firstCardDealer.getFitWidth()-28);
-			pic.setLayoutX(dealerx+32);
-			pic.setLayoutY(firstCardDealer.getLayoutY());
-			ViewLogic.getPage().getChildren().add(pic);
-			dealerx=pic.getLayoutX();
+			dealerx=SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
 		}
 		try {
 			ViewLogic.checkWin();
-		} catch (WhoWinException e) {
-			playerMsg.setText(e.getMessage());
-			playerMsg.setVisible(true);
-			btnNewRound.setVisible(true);
-			btnNewGame.setDisable(true);
-			loseLayOut();
-		}
+		    } catch (WhoWinException e) {
+			endOfRoundLayOut(e.getMessage());
+		  }
+	}
+//-------------------------------------------layOut Method ----------------------------------------------------	
+	
+	/**
+	 * create and setting new card on the table , player and dealer using in this method
+	 * @param user
+	 * @param firstCard
+	 * @param cardPosition
+	 * @return
+	 */
+	private Double SetCardOntheTable(User user, ImageView firstCard, Double cardPosition)
+	{
+		Card c=ViewLogic.getCardFromDeck(user);
+		ImageView pic=new ImageView(new Image(c.getPic()));
+		pic.setFitHeight(firstCard.getFitHeight());
+		pic.setFitWidth(firstCard.getFitWidth()-28);
+		pic.setLayoutX(cardPosition+32);
+		pic.setLayoutY(firstCard.getLayoutY());
+		ViewLogic.getPage().getChildren().add(pic);
+		return pic.getLayoutX();
 	}
 	
+	/**
+	 * set table layout according to the end of round 
+	 * @param msgToUser
+	 */
+	private void endOfRoundLayOut(String msgToUser)
+	{
+		EnbledHitAndStandMenu(false);
+		playerMsg.setText(msgToUser);
+		playerMsg.setVisible(true);
+		btnNewGame.setVisible(true);
+		btnNewRound.setVisible(true);
+		loseLayOut();
+	}
+	
+	/**
+	 *  set table layout according to the end of game  there only two option new Game or exit from the game
+	 */
 	private void loseLayOut()
 	{
 		if(ViewLogic.getChips() == 0)
@@ -351,21 +345,53 @@ public class TableController implements Initializable {
 			btnNewGame.setDisable(false);
 			btnExit.setVisible(true);
 			btnExit.setDisable(false);
-			disAbledHitAndStandMenu(true);
+			EnbledHitAndStandMenu(false);
 		}
 	}
 	
-	private void disAbledHitAndStandMenu(boolean value)
+	/**
+	 * Disable hit and stand btn from the menu bar and hide btn stand and hit forn table.
+	 * @param value
+	 */
+	private void EnbledHitAndStandMenu(boolean value)
 	{
-		mnhit.setDisable(value);
-		mnstand.setDisable(value);
+		mnhit.setDisable(!value);
+		mnstand.setDisable(!value);
+		btnStand.setVisible(value);
+		btnHit.setVisible(value);
 	}
 	
+	/**
+	 * Disable Deal btn from the menu bar and table.
+	 * @param value
+	 */
+	private void EnabledDealMenuAndBtn(boolean value)
+	{
+		mndeal.setDisable(!value);
+		btnDeal.setVisible(value);
+	    ShowChips(value);
+	}
+	/**
+	 * filp the card of the dealer
+	 */
 	private void flipDealerCard()
 	{
-		btnStand.setVisible(false);
-		btnHit.setVisible(false);
+		EnbledHitAndStandMenu(false);
 		secondCardDealer.setImage(new Image(ViewLogic.getSecondCardOfDealer().getPic()));
+	}
+	
+	/**
+	 * hide or show all the chips
+	 * @param value
+	 */
+	private void ShowChips(boolean value)
+	{
+		chip1.setVisible(value);
+		chip5.setVisible(value);
+		chip25.setVisible(value);
+		chip50.setVisible(value);
+		chip100.setVisible(value);
+		btnResetBet.setVisible(value);
 	}
 	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
@@ -521,6 +547,7 @@ public void ShowNewButtonPanel()
 @FXML
 public void clickRules()
 {
+
 	try{
 	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
 	    Scene scene = new Scene(page);
