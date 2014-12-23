@@ -193,13 +193,14 @@ public class TableController implements Initializable {
 		{
 			// button deal will disappear after dealing the cards.
 			EnabledDealMenuAndBtn(false);
+			
+			// show buttons hot and stands
+			EnbledHitAndStandMenu(true);
 			dealCardsToGame();
 			firstCardDealer.setVisible(true);
 			secondCardDealer.setVisible(true);
 			firstCardPlayer.setVisible(true);
 			secondCardPlayer.setVisible(true);
-			// show buttons hot and stands
-			EnbledHitAndStandMenu(true);
 				
 			
 		}
@@ -239,7 +240,6 @@ public class TableController implements Initializable {
 				ViewLogic.isBlackJack();
 			} catch (PlayerEndOfGameException e) {
 				endOfRoundLayOut(e.getMessage());
-				EnbledHitAndStandMenu(false);
 				loseLayOut();
 			}
 	}
