@@ -60,9 +60,8 @@ public class Dealer {
 		 *  Push the first card like stack return only one card!
 		 * @return card from deck
 		 */
-	 	int count =1;
 		protected Card getCard()
-		{
+		{	
 			number++;
 			return cards.get(number);
 		}	

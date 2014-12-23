@@ -162,25 +162,34 @@ public class Player {
 				mycards.add(card);
 	 }
 	   
-	 /**
-	  * @throws PlayerEndOfGameException if value of player is over 21
-	 */
-	 public void isOver21() throws PlayerEndOfGameException{
-		   if (value>21){
-			   playerLose();
-			   throw new PlayerEndOfGameException("Player Is Busted!");
-		   }
-	 }
+		 /**
+		  * @throws PlayerEndOfGameException if value of player is over 21
+		 */
+		 public void isOver21() throws PlayerEndOfGameException{
+			   if (value>21){
+				   playerLose();
+				   throw new PlayerEndOfGameException("Player Is Busted!");
+			   }
+		 }
 	 
-	 /**
-	     * @return true if the player got a blackJack
-	     */
+	    /**
+	    * @return true if the player got a blackJack
+	    */
 		public boolean isBlackJack() {
 			 if (value==21 && mycards.size()==2){
 				   return true;
 			   }
 			 return false;
 		 }
+		
+		/**
+		* @return true if the player have 21 in his value cards
+		*/
+	     public boolean isExactly21(){
+			  if (value==21)
+				  return true;
+			  return false;
+		  }
 	 
 ///////////////////////////////////Calculate chips every round/////////////////////////////////////////////////////
 	 /**

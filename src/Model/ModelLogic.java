@@ -127,6 +127,13 @@ public final class ModelLogic {
 	  }
 	  
 	  /**
+	   * @return true if the player have 21 in his value cards
+	   */
+	  public boolean isExactly21(){
+		  return player.isExactly21();
+	  }
+	  
+	  /**
 	   * @return number of wins of player
 	   */
 	  public int getNumberOfWins(){
