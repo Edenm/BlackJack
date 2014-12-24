@@ -273,11 +273,16 @@ public class TableController implements Initializable {
 		playerx = SetCardOntheTable(User.Player, firstCardPlayer, playerx);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
 		try {
+			if(ViewLogic.isExactly21())
+			{
+				StandCard();
+				return;
+			}
 			ViewLogic.isOver21();
 		} catch (PlayerEndOfGameException e) {
 			flipDealerCard();
 			endOfRoundLayOut(e.getMessage());
-		}
+		} 
 	}
 	/**
 	 * method set buttons hit and stand invisible

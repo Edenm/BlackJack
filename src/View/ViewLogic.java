@@ -142,6 +142,11 @@ public final class ViewLogic  extends Application {
 	  public static void isOver21() throws PlayerEndOfGameException{
 		   controller.isOver21();
 	  }
+	  
+	  public static boolean isExactly21()
+	  {
+		  return controller.isExactly21();
+	  }
 		 /**
 		 * @return true if Dealer can take one more card, else otherwise
 		 */	
