@@ -239,8 +239,8 @@ public class TableController implements Initializable {
 			try {
 				ViewLogic.isBlackJack();
 			} catch (PlayerEndOfGameException e) {
+				flipDealerCard();
 				endOfRoundLayOut(e.getMessage());
-				loseLayOut();
 			}
 	}
 	 
