@@ -104,9 +104,9 @@
             <InnerShadow choke="0.52" color="#402d2d" radius="35.2025" width="121.81" />
          </effect>
       </Button>
-      <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="452.0" layoutY="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="452.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <ImageView fx:id="firstCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="423.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
@@ -156,11 +156,6 @@
             <Cursor fx:constant="OPEN_HAND" />
          </cursor>
       </ImageView>
-      <Label fx:id="msgToUser" layoutX="293.0" layoutY="308.0" prefHeight="84.0" prefWidth="471.0" textFill="#bc0d0d">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
       <Button fx:id="btnHit" layoutX="155.0" layoutY="406.0" mnemonicParsing="false" onAction="#hitCard" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;" text="Hit" visible="false">
          <font>
             <Font name="Andalus" size="24.0" />
@@ -193,18 +188,6 @@
             <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Label fx:id="playerMsg" alignment="CENTER" layoutX="236.0" layoutY="544.0" prefHeight="48.0" prefWidth="543.0" textFill="#1a1a1b">
-         <font>
-            <Font name="Gisha Bold" size="40.0" />
-         </font>
-         <effect>
-            <Lighting bumpInput="$null">
-               <light>
-                  <Light.Distant color="#e33322" />
-               </light>
-            </Lighting>
-         </effect>
-      </Label>
       <MenuBar layoutX="3.0" layoutY="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="Games option">
@@ -234,7 +217,7 @@
             <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
          </effect>
       </MenuBar>
-      <Button fx:id="btnNewGame" layoutX="436.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
+      <Button fx:id="btnNewGame" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Game">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -250,7 +233,7 @@
             <InnerShadow choke="0.52" color="#402d2d" height="71.41" radius="47.805" width="121.81" />
          </effect>
       </Button>
-      <Button fx:id="btnNewRound" layoutX="436.0" layoutY="270.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
+      <Button fx:id="btnNewRound" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="111.0" style="-fx-background-color: #966F33; -fx-border-color: #CCC66C; -fx-border-width: 3px;;" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -298,5 +281,11 @@
             </LinearGradient>
          </textFill>
       </Button>
+      <Label fx:id="msgToUser" layoutX="293.0" layoutY="308.0" prefHeight="84.0" prefWidth="471.0" textFill="#bc0d0d">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

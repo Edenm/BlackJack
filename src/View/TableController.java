@@ -38,7 +38,8 @@ public class TableController implements Initializable {
 	@FXML
 	Button btnDeal;
 	@FXML
-	 Label playerMsg;
+	ImageView msgToUserPic;
+	
 	
 	/**
 	 * 
@@ -178,13 +179,14 @@ public class TableController implements Initializable {
 		btnNewRound.setVisible(false);
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);
-		playerMsg.setVisible(false);
+		
 		firstCardDealer.setVisible(false);
 		secondCardDealer.setVisible(false);
 		firstCardPlayer.setVisible(false);
 		secondCardPlayer.setVisible(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
+		msgToUserPic.setVisible(false);
 		
 		// set status bar
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
@@ -263,7 +265,7 @@ public class TableController implements Initializable {
 	  */
 	private void newTable()
 	{
-		playerMsg.setVisible(false);
+		
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);;
 		
@@ -345,8 +347,8 @@ public class TableController implements Initializable {
 	private void endOfRoundLayOut(String msgToUser)
 	{
 		EnbledHitAndStandMenu(false);
-		playerMsg.setText(msgToUser);
-		playerMsg.setVisible(true);
+		msgToUserPic.setImage(new Image(msgToUser));
+		msgToUserPic.setVisible(true);
 		btnNewGame.setVisible(true);
 		btnNewRound.setVisible(true);
 		lblWins.setText("Wins: "+ViewLogic.getPlayerWins());

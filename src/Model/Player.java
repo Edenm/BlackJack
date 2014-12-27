@@ -168,7 +168,7 @@ public class Player {
 		 public void isOver21() throws PlayerEndOfGameException{
 			   if (value>21){
 				   playerLose();
-				   throw new PlayerEndOfGameException("Player Is Busted!");
+				   throw new PlayerEndOfGameException("/photos/busted.png");
 			   }
 		 }
 	 

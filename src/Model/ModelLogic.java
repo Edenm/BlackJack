@@ -122,7 +122,7 @@ public final class ModelLogic {
 	  public void isBlackJack() throws PlayerEndOfGameException{
 		  if (player.isBlackJack() && !dealer.isBlackJack()){
 			  player.playerBlackJack();
-			  throw new PlayerEndOfGameException("You got a black jack!!");
+			  throw new PlayerEndOfGameException("/photos/black_jack.png");
 		  }
 	  }
 	  
@@ -183,18 +183,18 @@ public final class ModelLogic {
 	public void checkWin() throws WhoWinException{
 		if (dealer.getValue()>21){
 			player.playerWin();
-			throw new WhoWinException("Player has Won!");
+			throw new WhoWinException("/photos/player_win.png");
 		}
 		if (dealer.getValue()>player.getValue()){
 			player.playerLose();
-			throw new WhoWinException("Dealer has Won!");
+			throw new WhoWinException("/photos/Dealer_win.png");
 		}
 		else if (dealer.getValue()<player.getValue()){
 			player.playerWin();
-			throw new WhoWinException("Player has Won!");
+			throw new WhoWinException("/photos/player_win.png");
 		}
 		else{
-			throw new WhoWinException("The game end! Nobody won");
+			throw new WhoWinException("/photos/Its_a_Tie.png");
 		}
 	}
 }
