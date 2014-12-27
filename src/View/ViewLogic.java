@@ -45,16 +45,33 @@ public final class ViewLogic  extends Application {
 	 * @return reference to this class's only instance, or null if reference was already returned (singleton).
 	 * @throws GeneralException 
 	 */
-	public static ViewLogic getInstance(ControllerLogic instanceController) throws IOException {
+	public static void getInstance(ControllerLogic instanceController) throws IOException {
                 if(!exists)
                 {
 					exists = true;
 					instance  = new ViewLogic();
 					controller=instanceController;
 					startview();
-					return instance;
+					
                 }
-                return instance;
+               
+	}
+	@Override
+	public  void  start(Stage primaryStage)
+	{
+		{
+			try{
+				    AnchorPane page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Login.fxml"));
+				    Scene scene = new Scene(page);
+			        primaryStage.setScene(scene);
+			        primaryStage.setTitle("BlackJack Enjoy!");
+			        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+			        setWindowSize(primaryStage, 950, 600);
+			        primaryStage.show();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public static void startview()
@@ -62,8 +79,8 @@ public final class ViewLogic  extends Application {
 		launch();
 	}
 
-	@Override
-	public void start(Stage primaryStage) 	 
+	
+	public static void startGame(Stage primaryStage) 	 
 	{
 		try{
 			    page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Table.fxml"));
