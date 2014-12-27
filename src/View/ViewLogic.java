@@ -196,6 +196,24 @@ public final class ViewLogic  extends Application {
 	public static void checkWin() throws WhoWinException{
 		controller.checkWin();
 	}
+	
+	/**
+	 * return number of wining in round of the table
+	 * @return int
+	 */
+	public static Integer getPlayerWins()
+	{
+		return controller.getNumberOfWins();
+	}
+	
+	/**
+	 * return number of losses in round of the table
+	 * @return int
+	 */
+	public static Integer getPlayerLosses()
+	{
+		return controller.getNumberOfLoses();
+	}
 
 		
 }

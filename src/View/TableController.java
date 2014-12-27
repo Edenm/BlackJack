@@ -3,6 +3,7 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -61,6 +62,18 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Label totalPoints;
+
+	/**
+	 * keep the total wins off the player
+	 */
+	@FXML
+	Label lblWins;
+	
+	/**
+	 * keep the total Losses off the player
+	 */
+	@FXML
+	Label lblLosses;
 	
 	@FXML
 	AnchorPane wall;
@@ -159,6 +172,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void init(){
 		
+				
 		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
@@ -175,8 +189,8 @@ public class TableController implements Initializable {
 		// set status bar
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		lblBet.setText("Bet: "+0);
-		playerCardsValue.setText("Value:"+0);
-		
+		playerCardsValue.setText("Value: "+0);
+	
 		// init location of cards
 		playerx=new Double(secondCardPlayer.getLayoutX());
 		dealerx=new Double(secondCardDealer.getLayoutX());
@@ -335,6 +349,8 @@ public class TableController implements Initializable {
 		playerMsg.setVisible(true);
 		btnNewGame.setVisible(true);
 		btnNewRound.setVisible(true);
+		lblWins.setText("Wins: "+ViewLogic.getPlayerWins());
+		lblLosses.setText("Losses: "+ViewLogic.getPlayerLosses());
 		loseLayOut();
 	}
 	
@@ -467,6 +483,9 @@ public class TableController implements Initializable {
 		ViewLogic.newGame();
 		init();
 		newTable();
+		lblWins.setText("Wins: "+0);
+		lblLosses.setText("Losses: "+0);
+		
 	}
 	/**
 	 * when button new game clicking initialize new game with all new parameter
