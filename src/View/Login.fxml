@@ -9,7 +9,7 @@
 <AnchorPane prefHeight="613.0" prefWidth="1007.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.LoginController">
    <children>
       <MediaView fx:id="video" fitHeight="700.0" fitWidth="1000.0" layoutX="-7.0" />
-      <Button layoutX="449.0" layoutY="401.0" mnemonicParsing="false" onAction="#ClickLogin" prefHeight="28.0" prefWidth="88.0" text="Login" />
+      <Button fx:id="btnLogin" layoutX="449.0" layoutY="401.0" mnemonicParsing="false" onAction="#ClickLogin" prefHeight="28.0" prefWidth="88.0" stylesheets="@Css/TableCss.css" text="Login" />
       <TextField layoutX="418.0" layoutY="364.0" />
    </children>
 </AnchorPane>

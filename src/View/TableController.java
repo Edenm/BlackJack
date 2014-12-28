@@ -1,9 +1,7 @@
 package View;
 
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -172,6 +170,8 @@ public class TableController implements Initializable {
 /////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
+	
+
 		
 				
 		// layout of the btn
