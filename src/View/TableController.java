@@ -108,12 +108,6 @@ public class TableController implements Initializable {
 	ImageView firstCardPlayer;
 	
 	/**
-	 * second card of the player
-	 */
-	@FXML
-	ImageView secondCardPlayer;
-	
-	/**
 	 * first card of the Dealer
 	 */
 	@FXML
@@ -187,10 +181,7 @@ public class TableController implements Initializable {
 /////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
-	
-
 		
-				
 		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
@@ -200,7 +191,6 @@ public class TableController implements Initializable {
 		firstCardDealer.setVisible(false);
 		secondCardDealer.setVisible(false);
 		firstCardPlayer.setVisible(false);
-		secondCardPlayer.setVisible(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
 		msgToUserPic.setVisible(false);
@@ -211,8 +201,8 @@ public class TableController implements Initializable {
 		playerCardsValue.setText("Value: "+0);
 	
 		// init location of cards
-		playerx=new Double(secondCardPlayer.getLayoutX());
-		dealerx=new Double(secondCardDealer.getLayoutX());
+		playerx=new Double(firstCardPlayer.getLayoutX());
+		dealerx=new Double(firstCardDealer.getLayoutX());
 	}
 	
 	
@@ -233,8 +223,6 @@ public class TableController implements Initializable {
 			firstCardDealer.setVisible(true);
 			secondCardDealer.setVisible(true);
 			firstCardPlayer.setVisible(true);
-			secondCardPlayer.setVisible(true);
-				
 			
 		}
 		else
@@ -247,13 +235,13 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
-			
 			// Deal cards to the player//
 			Card tempCard= ViewLogic.getCardFromDeck(User.Player);
+			//SetCardOntheTable(User.Player, firstCardPlayer, playerx);
 			firstCardPlayer.setImage(new Image(tempCard.getPic()));
 
 			tempCard= ViewLogic.getCardFromDeck(User.Player);
-			secondCardPlayer.setImage(new Image(tempCard.getPic()));
+			SetCardOntheTable(User.Player, firstCardPlayer, playerx);
 			
 			
 			// Deal cards to the Dealer//
@@ -262,7 +250,9 @@ public class TableController implements Initializable {
 			
 			// the last card to the dealer in back card in the modelView.Dealer the card its save.
 			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
+			//SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
 			secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
+			//secondCardDealer.setImage(pic.getImage());	
 			
 			//update the value cards of the player after deal
 			SetPlayerCradsValue(ViewLogic.playerValueCards());
@@ -303,7 +293,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void hitCard()
 	{
-		playerx = SetCardOntheTable(User.Player, firstCardPlayer, playerx);
+		SetCardOntheTable(User.Player, firstCardPlayer, playerx);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
 		try {
 			if(ViewLogic.isExactly21())
@@ -328,7 +318,7 @@ public class TableController implements Initializable {
 		flipDealerCard();
 		while(ViewLogic.isDealerNeedMoreCard())
 		{
-			dealerx=SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
+			SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
 		}
 		try {
 			ViewLogic.checkWin();
@@ -345,7 +335,7 @@ public class TableController implements Initializable {
 	 * @param cardPosition
 	 * @return
 	 */
-	private Double SetCardOntheTable(final User user, ImageView firstCard, Double cardPosition)
+	private void SetCardOntheTable(final User user, ImageView firstCard, Double cardPosition)
 	{
 		Card c=ViewLogic.getCardFromDeck(user);
 		pic=new ImageView(new Image(c.getPic()));
@@ -378,7 +368,6 @@ public class TableController implements Initializable {
 		//double layoutX=cardPosition+32;
 		double layoutY=firstCard.getLayoutY();
 	
-		
 		mx = x-i;
 		my = layoutY-j;
 		
@@ -418,16 +407,13 @@ public class TableController implements Initializable {
 		                        	if (xSrc<=xTarg && ySrc<=yTarg)
 		                        		tl.stop();
 		                        }
-		                        
-		                        
-	                    	
 	                    }
 	                });
 
 	        tl.getKeyFrames().add(moveCard);
 	        tl.play();
 	        
-		return x;
+		//return x;
 	}
 
 	
@@ -664,7 +650,6 @@ public void ShowNewButtonPanel()
 @FXML
 public void clickRules()
 {
-
 	try{
 	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
 	    Scene scene = new Scene(page);

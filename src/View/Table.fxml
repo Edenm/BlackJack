@@ -90,8 +90,6 @@
       </Pane>
       <ImageView fx:id="firstCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="417.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
-      <ImageView fx:id="secondCardPlayer" fitHeight="113.0" fitWidth="111.0" layoutX="452.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-      </ImageView>
       <ImageView fx:id="firstCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="423.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
       </ImageView>
       <ImageView fx:id="secondCardDealer" fitHeight="113.0" fitWidth="111.0" layoutX="456.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
