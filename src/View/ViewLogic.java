@@ -22,11 +22,10 @@ import Utils.User;
 public final class ViewLogic  extends Application {
 	//***************************************** Variables *********************************************
 	/**Singleton instance of this class, loaded on the first execution of ModelLogic.getInstance()*/
+	@SuppressWarnings("unused")
 	private static ViewLogic instance ;
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
-	
-
 	/**ControllerLogic reference pointer*/
 	private static ControllerLogic controller;
 	/** root to the sence of the game */
@@ -52,7 +51,6 @@ public final class ViewLogic  extends Application {
 					instance  = new ViewLogic();
 					controller=instanceController;
 					startview();
-					
                 }
                
 	}

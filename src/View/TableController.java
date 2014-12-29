@@ -2,10 +2,16 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
 import Utils.User;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,34 +24,40 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 public class TableController implements Initializable {
-	/**
-	 * variable save to place of the last card for player
-	 */
+	/** variable save to place of the last card for player*/
 	private Double playerx;
-	/**
-	 * variable save to place of the last card for player
-	 */
+	/** variable save to place of the last card for player*/
 	private Double dealerx;
+	/** This variable is contain the card that come into the table */
+	static ImageView pic;
+	/** This variable is contain the the diff between x axle in deck card to x axle in last card on the table */
+	static double mx;
+	/** This variable is contain the the diff between y axle in deck card to y axle in last card on the table */
+	static double my;
 	
 	/**
 	 * the button that start the dealing action
 	 */
 	@FXML
 	Button btnDeal;
+	
+	/**
+	 * label present message to user
+	 */
 	@FXML
 	ImageView msgToUserPic;
 	
-	
 	/**
-	 * 
+	 * this btn bring more card to player
 	 */
 	@FXML
 	Button btnHit;
 	/**
-	 * 
+	 * this btn pass the turn to dealer
 	 */
 	@FXML
 	Button btnStand;
@@ -113,6 +125,11 @@ public class TableController implements Initializable {
 	@FXML
 	ImageView secondCardDealer;
 	
+	/**
+	 * card from deck
+	 */
+	@FXML
+	ImageView deckCard;
 	
 	@FXML
 	ImageView backgroudTable;
@@ -328,17 +345,91 @@ public class TableController implements Initializable {
 	 * @param cardPosition
 	 * @return
 	 */
-	private Double SetCardOntheTable(User user, ImageView firstCard, Double cardPosition)
+	private Double SetCardOntheTable(final User user, ImageView firstCard, Double cardPosition)
 	{
 		Card c=ViewLogic.getCardFromDeck(user);
-		ImageView pic=new ImageView(new Image(c.getPic()));
+		pic=new ImageView(new Image(c.getPic()));
+		pic.setVisible(true);
+		
+		//set size of card
 		pic.setFitHeight(firstCard.getFitHeight());
 		pic.setFitWidth(firstCard.getFitWidth()-28);
-		pic.setLayoutX(cardPosition+32);
-		pic.setLayoutY(firstCard.getLayoutY());
+		
+		// Allocate place on screen
+		double i=deckCard.getLayoutX();
+		double j=deckCard.getLayoutY();
+		
+		//set first location in screen
+		pic.setLayoutX(i);
+		pic.setLayoutY(j);
+		
 		ViewLogic.getPage().getChildren().add(pic);
-		return pic.getLayoutX();
+		
+		double x;
+		
+		if (user.equals(User.Player)){
+			playerx+=32;
+			x=playerx;
+		}
+		else{
+			dealerx+=32;
+			x=dealerx;
+		}
+		//double layoutX=cardPosition+32;
+		double layoutY=firstCard.getLayoutY();
+	
+		
+		mx = x-i;
+		my = layoutY-j;
+		
+		//System.out.println("playerx: "+playerx+"\ni: "+i);
+		
+		 final Timeline tl = new Timeline();
+	        tl.setCycleCount(Animation.INDEFINITE);
+	        KeyFrame moveCard = new KeyFrame(Duration.seconds(.0030),
+	                new EventHandler<ActionEvent>() {
+
+	                    public void handle(ActionEvent event) {
+	                    		
+		                        double xSrc = pic.getTranslateX();
+		                        double ySrc = pic.getTranslateY();
+		                        double xTarg = mx;
+		                        double yTarg = my;
+		                        
+		                       // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
+		                        
+		                        //System.out.println("xTarg"+xTarg+"\nyTarg"+yTarg);
+		                        
+		                        if (xSrc>xTarg) {
+		                            pic.setTranslateX(pic.getTranslateX()-1);
+		                        }
+		                        if (user.equals(User.Player)){
+		                        	if (ySrc<yTarg) {
+		                        		pic.setTranslateY(pic.getTranslateY()+1);
+		                        	}
+		                        	if (xSrc<=xTarg && ySrc>=yTarg)
+		                        		tl.stop();
+		                        }
+		                        else
+		                        {
+		                        	if (ySrc>yTarg) {
+		                        		pic.setTranslateY(pic.getTranslateY()-1);
+		                        	}
+		                        	if (xSrc<=xTarg && ySrc<=yTarg)
+		                        		tl.stop();
+		                        }
+		                        
+		                        
+	                    	
+	                    }
+	                });
+
+	        tl.getKeyFrames().add(moveCard);
+	        tl.play();
+	        
+		return x;
 	}
+
 	
 	/**
 	 * set table layout according to the end of round 

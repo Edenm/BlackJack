@@ -75,6 +75,7 @@ public class Dealer {
 		 shuffle();
 		 mycards=new ArrayList<Card>();
 		 value= new Integer(0);
+		 isFirstAce=true;
 	 }
 	 	
 	 	

@@ -134,6 +134,7 @@ public class Player {
 		this.mycards=new ArrayList<Card>();
 		value=new Integer(0);
 		bets=new Integer(0);
+		isFirstAce=true;
 	}
 	
 	/**
