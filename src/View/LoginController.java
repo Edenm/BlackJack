@@ -2,12 +2,20 @@ package View;
 
 import java.io.File;
 import java.net.URL;
+import java.time.Duration;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -17,11 +25,24 @@ public class LoginController implements Initializable {
 	
 	@FXML
 	MediaView video;
+	@FXML
+	TextField txtnameLogin;
+	@FXML
+	 ImageView LoginPic;
+	@FXML
+	Button btnSkip;
+	@FXML
+	Button btnLogin;
+	
 	MediaPlayer mediaPlayer;
 	
 
 	public void initialize(URL location, ResourceBundle resources) {
+		txtnameLogin.setVisible(false);
+		btnLogin.setVisible(false);
 		playVideo();
+		
+		
 		
 	}
 	
@@ -38,16 +59,51 @@ public class LoginController implements Initializable {
 	                
 	            }
 	        });
+	        LoginPic.setVisible(true);
+	
+	        mediaPlayer.setOnEndOfMedia((new Runnable() {
+	            public void run() {
+	            	videosTOP();
+	               
+	            }}));
+	               
+	            
+	        
+	      
+	       
+	      
+	        
+	        
 		}
 		catch(Exception e){e.printStackTrace();}
 	       
 	    }
+	
+	private void videosTOP()
+	{
+		txtnameLogin.setVisible(true);
+		btnLogin.setVisible(true);
+		video.setVisible(false);
+		mediaPlayer.stop();
+        btnSkip.setVisible(false);
+   
+	}
+	@FXML
+	public void clickSkip()
+	{
+		videosTOP();
+        
+	}
 	@FXML
 	public void ClickLogin(ActionEvent event)
 	{
+		if(txtnameLogin.getText().equals(""))
+		{
+			return;
+		}
 		ViewLogic.startGame(new Stage());
 		((Node) event.getSource()).getScene().getWindow().hide();
-		mediaPlayer.stop();
+		
 		
 	}
 	

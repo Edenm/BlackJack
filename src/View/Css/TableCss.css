@@ -19,7 +19,46 @@
     }
     .button:hover
     {
-    	-fx-background-color: 
-	 #23d146;
+     -fx-effect: dropshadow(two-pass-box , darkgray, 10, 0.0 , 4, 5);
+     -fx-background-color: rgba(235,235,235,0.7);
 
     }
+    .button:pressed {
+    -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+}
+
+#btnLogin
+{
+  -fx-background-color: 
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+  }
+  #btnLogin:pressed{
+  -fx-padding: 10 15 13 15;
+    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
+  }
+    #btnLogin:hover
+    {
+     -fx-effect: dropshadow(two-pass-box , darkgray, 10, 0.0 , 4, 5);
+     -fx-background-color: rgba(235,235,235,0.7);
+
+    }
+  #txtnameLogin{
+    -fx-background-color:
+        #FFFFFF,
+        #FFFFFF;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0, 0;
+ }
+
+
+
+ #txtnameLogin:hover {
+	-fx-border-width: 2;
+    -fx-border-color: #909090;
+    }
+

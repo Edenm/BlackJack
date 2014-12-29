@@ -195,7 +195,7 @@
             <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
          </effect>
       </MenuBar>
-      <Button fx:id="btnNewGame" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="54.0" prefWidth="111.0" text="New Game">
+      <Button fx:id="btnNewGame" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="40.0" prefWidth="118.0" text="New Game">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -208,7 +208,7 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="btnNewRound" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="54.0" prefWidth="123.0" text="New Round">
+      <Button fx:id="btnNewRound" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="40.0" prefWidth="118.0" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -240,9 +240,9 @@
             </LinearGradient>
          </textFill>
       </Button>
-      <Button fx:id="btnResetBet" layoutX="834.0" layoutY="500.0" mnemonicParsing="false" onAction="#clickResetBet" prefHeight="25.0" prefWidth="111.0" text="Reset Bet">
+      <Button fx:id="btnResetBet" layoutX="828.0" layoutY="487.0" mnemonicParsing="false" onAction="#clickResetBet" prefHeight="25.0" prefWidth="105.0" text="Reset Bet">
          <font>
-            <Font name="Andalus" size="16.0" />
+            <Font name="Andalus" size="10.0" />
          </font>
          <textFill>
             <LinearGradient endX="1.0" endY="1.0">
@@ -262,6 +262,6 @@
          </font>
       </Label>
       <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="btnDeal" layoutX="452.0" layoutY="515.0" mnemonicParsing="false" onAction="#Deal" prefHeight="40.0" prefWidth="91.0" text="Deal" />
+      <Button fx:id="btnDeal" layoutX="452.0" layoutY="515.0" mnemonicParsing="false" onAction="#Deal" prefHeight="40.0" prefWidth="111.0" text="Deal" />
    </children>
 </AnchorPane>
