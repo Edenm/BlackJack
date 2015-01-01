@@ -191,7 +191,7 @@ public final class ModelLogic {
 		}
 		else if (dealer.getValue()<player.getValue()){
 			player.playerWin();
-			throw new WhoWinException("/photos/player_win.png");
+			throw new WhoWinException("/photos/Player_win.png");
 		}
 		else{
 			throw new WhoWinException("/photos/Its_a_Tie.png");
