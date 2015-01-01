@@ -169,7 +169,7 @@
           <Menu mnemonicParsing="false" text="Games option">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#clickNewRound" text="New round" />
-                  <MenuItem mnemonicParsing="false" onAction="#clickNewGame" text="New game" />
+                  <MenuItem mnemonicParsing="false" onAction="#newGameMsg" text="New game" />
             </items>
           </Menu>
           <Menu fx:id="mndeal" mnemonicParsing="false" text="Deal card">

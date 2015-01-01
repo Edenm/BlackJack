@@ -15,6 +15,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,9 +24,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -651,6 +656,16 @@ public class TableController implements Initializable {
 		ViewLogic.resetBet();
 		updateBetValueOnTable();
 	}
+	/**
+	 * when new game clicking display a message for the user
+	 */
+	@FXML
+	public void newGameMsg(){
+		showDialog();
+	}
+		
+	
+
 	
 //----------------------------------- slide panel method ------------------------------------------------------------------//
 	
@@ -680,6 +695,52 @@ public class TableController implements Initializable {
 		        tl.getKeyFrames().add(moveCard);
 		        tl.play();
 	}
+	
+	
+//-----------------------------message dialog------------------------------------------------------------//
+	public void showDialog(){
+		btnDeal.setVisible(false);
+		btnResetBet.setVisible(false);
+		final Stage dialogStage = new Stage();
+		dialogStage.setTitle("Attention!");
+		Button yesBtn = new Button("Yes");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.setStyle("-fx-background-color: #08f252; -fx-text-fill:#ffffff ; -fx-font-size: 15");
+		yesBtn.setStyle("-fx-background-color: #08f252; -fx-text-fill:#ffffff; -fx-font-size: 15");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		HBox hBox= new HBox();
+		hBox.setAlignment(Pos.BASELINE_CENTER);
+		hBox.setSpacing(20.0);
+		hBox.getChildren().addAll(yesBtn,cancelBtn);
+		VBox dialogVbox = new VBox();
+		dialogVbox.setSpacing(20.0);
+		dialogVbox.setPadding(new Insets(20));
+		Label newGameLabel = new Label("Are you sure do you want to start a new game?\n"+"       "+"Youre score will reset to 500");
+		newGameLabel.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 18; -fx-text-fill:#2f4f4f");
+		dialogVbox.getChildren().addAll(newGameLabel,hBox);
+		newGameLabel.setAlignment(Pos.CENTER);
+		Scene dialogScene = new Scene(dialogVbox,450,200);
+		dialogStage.setScene(dialogScene);
+		dialogStage.show();
+		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
+		//	@Override
+			public void handle(ActionEvent event){
+				clickNewGame();
+				dialogStage.close();
+			}
+		});
+		cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
+			//@Override
+			public void handle(ActionEvent event){
+				dialogStage.close();
+			}
+		});
+
+	   
+	}
+		
+
+
 //--------------------------- set Message method---------------------------------------------------------
 	/**
 	 * the message to user will disappear when the mouse is move on the background picture.
