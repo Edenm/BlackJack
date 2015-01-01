@@ -23,6 +23,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -531,35 +533,60 @@ public class TableController implements Initializable {
 		btnResetBet.setVisible(value);
 	}
 	
+	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
 	@FXML
 	public void RaiseBets100()
 	{
+		playSoundChips();
 		UpDatebets(100);
 	}
 	
 	@FXML
 	public void RaiseBets50()
 	{
+		playSoundChips();
 		UpDatebets(50);
 	}
 	
 	@FXML
 	public void RaiseBets25()
 	{
+		playSoundChips();
 		UpDatebets(25);
 	}
 	
 	@FXML
 	public void RaiseBets5()
 	{
+		playSoundChips();
 		UpDatebets(5);
 	}
 	
 	@FXML
 	public void RaiseBets1()
 	{
+		playSoundChips();
 		UpDatebets(1);
+	}
+	/**
+	 * method play the sound on clicking the chips
+	 */
+	private void playSoundChips()
+	{
+		 URL thing = getClass().getResource("/photos/chips.wav");
+		 System.out.println(thing);
+		    Media audioFile = new Media( thing.toString() );     
+		    try
+		    {                                       
+		        MediaPlayer player = new MediaPlayer(audioFile);
+		        player.play();
+		    }
+		    catch (Exception e)
+		    {
+		        System.out.println( e.getMessage() );
+		       
+		    } 
 	}
 
 	

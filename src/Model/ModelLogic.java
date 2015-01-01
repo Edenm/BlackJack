@@ -122,7 +122,7 @@ public final class ModelLogic {
 	  public void isBlackJack() throws PlayerEndOfGameException{
 		  if (player.isBlackJack() && !dealer.isBlackJack()){
 			  player.playerBlackJack();
-			  throw new PlayerEndOfGameException("/photos/black_jack.png");
+			  throw new PlayerEndOfGameException("/photos/blackJack.gif");
 		  }
 	  }
 	  
