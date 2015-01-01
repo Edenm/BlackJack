@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="wall" maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="800.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TableController">
+<AnchorPane fx:id="wall" maxHeight="-Infinity" maxWidth="1000.0" minHeight="-Infinity" minWidth="800.0" prefHeight="700.0" prefWidth="1000.0" stylesheets="@Css/TableCss.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.TableController">
    <children>
       <ImageView fx:id="backgroudTable" fitHeight="722.0" fitWidth="1000.0" layoutX="1.0" nodeOrientation="INHERIT" onMouseMoved="#DisapearMsg" onRotationStarted="#init" pickOnBounds="true" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -193,19 +193,6 @@
             <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
          </effect>
       </MenuBar>
-      <Button fx:id="btnNewGame" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="40.0" prefWidth="118.0" text="New Game">
-         <font>
-            <Font name="Andalus" size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#08f252" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Button>
       <Button fx:id="btnNewRound" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="40.0" prefWidth="118.0" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
@@ -221,22 +208,6 @@
          <cursor>
             <Cursor fx:constant="DEFAULT" />
          </cursor>
-      </Button>
-      <Button fx:id="btnExit" layoutX="436.0" layoutY="340.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="54.0" prefWidth="111.0" text="Exit" visible="false">
-         <effect>
-            <InnerShadow choke="0.52" color="#402e2e" height="71.41" radius="47.805" width="121.81" />
-         </effect>
-         <font>
-            <Font name="Andalus" size="16.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="1.0" endY="1.0">
-               <stops>
-                  <Stop color="#08f252" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
       </Button>
       <Button fx:id="btnResetBet" layoutX="828.0" layoutY="487.0" mnemonicParsing="false" onAction="#clickResetBet" prefHeight="25.0" prefWidth="105.0" text="Reset Bet">
          <font>
@@ -262,5 +233,50 @@
       <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="deckCard" fitHeight="113.0" fitWidth="111.0" layoutX="820.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnDeal" layoutX="452.0" layoutY="515.0" mnemonicParsing="false" onAction="#Deal" prefHeight="40.0" prefWidth="111.0" text="Deal" />
+      <Pane fx:id="p" layoutX="300.0" opacity="0.9" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: black;">
+         <children>
+            <Button fx:id="btnNewGame" layoutX="14.0" layoutY="319.0" mnemonicParsing="false" onAction="#clickNewGame" prefHeight="40.0" prefWidth="118.0" text="New Game">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#08f252" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+            <Label layoutX="93.0" layoutY="-1.0" prefHeight="133.0" prefWidth="293.0" text="Game Over " textFill="#87c995" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="AR CENA" size="52.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="75.0" prefHeight="133.0" prefWidth="293.0" text="you lost all your chips" textFill="#87c995" textOverrun="WORD_ELLIPSIS">
+               <font>
+                  <Font name="AR CENA" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="123.0" fitWidth="150.0" layoutX="140.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Photos/sadSimle.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnExit" layoutX="263.0" layoutY="319.0" mnemonicParsing="false" onAction="#CloseWindow" prefHeight="40.0" prefWidth="118.0" text="Exit">
+               <font>
+                  <Font name="Andalus" size="16.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#08f252" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

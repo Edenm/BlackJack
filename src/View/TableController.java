@@ -38,6 +38,14 @@ public class TableController implements Initializable {
 	static double mx;
 	/** This variable is contain the the diff between y axle in deck card to y axle in last card on the table */
 	static double my;
+	/** Contains true if the first card of Player didn't deal*/
+	static boolean isFirstCardPlayer =true;
+	/** Contains true if the first card of Player didn't deal*/
+	static boolean isFirstCardDealer =true;
+	
+	static int numOfThread=0;
+	
+	final Timeline tl = new Timeline();
 	
 	/**
 	 * the button that start the dealing action
@@ -170,6 +178,11 @@ public class TableController implements Initializable {
 	@FXML
 	Button btnResetBet;
 	
+	@FXML
+	Pane p;
+	
+	
+	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
 	 * method initialize table form ( load)- initialize the total chips show to player
@@ -181,7 +194,13 @@ public class TableController implements Initializable {
 /////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
 	@FXML
 	public void init(){
+		p.setTranslateY(-p.getPrefHeight());
+	        
+		//return x;
+	
 		
+		
+		//---------------------------------------
 		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
@@ -209,7 +228,6 @@ public class TableController implements Initializable {
 	/**
 	 * this method will deal the cards (2 cards each) between the dealer and player 
 	 */
-	@FXML
 	public void Deal()
 	{
 		if(ViewLogic.getBets()>0)
@@ -235,28 +253,31 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
-			// Deal cards to the player//
-			Card tempCard= ViewLogic.getCardFromDeck(User.Player);
-			//SetCardOntheTable(User.Player, firstCardPlayer, playerx);
-			firstCardPlayer.setImage(new Image(tempCard.getPic()));
-
-			tempCard= ViewLogic.getCardFromDeck(User.Player);
-			SetCardOntheTable(User.Player, firstCardPlayer, playerx);
-			
-			
-			// Deal cards to the Dealer//
-			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
+		
+	/////////////////////// Deal FIRST card to the PLAYER////////////////////////////////////
+			//Card tempCard= ViewLogic.getCardFromDeck(User.Player);
+			//firstCardPlayer.setImage(new Image(tempCard.getPic()));
+			SetCardOntheTable(User.Player, firstCardPlayer);
+	/////////////////////// Deal FIRST card to the DEALER////////////////////////////////////
+			Card tempCard= ViewLogic.getCardFromDeck(User.Dealer);
 			firstCardDealer.setImage(new Image(tempCard.getPic()));	
 			
+	/////////////////////// Deal SECOND card to the PLAYER////////////////////////////////////
+			SetCardOntheTable(User.Player, firstCardPlayer);			
+	
+	/////////////////////// Deal SECOND card to the DEALER////////////////////////////////////
 			// the last card to the dealer in back card in the modelView.Dealer the card its save.
 			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
-			//SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
 			secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
+			//SetCardOntheTable(User.Dealer, firstCardDealer);	
+			
+			
 			//secondCardDealer.setImage(pic.getImage());	
+			
+			
 			
 			//update the value cards of the player after deal
 			SetPlayerCradsValue(ViewLogic.playerValueCards());
-			
 			
 			// if black jack
 			try {
@@ -293,7 +314,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void hitCard()
 	{
-		SetCardOntheTable(User.Player, firstCardPlayer, playerx);
+		SetCardOntheTable(User.Player, firstCardPlayer);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
 		try {
 			if(ViewLogic.isExactly21())
@@ -318,7 +339,7 @@ public class TableController implements Initializable {
 		flipDealerCard();
 		while(ViewLogic.isDealerNeedMoreCard())
 		{
-			SetCardOntheTable(User.Dealer, firstCardDealer, dealerx);
+			SetCardOntheTable(User.Dealer, firstCardDealer);
 		}
 		try {
 			ViewLogic.checkWin();
@@ -335,7 +356,7 @@ public class TableController implements Initializable {
 	 * @param cardPosition
 	 * @return
 	 */
-	private void SetCardOntheTable(final User user, ImageView firstCard, Double cardPosition)
+	private void SetCardOntheTable(final User user, ImageView firstCard)
 	{
 		Card c=ViewLogic.getCardFromDeck(user);
 		pic=new ImageView(new Image(c.getPic()));
@@ -358,26 +379,42 @@ public class TableController implements Initializable {
 		double x;
 		
 		if (user.equals(User.Player)){
+			if (!isFirstCardPlayer){
+				x=playerx+32;
+				isFirstCardPlayer=false;
+			}
+			else{
+				x=playerx;
+			}
 			playerx+=32;
-			x=playerx;
 		}
 		else{
+			/*if (!isFirstCardDealer){
+				x=dealerx+32;
+				isFirstCardDealer=false;
+			}
+			else{
+				x=dealerx;
+			}*/
 			dealerx+=32;
+			// remove
 			x=dealerx;
 		}
+		
 		//double layoutX=cardPosition+32;
 		double layoutY=firstCard.getLayoutY();
-	
+
 		mx = x-i;
 		my = layoutY-j;
 		
+		
 		//System.out.println("playerx: "+playerx+"\ni: "+i);
 		
-		 final Timeline tl = new Timeline();
-	        tl.setCycleCount(Animation.INDEFINITE);
-	        KeyFrame moveCard = new KeyFrame(Duration.seconds(.0030),
+	    tl.setCycleCount(Animation.INDEFINITE);
+	    
+	    KeyFrame moveCard = new KeyFrame(Duration.seconds(.0020),
 	                new EventHandler<ActionEvent>() {
-
+	    	
 	                    public void handle(ActionEvent event) {
 	                    		
 		                        double xSrc = pic.getTranslateX();
@@ -385,7 +422,7 @@ public class TableController implements Initializable {
 		                        double xTarg = mx;
 		                        double yTarg = my;
 		                        
-		                       // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
+		                        // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
 		                        
 		                        //System.out.println("xTarg"+xTarg+"\nyTarg"+yTarg);
 		                        
@@ -396,27 +433,26 @@ public class TableController implements Initializable {
 		                        	if (ySrc<yTarg) {
 		                        		pic.setTranslateY(pic.getTranslateY()+1);
 		                        	}
-		                        	if (xSrc<=xTarg && ySrc>=yTarg)
+		                        	if (xSrc<=xTarg && ySrc>=yTarg){
 		                        		tl.stop();
+		                        	}
 		                        }
 		                        else
 		                        {
 		                        	if (ySrc>yTarg) {
 		                        		pic.setTranslateY(pic.getTranslateY()-1);
 		                        	}
-		                        	if (xSrc<=xTarg && ySrc<=yTarg)
+		                        	if (xSrc<=xTarg && ySrc<=yTarg){
 		                        		tl.stop();
+		                        	}
 		                        }
 	                    }
 	                });
-
+	    
 	        tl.getKeyFrames().add(moveCard);
 	        tl.play();
-	        
-		//return x;
 	}
 
-	
 	/**
 	 * set table layout according to the end of round 
 	 * @param msgToUser
@@ -438,7 +474,7 @@ public class TableController implements Initializable {
 	 */
 	private void loseLayOut()
 	{
-		if(ViewLogic.getChips() == 0)
+		if(ViewLogic.getChips() ==0)
 		{
 			btnNewRound.setVisible(false);
 			btnNewGame.setVisible(true);
@@ -446,6 +482,7 @@ public class TableController implements Initializable {
 			btnExit.setVisible(true);
 			btnExit.setDisable(false);
 			EnbledHitAndStandMenu(false);
+			SlideDownGameOverPanel();
 		}
 	}
 	
@@ -582,8 +619,39 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	public void clickResetBet(){
+		p.toFront();
+		 SlideDownGameOverPanel();
 		ViewLogic.resetBet();
 		updateBetValueOnTable();
+	}
+	
+//----------------------------------- slide panel method ------------------------------------------------------------------//
+	
+	private void SlideDownGameOverPanel() {
+		my=0;
+			//----------------------------------
+			 final Timeline tl = new Timeline();
+		        tl.setCycleCount(Animation.INDEFINITE);
+		        KeyFrame moveCard = new KeyFrame(Duration.seconds(.0020),
+		                new EventHandler<ActionEvent>() {
+
+		                    public void handle(ActionEvent event) {
+			                        if (my<p.getPrefHeight()) {
+			                        	my++;
+			                            p.setTranslateY(-p.getPrefHeight()+my);
+			                            p.toFront();
+			                        }
+			             
+			                        else
+			                        {
+			                        		tl.stop();
+			                        		p.toFront();
+			                        }
+		                    }
+		                });
+
+		        tl.getKeyFrames().add(moveCard);
+		        tl.play();
 	}
 //--------------------------- set Message method---------------------------------------------------------
 	/**
