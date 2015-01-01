@@ -193,7 +193,7 @@
             <InnerShadow choke="0.27" color="#11431dd1" height="19.4" radius="13.99" width="38.56" />
          </effect>
       </MenuBar>
-      <Button fx:id="btnNewRound" layoutX="445.0" layoutY="247.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="40.0" prefWidth="118.0" text="New Round">
+      <Button fx:id="btnNewRound" layoutX="445.0" layoutY="235.0" mnemonicParsing="false" onAction="#clickNewRound" prefHeight="40.0" prefWidth="118.0" text="New Round">
          <font>
             <Font name="Andalus" size="16.0" />
          </font>
@@ -225,12 +225,24 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Label fx:id="msgToUser" layoutX="293.0" layoutY="308.0" prefHeight="84.0" prefWidth="471.0" textFill="#bc0d0d">
+      <Label fx:id="msgToUser" layoutX="211.0" layoutY="319.0" prefHeight="84.0" prefWidth="758.0">
          <font>
-            <Font size="48.0" />
+            <Font name="Gisha" size="60.0" />
          </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" focusAngle="90.0" focusDistance="-0.34883720930232553" radius="0.7790697674418605">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="BLACK" offset="0.12260536398467432" />
+                  <Stop color="#424242" offset="0.3470790378006873" />
+                  <Stop color="#a41f10" offset="0.5326460481099656" />
+                  <Stop color="#804e49" offset="0.718213058419244" />
+                  <Stop color="#52241d" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
       </Label>
-      <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="331.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="deckCard" fitHeight="113.0" fitWidth="111.0" layoutX="820.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnDeal" layoutX="452.0" layoutY="515.0" mnemonicParsing="false" onAction="#Deal" prefHeight="40.0" prefWidth="111.0" text="Deal" />
       <Pane fx:id="p" layoutX="300.0" opacity="0.9" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: black;">

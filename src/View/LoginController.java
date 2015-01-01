@@ -93,6 +93,7 @@ public class LoginController implements Initializable {
 	{
 		if(txtnameLogin.getText().equals(""))
 		{
+			txtnameLogin.setStyle("-fx-background-color: linear-gradient(#ffd65b, #e68400)");
 			return;
 		}
 		ViewLogic.startGame(new Stage());
@@ -100,6 +101,8 @@ public class LoginController implements Initializable {
 		
 		
 	}
+
+	
 	
 	
 
