@@ -2,13 +2,6 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
-
-
-import com.sun.glass.ui.Menu;
-import com.sun.glass.ui.MenuBar;
-
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -56,13 +49,19 @@ public class TableController implements Initializable {
 	static boolean isFirstCardPlayer =true;
 	/** Contains true if the first card of Player didn't deal*/
 	static boolean isFirstCardDealer =true;
-	
+	/** number of cards for first deal*/ 
 	static int numOfCards=0;
-	
+	/** Contains the next car move*/ 
 	static User user=User.Player;
-	
+	/** Contains status of game*/ 
 	static Utils.Status status;
-	
+	/** Current card*/
+	static Card currentCard;
+	/** This variable is contain the second card that come into the table for the dealer */
+	static ImageView picSecondCardDealer;
+	/** Second card dealer*/
+	static Card secondCardDealer;
+	/** Timeline variable*/ 
 	final Timeline tl = new Timeline();
 	
 	/**
@@ -144,12 +143,6 @@ public class TableController implements Initializable {
 	ImageView firstCardDealer;
 	
 	/**
-	 * second card of the Dealer
-	 */
-	@FXML
-	ImageView secondCardDealer;
-	
-	/**
 	 * card from deck
 	 */
 	@FXML
@@ -213,16 +206,14 @@ public class TableController implements Initializable {
 		init();
 		
 	}
-/////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
+	/////////////////////////////////////////fxml method//////////////////////////////////////////////////////////	
+	/**
+	 * the method initialize the table to state of start game
+	 */
 	@FXML
 	public void init(){
 		p.setTranslateY(-p.getPrefHeight());
-	        
-		//return x;
-	
 		
-		
-		//---------------------------------------
 		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
@@ -253,15 +244,14 @@ public class TableController implements Initializable {
 		if(ViewLogic.getBets()>0)
 		{
 			status = Utils.Status.deal;
+			
 			// button deal will disappear after dealing the cards.
 			EnabledDealMenuAndBtn(false);
 			
 			// show buttons hot and stands
 			EnbledHitAndStandMenu(true);
 		
-				dealCardsToGame();
-			
-			
+			dealCardsToGame();
 		}
 		else
 			SetMeg(true, "bet before deal");
@@ -273,28 +263,26 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
-
-		 status = Utils.Status.deal;
-		 numOfCards =4;
-		 user=User.Player;
-			SetCardOntheTable();
-
-		
+		status = Utils.Status.deal;
+	    numOfCards =4;
+		user=User.Player;
+		SetCardOntheTable();
 	}
 	 
 	 private void isBlackJack(){
-	 try {
+		 try {
 			ViewLogic.isBlackJack();
 		} catch (PlayerEndOfGameException e) {
 			flipDealerCard();
 			endOfRoundLayOut(e.getMessage());
 		}
 	 }
+	 
 	 /**
 	  * create layout of a new table
 	  */
-	private void newTable()
-	{
+	 private void newTable()
+	 {
 		
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);;
@@ -303,16 +291,12 @@ public class TableController implements Initializable {
 		for(Object c: wall.getChildren().toArray())
 			if(c instanceof ImageView&&((ImageView)c).getId()==null)
 				wall.getChildren().remove(c);
-	
-	}
-	
+	 }
 	
 	/**
-	 
 	 * method add one card to player every push
 	 * method use global parameter playerx to put the card in the right place
 	 */
-	
 	@FXML
 	public void hitCard()
 	{
@@ -320,10 +304,11 @@ public class TableController implements Initializable {
 		user=User.Player;
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		SetDealerCradsValue(ViewLogic.dealerValueCards());
 	}
 	
-	
+	/**
+	 * the method is Happens after hit
+	 */
 	private void CheckAfterHit() {
 		try {
 			if(ViewLogic.isExactly21())
@@ -332,19 +317,22 @@ public class TableController implements Initializable {
 				return;
 			}
 			ViewLogic.isOver21();
-		} catch (PlayerEndOfGameException e) {
+		 } catch (PlayerEndOfGameException e) {
 			flipDealerCard();
 			endOfRoundLayOut(e.getMessage());
-		} 
+		 } 
 	}
 	
+	/**
+	 * method of deal button
+	 */
 	@FXML
 	public void DealCard()
 	{
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		SetDealerCradsValue(ViewLogic.dealerValueCards());
 	}
+	
 	/**
 	 * method set buttons hit and stand invisible
 	 * method add card to dealer until 17
@@ -355,13 +343,17 @@ public class TableController implements Initializable {
 	{
 		status = Utils.Status.stand;
 		user=User.Dealer;
-		//flipDealerCard();
+		flipDealerCard();
+		EnbledHitAndStandMenu(false);
 		if(ViewLogic.isDealerNeedMoreCard())
 			SetCardOntheTable();
 		else
 			CheckWhoWin();
 	}
 	
+	/**
+	 * the method happens after dealer finish to play
+	 */
 	private void CheckWhoWin()
 	{
 		try {
@@ -371,17 +363,14 @@ public class TableController implements Initializable {
 		  }
 	}
 //-------------------------------------------layOut Method ----------------------------------------------------	
-	
 	/**
 	 * create and setting new card on the table , player and dealer using in this method
 	 * @param user
 	 * @param firstCard
 	 * @param cardPosition
-	 * @return
 	 */
 	private void SetCardOntheTable()
 	{
-	
 		setPicSizeAndLocation();
 		
 		double x;
@@ -404,9 +393,12 @@ public class TableController implements Initializable {
 	     
 	}
 	
-	
-private KeyFrame upDateLocationCard() {
-	return new KeyFrame(Duration.seconds(.0020),
+	/**
+	 * Update the current location of the card
+	 * @return KeyFrame
+	 */
+	private KeyFrame upDateLocationCard() {
+		return new KeyFrame(Duration.seconds(.0020),
 	            new EventHandler<ActionEvent>() {
 		
 	                public void handle(ActionEvent event) {
@@ -415,11 +407,7 @@ private KeyFrame upDateLocationCard() {
 	                        double ySrc = pic.getTranslateY();
 	                        double xTarg = mx;
 	                        double yTarg = my;
-	                        
-	                        // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
-	                        
-	                        //System.out.println("xTarg"+xTarg+"\nyTarg"+yTarg);
-	                        
+	                     
 	                        if (xSrc>xTarg) {
 	                            pic.setTranslateX(pic.getTranslateX()-1);
 	                        }
@@ -429,11 +417,12 @@ private KeyFrame upDateLocationCard() {
 	                        	}
 	                        	if (xSrc<=xTarg && ySrc>=yTarg){
 		                        		tl.stop();
+		                        		flipCard();
 		                        		if(--numOfCards> 0)
 		                        		{
-		                        		switchUser();
-		                        		DealCard();
-		                        		return;
+			                        		switchUser();
+			                        		DealCard();
+			                        		return;
 		                        		}
 		                        		else
 		                        		{
@@ -450,19 +439,20 @@ private KeyFrame upDateLocationCard() {
 	                        	}
 	                        	if (xSrc<=xTarg && ySrc<=yTarg){
 	                        		tl.stop();
+	                        		if(numOfCards!=1)
+	                        			flipCard();
 	                        		if(--numOfCards > 0)
 	                        		{
 		                        		switchUser();
 		                        		DealCard();
 		                        		return;
 		                        	}
-		                        		else
-		                        		{
-		                        			numOfCards=0;
-		                        			nextMove();
-		                        			
-		                        			return;
-		                        		} 
+		                        	else
+		                        	{
+		                        		numOfCards=0;
+		                        		nextMove();			
+		                        		return;
+		                        	} 
 	                        		
 	                        		
 	                        		
@@ -470,79 +460,117 @@ private KeyFrame upDateLocationCard() {
 	                        }
 	                }
 	            });
-}
-
-private void nextMove() {
+	}
 	
-	switch (status) {
-	case deal:
-		  isBlackJack();
-		  break;
-		  
-	case stand:
-		StandCard();
-		break;
-    
-	case hit:
-		CheckAfterHit();
-		break;
+	/**
+	 * the method decide what is the status of game and change it
+	 * additional move the game to next move
+	 */
+	private void nextMove() {
 		
-	default:
-		break;
+		switch (status) {
+		case deal:
+			  isBlackJack();
+			  break;
+			  
+		case stand:
+			StandCard();
+			break;
+	    
+		case hit:
+			CheckAfterHit();
+			break;
+			
+		default:
+			break;
+		}
 	}
-	
-}
 
-private double setDealerNewCard() {
-	double x;
-	if (!isFirstCardDealer){
-		x=dealerx+Constants.diffXCard;
-		isFirstCardDealer=false;
+	/**
+	 * calculate and update the different between deck and dealer cards
+	 * @return the results
+	 */
+	private double setDealerNewCard() {
+		double x;
+		if (!isFirstCardDealer){
+			x=dealerx+Constants.diffXCard;
+			isFirstCardDealer=false;
+		}
+		else{
+			x=dealerx;
+		}
+		dealerx+=Constants.diffXCard;
+		
+		my = Constants.cardDealerLayoutY-Constants.deckCardLayoutY;
+		return x;
 	}
-	else{
-		x=dealerx;
-	}
-	dealerx+=Constants.diffXCard;
-	
-	my = Constants.cardDealerLayoutY-Constants.deckCardLayoutY;
-	return x;
-}
 
-
-private double setPlayerNewCard() {
-	double x;
-	if (!isFirstCardPlayer){
-		x=playerx+Constants.diffXCard;
-		isFirstCardPlayer=false;
+	/**
+	 * calculate and update the different between deck and player cards
+	 * @return the results
+	 */
+	private double setPlayerNewCard() {
+		double x;
+		if (!isFirstCardPlayer){
+			x=playerx+Constants.diffXCard;
+			isFirstCardPlayer=false;
+		}
+		else{
+			x=playerx;
+		}
+		playerx+=Constants.diffXCard;
+		my = Constants.cardPlayerLayoutY-Constants.deckCardLayoutY;
+		return x;
 	}
-	else{
-		x=playerx;
+	
+	/**
+	 * initialize the new current card
+	 */
+	private void setPicSizeAndLocation() {
+		currentCard=ViewLogic.getCardFromDeck(user);
+		pic=new ImageView(new Image("/view/photos/BackCard.png"));
+		
+		if (numOfCards==1){
+			secondCardDealer=currentCard;
+			picSecondCardDealer=pic;
+		}
+		
+		pic.setVisible(true);
+		//set size of card
+		pic.setFitHeight(Constants.cardHeight);
+		pic.setFitWidth(Constants.cardWidth);
+		
+		
+		//set first location in screen
+		pic.setLayoutX(Constants.deckCardLayoutX);
+		pic.setLayoutY(Constants.deckCardLayoutY);
+		
+		ViewLogic.getPage().getChildren().add(pic);
 	}
-	playerx+=Constants.diffXCard;
-	my = Constants.cardPlayerLayoutY-Constants.deckCardLayoutY;
-	return x;
-}
-private void setPicSizeAndLocation() {
-	Card c=ViewLogic.getCardFromDeck(user);
-	pic=new ImageView(new Image(c.getPic()));
-	pic.setVisible(true);
-	//set size of card
-	pic.setFitHeight(Constants.cardHeight);
-	pic.setFitWidth(Constants.cardWidth);
 	
-	
-	//set first location in screen
-	pic.setLayoutX(Constants.deckCardLayoutX);
-	pic.setLayoutY(Constants.deckCardLayoutY);
-	
-	ViewLogic.getPage().getChildren().add(pic);
-}
-	
+	/**
+	 * the method switch the current user
+	 */
 	private void switchUser() {
 		if(user.equals(User.Player))
 			user= User.Dealer;
 		else
-		user= User.Player;
+			user= User.Player;
+	}
+	
+	/**
+	 * flip the the current card
+	 */
+	public void flipCard(){
+		pic.setImage(new Image(currentCard.getPic()));
+	}
+	
+	/**
+	 * flip the the second card of dealer
+	 */
+	private void flipDealerCard()
+	{
+		picSecondCardDealer.setImage(new Image(secondCardDealer.getPic()));
 	}
 
 	/**
@@ -591,7 +619,7 @@ private void setPicSizeAndLocation() {
 	}
 	
 	/**
-	 * Disable Deal btn from the menu bar and table.
+	 * Disable Deal button from the menu bar and table.
 	 * @param value
 	 */
 	private void EnabledDealMenuAndBtn(boolean value)
@@ -599,14 +627,6 @@ private void setPicSizeAndLocation() {
 		mndeal.setDisable(!value);
 		btnDeal.setVisible(value);
 	    ShowChips(value);
-	}
-	/**
-	 * filp the card of the dealer
-	 */
-	private void flipDealerCard()
-	{
-		EnbledHitAndStandMenu(false);
-	//	secondCardDealer.setImage(new Image(ViewLogic.getSecondCardOfDealer().getPic()));
 	}
 	
 	/**
@@ -665,7 +685,6 @@ private void setPicSizeAndLocation() {
 	private void playSoundChips()
 	{
 		 URL thing = getClass().getResource("/photos/chips.wav");
-		 System.out.println(thing);
 		    Media audioFile = new Media( thing.toString() );     
 		    try
 		    {                                       
@@ -675,7 +694,6 @@ private void setPicSizeAndLocation() {
 		    catch (Exception e)
 		    {
 		        System.out.println( e.getMessage() );
-		       
 		    } 
 	}
 
@@ -737,7 +755,6 @@ private void setPicSizeAndLocation() {
 	@FXML
 	public void clickResetBet(){
 		p.toFront();
-		 SlideDownGameOverPanel();
 		ViewLogic.resetBet();
 		updateBetValueOnTable();
 	}
@@ -783,8 +800,10 @@ private void setPicSizeAndLocation() {
 	
 	
 //-----------------------------message dialog------------------------------------------------------------//
+	
 	public void showDialog(){
-		
+		btnDeal.setVisible(false);
+		btnResetBet.setVisible(false);
 		final Stage dialogStage = new Stage();
 		dialogStage.setTitle("Attention!");
 		Button yesBtn = new Button("Yes");
@@ -805,20 +824,10 @@ private void setPicSizeAndLocation() {
 		newGameLabel.setAlignment(Pos.CENTER);
 		Scene dialogScene = new Scene(dialogVbox,450,200);
 		dialogStage.setScene(dialogScene);
-		
-		wall.setDisable(true);
-		dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
-		
-		
-		
-		
-		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 		//	@Override
 			public void handle(ActionEvent event){
-				dialogStage.setAlwaysOnTop(false);
-				wall.setDisable(false);
 				clickNewGame();
 				dialogStage.close();
 			}
@@ -826,8 +835,6 @@ private void setPicSizeAndLocation() {
 		cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
 			//@Override
 			public void handle(ActionEvent event){
-				wall.setDisable(false);
-				dialogStage.setAlwaysOnTop(false);
 				dialogStage.close();
 			}
 		});
@@ -838,20 +845,20 @@ private void setPicSizeAndLocation() {
 
 
 //--------------------------- set Message method---------------------------------------------------------
-	/**
-	 * the message to user will disappear when the mouse is move on the background picture.
-	 */
-@FXML
-  public void DisapearMsg() {
-		msgToUser.setVisible(false);
-  }
+		/**
+		 * the message to user will disappear when the mouse is move on the background picture.
+		 */
+		@FXML
+		public void DisapearMsg() {
+			msgToUser.setVisible(false);
+	    }
 	
 	
-	  /**
-	   * make message will show when visible is True and set the text to arg in the msg parameter
-	   * @param visible
-	   * @param msg
-	   */
+	   /**
+	    * make message will show when visible is True and set the text to arg in the msg parameter
+	    * @param visible
+	    * @param msg
+	    */
 		private void SetMeg(Boolean visible, String msg ) {
 			msgToUser.setVisible(visible);
 			msgToUser.setText(msg);
@@ -883,7 +890,8 @@ private void setPicSizeAndLocation() {
 		private void SetTotalChips(int value)
    	    {
 			totalPoints.setText("Total chips: "+value);
-		 }
+		}
+		
 		/**
 	    * set dealer value on the status bar
 	    * @param value
@@ -892,8 +900,6 @@ private void setPicSizeAndLocation() {
 		{
 			dealerCardsValue.setText("Value:"+ value);
 		}
-		
-		
 	
 	
 //--------------------------- set Message method the End---------------------------------------------------------
