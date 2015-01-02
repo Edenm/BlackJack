@@ -31,7 +31,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="lblBet" layoutX="300.0" layoutY="11.0" prefHeight="54.0" prefWidth="212.0" text="Bet:">
+            <Label fx:id="lblBet" layoutX="328.0" layoutY="8.0" prefHeight="54.0" prefWidth="212.0" text="Bet:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
@@ -44,7 +44,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="playerCardsValue" layoutX="450.0" layoutY="11.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
+            <Label fx:id="lblWins" layoutX="529.0" layoutY="7.0" prefHeight="54.0" prefWidth="159.0" text="Wins:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
@@ -57,20 +57,7 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Label fx:id="lblWins" layoutX="600.0" layoutY="11.0" prefHeight="54.0" prefWidth="159.0" text="Wins:">
-               <font>
-                  <Font name="AR BLANCA" size="28.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#08f252" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
-            <Label fx:id="lblLosses" layoutX="750.0" layoutY="11.0" prefHeight="54.0" prefWidth="159.0" text="Losses:">
+            <Label fx:id="lblLosses" layoutX="750.0" layoutY="7.0" prefHeight="54.0" prefWidth="159.0" text="Losses:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
@@ -309,6 +296,26 @@
                </textFill>
             </Label>
          </children>
+      </Pane>
+      <Pane layoutX="227.0" layoutY="492.0" opacity="0.86" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
+         <children>
+            <Label fx:id="playerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
+               <font>
+                  <Font name="AR BLANCA" size="28.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#08f252" />
+                        <Stop color="#f6f9ff" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+         </children>
+         <effect>
+            <InnerShadow choke="0.29" color="#022c0e" height="25.45" radius="17.0425" width="44.72" />
+         </effect>
       </Pane>
    </children>
 </AnchorPane>
