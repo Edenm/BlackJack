@@ -108,7 +108,11 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Label msgToUser;
-	
+	/**
+	 * Label for display the value of the cards of the dealer.
+	 */
+	@FXML
+	Label dealerCardsValue;
 
 	/**
 	 * Label for display the value of the cards of the player.
@@ -225,6 +229,7 @@ public class TableController implements Initializable {
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		lblBet.setText("Bet: "+0);
 		playerCardsValue.setText("Value: "+0);
+		dealerCardsValue.setText("Value: "+0);
 	
 		// init location of cards
 		playerx=new Double(firstCardPlayer.getLayoutX());
@@ -285,6 +290,9 @@ public class TableController implements Initializable {
 			
 			//update the value cards of the player after deal
 			SetPlayerCradsValue(ViewLogic.playerValueCards());
+			//update the value cards of the dealer after deal
+			SetDealerCradsValue(ViewLogic.dealerValueCards());
+			
 			
 			// if black jack
 			try {
@@ -788,6 +796,14 @@ public class TableController implements Initializable {
    	    {
 			totalPoints.setText("Total chips: "+value);
 		 }
+		/**
+	    * set dealer value on the status bar
+	    * @param value
+	    */
+		private void SetDealerCradsValue(int value)
+		{
+			dealerCardsValue.setText("Value:"+ value);
+		}
 		
 		
 	

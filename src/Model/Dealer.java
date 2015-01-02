@@ -12,7 +12,7 @@ public class Dealer {
 	private static Dealer instance ;
 	/**Boolean flag for class instance existence (singleton)*/
 	private static boolean exists = false;
-	/** the sum of all cards in player hand*/
+	/** the sum of all cards in dealer hand*/
 	private Integer value;
     /**  deck cards  */
 	 private ArrayList<Card> cards;

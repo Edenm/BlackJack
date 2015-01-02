@@ -69,6 +69,13 @@ public final class ControllerLogic {
 	public Card getSecondCardOfDealer(){
 		return model.getSecondCardOfDealer();
 	}
+	/**
+	 * 	
+	 * @return the value of all cards dealer have
+	 */
+	public Integer dealerValueCards() {
+		return model.dealerValueCards();
+	}
 	
 	
 	//----------------------------------- player methods ----------------------------------------------

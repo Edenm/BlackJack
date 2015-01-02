@@ -81,6 +81,12 @@ public final class ModelLogic {
 	public Card getSecondCardOfDealer(){
 		return dealer.getSecondCardOfDealer();
 	}
+	/**
+	 * @return the value of all cards dealer have
+	 */
+	public Integer dealerValueCards() {
+		return dealer.getValue();
+	}
 
 	//----------------------------------- player methods ----------------------------------------------
 	/**

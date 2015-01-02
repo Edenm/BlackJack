@@ -181,6 +181,13 @@ public final class ViewLogic  extends Application {
 		  public static void isBlackJack() throws PlayerEndOfGameException{
 			  controller.isBlackJack();
 		  }
+		 
+		  /**
+			* @return the value of all cards player have
+			*/
+		  public static Integer dealerValueCards() {
+			  return controller.dealerValueCards();
+		  }
 	
      //----------------------------------- Chip's methods ----------------------------------------------
 		
