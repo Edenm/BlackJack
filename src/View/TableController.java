@@ -4,6 +4,11 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
+
+
+import com.sun.glass.ui.Menu;
+import com.sun.glass.ui.MenuBar;
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -315,6 +320,7 @@ public class TableController implements Initializable {
 		user=User.Player;
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		SetDealerCradsValue(ViewLogic.dealerValueCards());
 	}
 	
 	
@@ -337,6 +343,7 @@ public class TableController implements Initializable {
 	{
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		SetDealerCradsValue(ViewLogic.dealerValueCards());
 	}
 	/**
 	 * method set buttons hit and stand invisible
@@ -777,8 +784,7 @@ private void setPicSizeAndLocation() {
 	
 //-----------------------------message dialog------------------------------------------------------------//
 	public void showDialog(){
-		btnDeal.setVisible(false);
-		btnResetBet.setVisible(false);
+		
 		final Stage dialogStage = new Stage();
 		dialogStage.setTitle("Attention!");
 		Button yesBtn = new Button("Yes");
@@ -799,10 +805,20 @@ private void setPicSizeAndLocation() {
 		newGameLabel.setAlignment(Pos.CENTER);
 		Scene dialogScene = new Scene(dialogVbox,450,200);
 		dialogStage.setScene(dialogScene);
+		
+		wall.setDisable(true);
+		dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
+		
+		
+		
+		
+		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 		//	@Override
 			public void handle(ActionEvent event){
+				dialogStage.setAlwaysOnTop(false);
+				wall.setDisable(false);
 				clickNewGame();
 				dialogStage.close();
 			}
@@ -810,6 +826,8 @@ private void setPicSizeAndLocation() {
 		cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
 			//@Override
 			public void handle(ActionEvent event){
+				wall.setDisable(false);
+				dialogStage.setAlwaysOnTop(false);
 				dialogStage.close();
 			}
 		});
