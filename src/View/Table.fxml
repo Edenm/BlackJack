@@ -265,7 +265,7 @@
                   <Font name="AR CENA" size="52.0" />
                </font>
             </Label>
-            <Label layoutX="54.0" layoutY="75.0" prefHeight="133.0" prefWidth="293.0" text="you lost all your chips" textFill="#87c995" textOverrun="WORD_ELLIPSIS">
+            <Label layoutX="23.0" layoutY="75.0" prefHeight="133.0" prefWidth="357.0" text="you lost all your chips" textFill="#87c995" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="AR CENA" size="36.0" />
                </font>
@@ -290,12 +290,12 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="178.0" layoutY="137.0" opacity="0.86" prefHeight="47.0" prefWidth="165.0" style="-fx-background-color: black;">
+      <Pane layoutX="226.0" layoutY="132.0" opacity="0.86" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
          <effect>
             <InnerShadow choke="0.29" color="#022c0e" height="25.45" radius="17.0425" width="44.72" />
          </effect>
          <children>
-            <Label fx:id="dealerCardsValue" layoutX="3.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
+            <Label fx:id="dealerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
