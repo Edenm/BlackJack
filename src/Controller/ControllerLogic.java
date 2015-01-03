@@ -1,5 +1,7 @@
 package Controller;
 
+import java.io.IOException;
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.*;
@@ -44,6 +46,14 @@ public final class ControllerLogic {
 		return instance;
 	}												
 	
+	/**
+	 * the method log in the user
+	 * @param nickName
+	 * @throws IOException
+	 */
+	public static void login(String nickName) throws IOException{
+		model.login(nickName);
+	}
     //----------------------------------- Dealer methods -------------------------------------------------
 	//////////// all the logic code of this method  is in model logic class
 	/**
@@ -146,6 +156,13 @@ public final class ControllerLogic {
 	  public int getNumberOfLoses(){
 		  return model.getNumberOfLoses();
 	  }
+	  
+	  	/**
+		 * @return Nickname of player
+		 */
+		public String getNickname() {
+			return model.getNickname();
+		}
     //***************************************** other Methods *****************************************
       
 	  	/**

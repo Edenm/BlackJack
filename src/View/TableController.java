@@ -2,6 +2,7 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
@@ -196,6 +197,7 @@ public class TableController implements Initializable {
 	@FXML
 	Pane p;
 	
+	LoginController login;
 	
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
@@ -272,6 +274,7 @@ public class TableController implements Initializable {
 	 private void isBlackJack(){
 		 try {
 			ViewLogic.isBlackJack();
+			
 		} catch (PlayerEndOfGameException e) {
 			flipDealerCard();
 			endOfRoundLayOut(e.getMessage());
@@ -332,7 +335,7 @@ public class TableController implements Initializable {
 	{
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		SetDealerCradsValue(ViewLogic.dealerValueCards());
+		
 	}
 	
 	/**
@@ -383,6 +386,7 @@ public class TableController implements Initializable {
 		  }
 		else{
 			x = setDealerNewCard();
+			
 		}
 		
 		mx = x-Constants.deckCardLayoutX;
@@ -498,9 +502,12 @@ public class TableController implements Initializable {
 		if (!isFirstCardDealer){
 			x=dealerx+Constants.diffXCard;
 			isFirstCardDealer=false;
+			//SetDealerCradsValue(ViewLogic.dealerValueCards());
+			
 		}
 		else{
 			x=dealerx;
+			
 		}
 		dealerx+=Constants.diffXCard;
 		
@@ -566,6 +573,7 @@ public class TableController implements Initializable {
 	 */
 	public void flipCard(){
 		pic.setImage(new Image(currentCard.getPic()));
+		
 	}
 	
 	/**
@@ -574,6 +582,7 @@ public class TableController implements Initializable {
 	private void flipDealerCard()
 	{
 		picSecondCardDealer.setImage(new Image(secondCardDealer.getPic()));
+		
 	}
 
 	/**
@@ -803,7 +812,9 @@ public class TableController implements Initializable {
 	
 	
 //-----------------------------message dialog------------------------------------------------------------//
-	
+/**
+ * this method create a dialog box to the user while he click on new game	
+ */
 public void showDialog(){
 		
 		final Stage dialogStage = new Stage();
@@ -820,7 +831,7 @@ public void showDialog(){
 		VBox dialogVbox = new VBox();
 		dialogVbox.setSpacing(20.0);
 		dialogVbox.setPadding(new Insets(20));
-		Label newGameLabel = new Label("Are you sure do you want to start a new game?\n"+"       "+"Youre score will reset to 500");
+		Label newGameLabel = new Label("Are you sure you want to start a new game?\n"+"       "+"Youre score will reset to 500");
 		newGameLabel.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 18; -fx-text-fill:#2f4f4f");
 		dialogVbox.getChildren().addAll(newGameLabel,hBox);
 		newGameLabel.setAlignment(Pos.CENTER);
@@ -856,7 +867,67 @@ public void showDialog(){
 	   
 	}
 
+//-----------------------------logout message------------------------------------------------------------
+	/**
+	 * this method create dialog box to the user while he click on logout
+	 */
+	@FXML
+	public void createLogoutMsg(){
+		final Stage dialogStage = new Stage();
+		dialogStage.setTitle("Attention!");
+		Button yesBtn = new Button("Yes");
+		Button cancelBtn = new Button("Cancel");
+		cancelBtn.setStyle("-fx-background-color: #08f252; -fx-text-fill:#ffffff ; -fx-font-size: 15");
+		yesBtn.setStyle("-fx-background-color: #08f252; -fx-text-fill:#ffffff; -fx-font-size: 15");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		HBox hBox= new HBox();
+		hBox.setAlignment(Pos.BASELINE_CENTER);
+		hBox.setSpacing(20.0);
+		hBox.getChildren().addAll(yesBtn,cancelBtn);
+		VBox dialogVbox = new VBox();
+		dialogVbox.setSpacing(20.0);
+		dialogVbox.setPadding(new Insets(20));
+		Label newGameLabel = new Label("Are you sure you want to logout?\n"+"       "+"Please note that all your game scores will be deleted");
+		newGameLabel.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 18; -fx-text-fill:#2f4f4f");
+		dialogVbox.getChildren().addAll(newGameLabel,hBox);
+		newGameLabel.setAlignment(Pos.CENTER);
+		Scene dialogScene = new Scene(dialogVbox,450,200);
+		dialogStage.setScene(dialogScene);
 		
+		wall.setDisable(true);
+		dialogStage.setAlwaysOnTop(true);
+		dialogStage.show();
+		
+		
+		
+		
+		
+		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
+	//		@Override
+			public void handle(ActionEvent event){
+				dialogStage.setAlwaysOnTop(false);
+				wall.setDisable(false);
+				login = new LoginController();
+				//login.btnLogin.setVisible(true);
+				//login.txtnameLogin.setVisible(true);
+				//login.playVideo();
+				dialogStage.close();
+				//ViewLogic.close();
+			//	login.videosTOP();
+				
+			}
+		});
+		cancelBtn.setOnAction(new EventHandler<ActionEvent>() {
+			//@Override
+			public void handle(ActionEvent event){
+				wall.setDisable(false);
+				dialogStage.setAlwaysOnTop(false);
+				dialogStage.close();
+			}
+		});
+
+	   
+	}
 
 
 //--------------------------- set Message method---------------------------------------------------------

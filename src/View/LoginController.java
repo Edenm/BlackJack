@@ -1,8 +1,10 @@
 package View;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,7 +42,7 @@ public class LoginController implements Initializable {
 		
 	}
 	
-	private void playVideo()
+	public void playVideo()
 	{
 		try{
 	       Media media = new Media(new File("Login.mp4").toURI().toString());
@@ -73,7 +75,7 @@ public class LoginController implements Initializable {
 	       
 	    }
 	
-	private void videosTOP()
+	public void videosTOP()
 	{
 		txtnameLogin.setVisible(true);
 		btnLogin.setVisible(true);
@@ -89,15 +91,20 @@ public class LoginController implements Initializable {
         
 	}
 	@FXML
-	public void ClickLogin(ActionEvent event)
+	public void ClickLogin(ActionEvent event) throws IOException
 	{
 		if(txtnameLogin.getText().equals(""))
 		{
 			txtnameLogin.setStyle("-fx-background-color: linear-gradient(#ffd65b, #e68400)");
 			return;
 		}
+		
+		ViewLogic.login(txtnameLogin.getText());
+		
 		ViewLogic.startGame(new Stage());
 		((Node) event.getSource()).getScene().getWindow().hide();
+		
+		
 		
 		
 	}

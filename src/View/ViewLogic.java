@@ -85,7 +85,7 @@ public final class ViewLogic  extends Application {
 			    Scene scene = new Scene(page);
 		        scene.getStylesheets().add("/view/TableCss.css");
 		        primaryStage.setScene(scene);
-		        primaryStage.setTitle("BlackJack Enjoy!");
+		        primaryStage.setTitle("Hello "+controller.getNickname()+" wellcome to the BlackJack game!");
 		       primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 		        setWindowSize(primaryStage, 1000, 700);
 		        primaryStage.show();
@@ -97,11 +97,18 @@ public final class ViewLogic  extends Application {
 	
 	public static void close() 	 
 	{
-	
             Platform.exit();
     }
 
-
+	/**
+	 * the method log in the user
+	 * @param nickName
+	 * @throws IOException
+	 */
+	public static void login(String nickName) throws IOException{
+		ControllerLogic.login(nickName);
+	}	
+	
 	//-----------------------------------Window method and reset games methods--------------------------------------------------
 	
 	public static void setWindowSize(Stage primaryStage,int width, int height)

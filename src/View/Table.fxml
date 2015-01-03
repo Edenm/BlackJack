@@ -157,6 +157,7 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#clickNewRound" text="New round" />
                   <MenuItem mnemonicParsing="false" onAction="#newGameMsg" text="New game" />
+                  <MenuItem mnemonicParsing="false" onAction="#createLogoutMsg" text="Logout" />
             </items>
           </Menu>
           <Menu fx:id="mndeal" mnemonicParsing="false" text="Deal card">

@@ -28,9 +28,6 @@ public final class ModelLogic {
 	 * @throws IOException 
 	 */
 	private ModelLogic() throws IOException {
-		
-		dealer= Dealer.getInstance();
-		player= Player.getInstance("moshe");
 	}
 	//***************************************** Methods ***********************************************
 	/**
@@ -47,7 +44,16 @@ public final class ModelLogic {
 		}
 		return instance;
 	}													
-
+	
+	/**
+	 * the method log in the user
+	 * @param nickName
+	 * @throws IOException
+	 */
+	public void login(String nickName) throws IOException{
+		dealer= Dealer.getInstance();
+		player= Player.getInstance(nickName);
+	}
     //----------------------------------- Dealer methods -------------------------------------------------
 	
 	/**
@@ -152,6 +158,13 @@ public final class ModelLogic {
 	  public int getNumberOfLoses(){
 		  return player.getNumberOfLoses();
 	  }
+	  
+	    /**
+		 * @return Nickname of player
+		 */
+		public String getNickname() {
+			return player.getNickname();
+		}
 
     //***************************************** other Methods *****************************************
 	/**

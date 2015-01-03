@@ -119,7 +119,7 @@ public class Player {
 	 * @param nickname
 	 */
 	public void newGamePlayer(String nickname){
-		nickname=new String();
+		this.nickname=new String(nickname);
 		newRoundPlayer();
 		chips=new Integer(0);
 		// player start with 500 chips every round;
