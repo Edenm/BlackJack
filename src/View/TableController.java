@@ -231,8 +231,8 @@ public class TableController implements Initializable {
 		// set status bar
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		lblBet.setText("Bet: "+0);
-		playerCardsValue.setText("Value: "+0);
-		dealerCardsValue.setText("Value: "+0);
+		playerCardsValue.setText("Player: "+0);
+		dealerCardsValue.setText("Dealer: "+0);
 	
 		// init location of cards
 		playerx=new Double(Constants.cardXLayout);
@@ -321,7 +321,10 @@ public class TableController implements Initializable {
 		user=User.Player;
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		SetDealerCradsValue(ViewLogic.dealerValueCards());
+		if(ViewLogic.getCards().size()==2)
+			SetDealerCradsValue(ViewLogic.dealerValueCards()-secondCardDealer.getValue());
+		else
+			SetDealerCradsValue(ViewLogic.dealerValueCards());
 	}
 	
 	/**
@@ -349,6 +352,11 @@ public class TableController implements Initializable {
 	{
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+		if(ViewLogic.getCards().size()==2)
+			SetDealerCradsValue(ViewLogic.dealerValueCards()-secondCardDealer.getValue());
+		else
+			SetDealerCradsValue(ViewLogic.dealerValueCards());
+	
 		
 	}
 	
@@ -516,7 +524,7 @@ public class TableController implements Initializable {
 		if (!isFirstCardDealer){
 			x=dealerx+Constants.diffXCard;
 			isFirstCardDealer=false;
-			//SetDealerCradsValue(ViewLogic.dealerValueCards());
+			
 			
 		}
 		else{
@@ -597,6 +605,7 @@ public class TableController implements Initializable {
 	private void flipDealerCard()
 	{
 		picSecondCardDealer.setImage(new Image(secondCardDealer.getPic()));
+		SetDealerCradsValue(ViewLogic.dealerValueCards());
 		
 	}
 
@@ -904,7 +913,7 @@ public void showDialog(){
 		VBox dialogVbox = new VBox();
 		dialogVbox.setSpacing(20.0);
 		dialogVbox.setPadding(new Insets(20));
-		Label newGameLabel = new Label("Are you sure you want to logout?\n"+"       "+"Please note that all your game scores will be deleted");
+		Label newGameLabel = new Label("      Are you sure you want to logout?\n"+"Please note that all your game scores will be deleted");
 		newGameLabel.setStyle("-fx-font-family: \"Comic Sans MS\"; -fx-font-size: 18; -fx-text-fill:#2f4f4f");
 		dialogVbox.getChildren().addAll(newGameLabel,hBox);
 		newGameLabel.setAlignment(Pos.CENTER);
@@ -974,7 +983,7 @@ public void showDialog(){
 	 `  */
 		private void SetPlayerCradsValue(int value)
      	 {
-			playerCardsValue.setText("Value:"+ value);
+			playerCardsValue.setText("Player:"+ value);
 		 }
 		
 		/**
@@ -1001,7 +1010,7 @@ public void showDialog(){
 	    */
 		private void SetDealerCradsValue(int value)
 		{
-			dealerCardsValue.setText("Value:"+ value);
+			dealerCardsValue.setText("Dealer:"+ value);
 		}
 	
 	

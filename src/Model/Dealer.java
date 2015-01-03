@@ -152,6 +152,12 @@ public class Dealer {
 			   }
 			 return false;
 		 }
+		/**
+		 * @return the dealer cards
+		 */
+		public ArrayList<Card> getCards(){
+			return mycards;
+		}
 }
 
 
