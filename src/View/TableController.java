@@ -3,9 +3,11 @@ package View;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
 import Model.Card;
+import Utils.Constants;
 import Utils.User;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -50,7 +52,11 @@ public class TableController implements Initializable {
 	/** Contains true if the first card of Player didn't deal*/
 	static boolean isFirstCardDealer =true;
 	
-	static int numOfThread=0;
+	static int numOfCards=0;
+	
+	static User user=User.Player;
+	
+	static Utils.Status status;
 	
 	final Timeline tl = new Timeline();
 	
@@ -218,9 +224,6 @@ public class TableController implements Initializable {
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);
 		
-		firstCardDealer.setVisible(false);
-		secondCardDealer.setVisible(false);
-		firstCardPlayer.setVisible(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
 		msgToUserPic.setVisible(false);
@@ -232,8 +235,8 @@ public class TableController implements Initializable {
 		dealerCardsValue.setText("Value: "+0);
 	
 		// init location of cards
-		playerx=new Double(firstCardPlayer.getLayoutX());
-		dealerx=new Double(firstCardDealer.getLayoutX());
+		playerx=new Double(Constants.cardXLayout);
+		dealerx=new Double(Constants.cardXLayout);
 	}
 	
 	
@@ -244,15 +247,15 @@ public class TableController implements Initializable {
 	{
 		if(ViewLogic.getBets()>0)
 		{
+			status = Utils.Status.deal;
 			// button deal will disappear after dealing the cards.
 			EnabledDealMenuAndBtn(false);
 			
 			// show buttons hot and stands
 			EnbledHitAndStandMenu(true);
-			dealCardsToGame();
-			firstCardDealer.setVisible(true);
-			secondCardDealer.setVisible(true);
-			firstCardPlayer.setVisible(true);
+		
+				dealCardsToGame();
+			
 			
 		}
 		else
@@ -265,44 +268,23 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
+
+		 status = Utils.Status.deal;
+		 numOfCards =4;
+		 user=User.Player;
+			SetCardOntheTable();
+
 		
-	/////////////////////// Deal FIRST card to the PLAYER////////////////////////////////////
-			//Card tempCard= ViewLogic.getCardFromDeck(User.Player);
-			//firstCardPlayer.setImage(new Image(tempCard.getPic()));
-			SetCardOntheTable(User.Player, firstCardPlayer);
-	/////////////////////// Deal FIRST card to the DEALER////////////////////////////////////
-			Card tempCard= ViewLogic.getCardFromDeck(User.Dealer);
-			firstCardDealer.setImage(new Image(tempCard.getPic()));	
-			
-	/////////////////////// Deal SECOND card to the PLAYER////////////////////////////////////
-			SetCardOntheTable(User.Player, firstCardPlayer);			
-	
-	/////////////////////// Deal SECOND card to the DEALER////////////////////////////////////
-			// the last card to the dealer in back card in the modelView.Dealer the card its save.
-			tempCard= ViewLogic.getCardFromDeck(User.Dealer);
-			secondCardDealer.setImage(new Image("/view/photos/BackCard.png"));	
-			//SetCardOntheTable(User.Dealer, firstCardDealer);	
-			
-			
-			//secondCardDealer.setImage(pic.getImage());	
-			
-			
-			
-			//update the value cards of the player after deal
-			SetPlayerCradsValue(ViewLogic.playerValueCards());
-			//update the value cards of the dealer after deal
-			SetDealerCradsValue(ViewLogic.dealerValueCards());
-			
-			
-			// if black jack
-			try {
-				ViewLogic.isBlackJack();
-			} catch (PlayerEndOfGameException e) {
-				flipDealerCard();
-				endOfRoundLayOut(e.getMessage());
-			}
 	}
 	 
+	 private void isBlackJack(){
+	 try {
+			ViewLogic.isBlackJack();
+		} catch (PlayerEndOfGameException e) {
+			flipDealerCard();
+			endOfRoundLayOut(e.getMessage());
+		}
+	 }
 	 /**
 	  * create layout of a new table
 	  */
@@ -329,8 +311,14 @@ public class TableController implements Initializable {
 	@FXML
 	public void hitCard()
 	{
-		SetCardOntheTable(User.Player, firstCardPlayer);
+		status = Utils.Status.hit;
+		user=User.Player;
+		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
+	}
+	
+	
+	private void CheckAfterHit() {
 		try {
 			if(ViewLogic.isExactly21())
 			{
@@ -343,6 +331,13 @@ public class TableController implements Initializable {
 			endOfRoundLayOut(e.getMessage());
 		} 
 	}
+	
+	@FXML
+	public void DealCard()
+	{
+		SetCardOntheTable();
+		SetPlayerCradsValue(ViewLogic.playerValueCards());
+	}
 	/**
 	 * method set buttons hit and stand invisible
 	 * method add card to dealer until 17
@@ -351,11 +346,17 @@ public class TableController implements Initializable {
 	@FXML
 	public void StandCard()
 	{
-		flipDealerCard();
-		while(ViewLogic.isDealerNeedMoreCard())
-		{
-			SetCardOntheTable(User.Dealer, firstCardDealer);
-		}
+		status = Utils.Status.stand;
+		user=User.Dealer;
+		//flipDealerCard();
+		if(ViewLogic.isDealerNeedMoreCard())
+			SetCardOntheTable();
+		else
+			CheckWhoWin();
+	}
+	
+	private void CheckWhoWin()
+	{
 		try {
 			ViewLogic.checkWin();
 		    } catch (WhoWinException e) {
@@ -371,101 +372,170 @@ public class TableController implements Initializable {
 	 * @param cardPosition
 	 * @return
 	 */
-	private void SetCardOntheTable(final User user, ImageView firstCard)
+	private void SetCardOntheTable()
 	{
-		Card c=ViewLogic.getCardFromDeck(user);
-		pic=new ImageView(new Image(c.getPic()));
-		pic.setVisible(true);
-		
-		//set size of card
-		pic.setFitHeight(firstCard.getFitHeight());
-		pic.setFitWidth(firstCard.getFitWidth()-28);
-		
-		// Allocate place on screen
-		double i=deckCard.getLayoutX();
-		double j=deckCard.getLayoutY();
-		
-		//set first location in screen
-		pic.setLayoutX(i);
-		pic.setLayoutY(j);
-		
-		ViewLogic.getPage().getChildren().add(pic);
+	
+		setPicSizeAndLocation();
 		
 		double x;
 		
 		if (user.equals(User.Player)){
-			if (!isFirstCardPlayer){
-				x=playerx+32;
-				isFirstCardPlayer=false;
-			}
-			else{
-				x=playerx;
-			}
-			playerx+=32;
-		}
+			x = setPlayerNewCard();
+		  }
 		else{
-			/*if (!isFirstCardDealer){
-				x=dealerx+32;
-				isFirstCardDealer=false;
-			}
-			else{
-				x=dealerx;
-			}*/
-			dealerx+=32;
-			// remove
-			x=dealerx;
+			x = setDealerNewCard();
 		}
 		
-		//double layoutX=cardPosition+32;
-		double layoutY=firstCard.getLayoutY();
-
-		mx = x-i;
-		my = layoutY-j;
-		
-		
-		//System.out.println("playerx: "+playerx+"\ni: "+i);
+		mx = x-Constants.deckCardLayoutX;
 		
 	    tl.setCycleCount(Animation.INDEFINITE);
 	    
-	    KeyFrame moveCard = new KeyFrame(Duration.seconds(.0020),
-	                new EventHandler<ActionEvent>() {
-	    	
-	                    public void handle(ActionEvent event) {
-	                    		
-		                        double xSrc = pic.getTranslateX();
-		                        double ySrc = pic.getTranslateY();
-		                        double xTarg = mx;
-		                        double yTarg = my;
-		                        
-		                        // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
-		                        
-		                        //System.out.println("xTarg"+xTarg+"\nyTarg"+yTarg);
-		                        
-		                        if (xSrc>xTarg) {
-		                            pic.setTranslateX(pic.getTranslateX()-1);
-		                        }
-		                        if (user.equals(User.Player)){
-		                        	if (ySrc<yTarg) {
-		                        		pic.setTranslateY(pic.getTranslateY()+1);
-		                        	}
-		                        	if (xSrc<=xTarg && ySrc>=yTarg){
-		                        		tl.stop();
-		                        	}
-		                        }
-		                        else
-		                        {
-		                        	if (ySrc>yTarg) {
-		                        		pic.setTranslateY(pic.getTranslateY()-1);
-		                        	}
-		                        	if (xSrc<=xTarg && ySrc<=yTarg){
-		                        		tl.stop();
-		                        	}
-		                        }
-	                    }
-	                });
+	    KeyFrame moveCard = upDateLocationCard();
 	    
 	        tl.getKeyFrames().add(moveCard);
 	        tl.play();
+	     
+	}
+	
+	
+private KeyFrame upDateLocationCard() {
+	return new KeyFrame(Duration.seconds(.0020),
+	            new EventHandler<ActionEvent>() {
+		
+	                public void handle(ActionEvent event) {
+	                		
+	                        double xSrc = pic.getTranslateX();
+	                        double ySrc = pic.getTranslateY();
+	                        double xTarg = mx;
+	                        double yTarg = my;
+	                        
+	                        // System.out.println("xSrc"+xSrc+"\nySrc"+ySrc);
+	                        
+	                        //System.out.println("xTarg"+xTarg+"\nyTarg"+yTarg);
+	                        
+	                        if (xSrc>xTarg) {
+	                            pic.setTranslateX(pic.getTranslateX()-1);
+	                        }
+	                        if (user.equals(User.Player)){
+	                        	if (ySrc<yTarg) {
+	                        		pic.setTranslateY(pic.getTranslateY()+1);
+	                        	}
+	                        	if (xSrc<=xTarg && ySrc>=yTarg){
+		                        		tl.stop();
+		                        		if(--numOfCards> 0)
+		                        		{
+		                        		switchUser();
+		                        		DealCard();
+		                        		return;
+		                        		}
+		                        		else
+		                        		{
+		                        			numOfCards=0;
+		                        			nextMove();
+		                        			return;
+		                        		}
+	                        	}
+	                        }
+	                        else
+	                        {
+	                        	if (ySrc>yTarg) {
+	                        		pic.setTranslateY(pic.getTranslateY()-1);
+	                        	}
+	                        	if (xSrc<=xTarg && ySrc<=yTarg){
+	                        		tl.stop();
+	                        		if(--numOfCards > 0)
+	                        		{
+		                        		switchUser();
+		                        		DealCard();
+		                        		return;
+		                        	}
+		                        		else
+		                        		{
+		                        			numOfCards=0;
+		                        			nextMove();
+		                        			
+		                        			return;
+		                        		} 
+	                        		
+	                        		
+	                        		
+	                        	}
+	                        }
+	                }
+	            });
+}
+
+private void nextMove() {
+	
+	switch (status) {
+	case deal:
+		  isBlackJack();
+		  break;
+		  
+	case stand:
+		StandCard();
+		break;
+    
+	case hit:
+		CheckAfterHit();
+		break;
+		
+	default:
+		break;
+	}
+	
+}
+
+private double setDealerNewCard() {
+	double x;
+	if (!isFirstCardDealer){
+		x=dealerx+Constants.diffXCard;
+		isFirstCardDealer=false;
+	}
+	else{
+		x=dealerx;
+	}
+	dealerx+=Constants.diffXCard;
+	
+	my = Constants.cardDealerLayoutY-Constants.deckCardLayoutY;
+	return x;
+}
+
+
+private double setPlayerNewCard() {
+	double x;
+	if (!isFirstCardPlayer){
+		x=playerx+Constants.diffXCard;
+		isFirstCardPlayer=false;
+	}
+	else{
+		x=playerx;
+	}
+	playerx+=Constants.diffXCard;
+	my = Constants.cardPlayerLayoutY-Constants.deckCardLayoutY;
+	return x;
+}
+private void setPicSizeAndLocation() {
+	Card c=ViewLogic.getCardFromDeck(user);
+	pic=new ImageView(new Image(c.getPic()));
+	pic.setVisible(true);
+	//set size of card
+	pic.setFitHeight(Constants.cardHeight);
+	pic.setFitWidth(Constants.cardWidth);
+	
+	
+	//set first location in screen
+	pic.setLayoutX(Constants.deckCardLayoutX);
+	pic.setLayoutY(Constants.deckCardLayoutY);
+	
+	ViewLogic.getPage().getChildren().add(pic);
+}
+	
+	private void switchUser() {
+		if(user.equals(User.Player))
+			user= User.Dealer;
+		else
+		user= User.Player;
 	}
 
 	/**
@@ -529,7 +599,7 @@ public class TableController implements Initializable {
 	private void flipDealerCard()
 	{
 		EnbledHitAndStandMenu(false);
-		secondCardDealer.setImage(new Image(ViewLogic.getSecondCardOfDealer().getPic()));
+	//	secondCardDealer.setImage(new Image(ViewLogic.getSecondCardOfDealer().getPic()));
 	}
 	
 	/**
