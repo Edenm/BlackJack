@@ -26,7 +26,7 @@ public class Rulecontroler implements Initializable {
 							"•	blue chips= $50"+"\n"+
 							"•	green chips = $25"+"\n"+
 							"•	black chips = $100"+"\n"+
-							"if you receive an ace and a ten-value card as your first two cards, you have Blackjack and win 1.5 times your bet (if your bet was 10, you receive 25). "+"\n"+
+							"if you receive an ace and a ten-value card as your first two cards, you have Blackjack and win 2 times your bet (if your bet was 10, you receive 30). "+"\n"+
 							"If the total value of your cards is closer to 21 than the dealer’s, you win your bet amount (if your bet was 10, you receive 20). "+"\n"+
 							"If the total of your cards is more than 21, you “bust” and automatically lose your bet. "+"\n"+
 							"If you and the dealer have the same card total (17 to 21) neither of you win and your bet is returned to you in a “push”. Blackjack beats a score of 21."+"\n"+
