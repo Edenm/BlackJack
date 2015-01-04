@@ -18,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -72,13 +71,11 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Button btnDeal;
-	
 	/**
 	 * label present message to user
 	 */
 	@FXML
 	ImageView msgToUserPic;
-	
 	/**
 	 * this btn bring more card to player
 	 */
@@ -89,25 +86,21 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Button btnStand;
-	
 	/**
 	 * showing what is the current bet in the game
 	 */
 	@FXML
 	Label lblBet;
-	
 	/**
 	 * keep the total score off the player
 	 */
 	@FXML
 	Label totalPoints;
-
 	/**
 	 * keep the total wins off the player
 	 */
 	@FXML
 	Label lblWins;
-	
 	/**
 	 * keep the total Losses off the player
 	 */
@@ -126,13 +119,11 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Label dealerCardsValue;
-
 	/**
 	 * Label for display the value of the cards of the player.
 	 */
 	@FXML
 	Label playerCardsValue;
-	
 	/**
 	 *  first card of the player
 	 */
@@ -226,9 +217,6 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Pane p;
-	
-	
-	
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
@@ -414,9 +402,9 @@ public class TableController implements Initializable {
 	{
 		try {
 			ViewLogic.checkWin();
-		    } catch (WhoWinException e) {
+		} catch (WhoWinException e) {
 			endOfRoundLayOut(e.getMessage());
-		  }
+		}
 	}
 //-------------------------------------------layOut Method ----------------------------------------------------	
 	/**
@@ -633,8 +621,7 @@ public class TableController implements Initializable {
 	private void flipDealerCard()
 	{
 		picSecondCardDealer.setImage(new Image(secondCardDealer.getPic()));
-		SetDealerCradsValue(ViewLogic.dealerValueCards());
-		
+		SetDealerCradsValue(ViewLogic.dealerValueCards());	
 	}
 
 	/**
@@ -710,15 +697,16 @@ public class TableController implements Initializable {
 	
 	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
-/**
- * the raise the bets by 100 chips
- */
+	/**
+	 * the raise the bets by 100 chips
+	 */
 	@FXML
 	public void RaiseBets100()
 	{
 		playSound("/photos/chips.wav");
 		UpDatebets(100);
 	}
+	
 	/**
 	 * the raise the bets by 50 chips
 	 */
@@ -728,6 +716,7 @@ public class TableController implements Initializable {
 		playSound("/photos/chips.wav");
 		UpDatebets(50);
 	}
+	
 	/**
 	 * the raise the bets by 25 chips
 	 */
@@ -737,6 +726,7 @@ public class TableController implements Initializable {
 		playSound("/photos/chips.wav");
 		UpDatebets(25);
 	}
+	
 	/**
 	 * the raise the bets by 5 chips
 	 */
@@ -746,6 +736,7 @@ public class TableController implements Initializable {
 		playSound("/photos/chips.wav");
 		UpDatebets(5);
 	}
+	
    /**
    * the raise the bets by 1 chip
    */
@@ -755,6 +746,7 @@ public class TableController implements Initializable {
 		playSound("/photos/chips.wav");
 		UpDatebets(1);
 	}
+	
 	/**
 	 * method play the sound on clicking the chips
 	 */
@@ -843,9 +835,6 @@ public class TableController implements Initializable {
 	public void newGameMsg(){
 		showDialog();
 	}
-		
-	
-
 	
 //----------------------------------- slide panel method ------------------------------------------------------------------//
 	/**
@@ -877,7 +866,6 @@ public class TableController implements Initializable {
 		        tl.getKeyFrames().add(moveCard);
 		        tl.play();
 	}
-	
 	
 //-----------------------------message dialog------------------------------------------------------------//
 /**
@@ -936,13 +924,6 @@ public void showDialog(){
 				dialogStage.close();
 		    }
 		});
-		
-	
-		
-            
-        
-		
-	   
 	}
 
 //-----------------------------logout message------------------------------------------------------------
@@ -1031,7 +1012,6 @@ public void showDialog(){
 			msgToUser.setText(msg);
 		}
 		
-		
 		/**
 	    * set player value on the status bar
 	    * @param value
@@ -1071,73 +1051,66 @@ public void showDialog(){
 	
 //--------------------------- set Message method the End---------------------------------------------------------
 
-/**
- * show new button panel
- */
-@FXML
-public void ShowNewButtonPanel()
-{
-	panelNewButtons.setVisible(true);
-}
-
-/**
- * loading the rule window and make the window visible
- */
-////////////////////////////////////////////// open rules stage////////////////////////////
-@FXML
-public void clickRules()
-
-{
-	playSound("/photos/clicked.wav");
-	try{
-	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
-	    Scene scene = new Scene(page);
-        scene.getStylesheets().add("/view/TableCss.css");
-        Stage  primaryStage=new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("BlackJack Enjoy!");
-        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
-        setWindowSize(primaryStage, 573, 510);
-        primaryStage.show();
-       
-} catch(Exception e) {
-	e.printStackTrace();
-}
-}
-
-/**
- * setting the  max window size
- * @param primaryStage
- * @param width
- * @param height
- */
-public void setWindowSize(Stage primaryStage,int width, int height)
-{
-	// max
-	primaryStage.setMaxWidth(width);
-    primaryStage.setMaxHeight(height);
-    
-    // min
-    primaryStage.setMinHeight(height);
-    primaryStage.setMinWidth(width);
-}
-
-/**
- * close app
- */
- @FXML
-public void CloseWindow()
-{
-	 playSound("/photos/clicked.wav");
-  if(btnExit.isVisible())
-	 ViewLogic.close();
-}
-
-			
-			
-
-
+		/**
+		 * show new button panel
+		 */
+		@FXML
+		public void ShowNewButtonPanel()
+		{
+			panelNewButtons.setVisible(true);
+		}
 	
+		/**
+		 * loading the rule window and make the window visible
+		 */
+		////////////////////////////////////////////// open rules stage////////////////////////////
+		@FXML
+		public void clickRules()
 		
+		{
+			playSound("/photos/clicked.wav");
+			try{
+			    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
+			    Scene scene = new Scene(page);
+		        scene.getStylesheets().add("/view/TableCss.css");
+		        Stage  primaryStage=new Stage();
+		        primaryStage.setScene(scene);
+		        primaryStage.setTitle("BlackJack Enjoy!");
+		        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+		        setWindowSize(primaryStage, 573, 510);
+		        primaryStage.show();
+		       
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		}
+	
+		/**
+		 * setting the  max window size
+		 * @param primaryStage
+		 * @param width
+		 * @param height
+		 */
+		public void setWindowSize(Stage primaryStage,int width, int height)
+		{
+			// max
+			primaryStage.setMaxWidth(width);
+		    primaryStage.setMaxHeight(height);
+		    
+		    // min
+		    primaryStage.setMinHeight(height);
+		    primaryStage.setMinWidth(width);
+		}
+	
+		/**
+		 * close app
+		 */
+		 @FXML
+		public void CloseWindow()
+		{
+			 playSound("/photos/clicked.wav");
+		  if(btnExit.isVisible())
+			 ViewLogic.close();
+		}
 		
 }
