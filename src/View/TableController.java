@@ -969,9 +969,11 @@ public void showDialog(){
 			public void handle(ActionEvent event){
 			//	dialogStage.setAlwaysOnTop(false);
 				wall.setDisable(false);
-				ViewLogic.primaryStage.getScene().getWindow().hide();
-				ViewLogic.openLogin(new Stage());
 				dialogStage.close();
+				ViewLogic.openLogin(new Stage());
+				
+				wall.getScene().getWindow().hide();
+			
 			
 				
 			}
