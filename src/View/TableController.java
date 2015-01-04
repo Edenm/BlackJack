@@ -153,19 +153,29 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	ImageView backgroudTable;
-	
+	/**
+	 * Image View chip 100
+	 */
 	@FXML
 	ImageView chip100;
-	
+	/**
+	 * Image View chip 50
+	 */
 	@FXML
 	ImageView chip50;
-	
+	/**
+	 * Image View chip 25
+	 */
 	@FXML
 	ImageView chip25;
-	
+	/**
+	 * Image View chip 5
+	 */
 	@FXML
 	ImageView chip5;
-	
+	/**
+	 * Image View chip 1
+	 */
 	@FXML
 	ImageView chip1;
 	
@@ -174,28 +184,44 @@ public class TableController implements Initializable {
 	
 	@FXML
 	Label lblOptions;
-	
+	/**
+	 * Menu Item deal
+	 */
 	@FXML
 	MenuItem mndeal;
-	
+	/**
+	 * Menu Item stand
+	 */
 	@FXML
 	MenuItem mnstand;
-	
+	/**
+	 * Menu Item hit
+	 */
 	@FXML
 	MenuItem mnhit;
-	
+	/**
+	 * Button New Round
+	 */
 	@FXML
 	Button btnNewRound;
-	
+	/**
+	 * Button New Game
+	 */
 	@FXML
 	Button btnNewGame;
-	
+	/**
+	 * Button Exit
+	 */
 	@FXML
 	Button btnExit;
-	
+	/**
+	 * Button Reset chips
+	 */
 	@FXML
 	Button btnResetBet;
-	
+	/**
+	 * panel of the end game 
+	 */
 	@FXML
 	Pane p;
 	
@@ -628,6 +654,7 @@ public class TableController implements Initializable {
 			btnNewGame.setDisable(false);
 			btnExit.setVisible(true);
 			btnExit.setDisable(false);
+			
 			EnbledHitAndStandMenu(false);
 			SlideDownGameOverPanel();
 		}
@@ -672,34 +699,45 @@ public class TableController implements Initializable {
 	
 	
 //-------------------------------------------chips Method Raise bets ----------------------------------------------------	
+/**
+ * the raise the bets by 100 chips
+ */
 	@FXML
 	public void RaiseBets100()
 	{
 		playSoundChips();
 		UpDatebets(100);
 	}
-	
+	/**
+	 * the raise the bets by 50 chips
+	 */
 	@FXML
 	public void RaiseBets50()
 	{
 		playSoundChips();
 		UpDatebets(50);
 	}
-	
+	/**
+	 * the raise the bets by 25 chips
+	 */
 	@FXML
 	public void RaiseBets25()
 	{
 		playSoundChips();
 		UpDatebets(25);
 	}
-	
+	/**
+	 * the raise the bets by 5 chips
+	 */
 	@FXML
 	public void RaiseBets5()
 	{
 		playSoundChips();
 		UpDatebets(5);
 	}
-	
+   /**
+   * the raise the bets by 1 chip
+   */
 	@FXML
 	public void RaiseBets1()
 	{
@@ -859,10 +897,6 @@ public void showDialog(){
 		dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
 		
-		
-		
-		
-		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 		//	@Override
 			public void handle(ActionEvent event){
@@ -914,10 +948,6 @@ public void showDialog(){
 		wall.setDisable(true);
 		dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
-		
-		
-		
-		
 		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 	//		@Override
