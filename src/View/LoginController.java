@@ -18,19 +18,29 @@ import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
-	
+
+	/** varible login video**/
 	@FXML
 	MediaView video;
+	/** varible text field username**/
 	@FXML
 	TextField txtnameLogin;
+	/** varible background pic of login**/
 	@FXML
 	 ImageView LoginPic;
+	/** varible button skip video pf login**/
 	@FXML
 	Button btnSkip;
+	/** varible login button **/
 	@FXML
 	Button btnLogin;
 	
 	MediaPlayer mediaPlayer;
+	
+	/**
+	 * method intalize the page- disable the loggin buuton text field and background pic
+	 * until the video end
+	 */
 	
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +51,9 @@ public class LoginController implements Initializable {
 		
 		
 	}
+	/**
+	 * method open the video and play it on
+	 */
 	
 	public void playVideo()
 	{
@@ -74,6 +87,10 @@ public class LoginController implements Initializable {
 		catch(Exception e){e.printStackTrace();}
 	       
 	    }
+	/**
+	 * method open page after video to login
+	 * call by play video, when video finish
+	 */
 	
 	public void videosTOP()
 	{
@@ -84,12 +101,22 @@ public class LoginController implements Initializable {
         btnSkip.setVisible(false);
    
 	}
+	/**
+	 * fxml method call when skip button clicked on video
+	 */
+
 	@FXML
 	public void clickSkip()
 	{
 		videosTOP();
         
 	}
+	/**
+	 * click login open the game page by call method start game
+	 * check the input from the textbox
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	public void ClickLogin(ActionEvent event) throws IOException
 	{

@@ -904,13 +904,13 @@ public void showDialog(){
 		dialogStage.setScene(dialogScene);
 		
 		wall.setDisable(true);
-		dialogStage.setAlwaysOnTop(true);
+		//dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
 		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 		//	@Override
 			public void handle(ActionEvent event){
-				dialogStage.setAlwaysOnTop(false);
+				//dialogStage.setAlwaysOnTop(false);
 				wall.setDisable(false);
 				clickNewGame();
 				dialogStage.close();
@@ -920,7 +920,7 @@ public void showDialog(){
 			//@Override
 			public void handle(ActionEvent event){
 				wall.setDisable(false);
-				dialogStage.setAlwaysOnTop(false);
+			//	dialogStage.setAlwaysOnTop(false);
 				dialogStage.close();
 			}
 		});
@@ -929,7 +929,7 @@ public void showDialog(){
 		  //  @Override
 		    public void handle(WindowEvent event) {
 		    	wall.setDisable(false);
-				dialogStage.setAlwaysOnTop(false);
+			//	dialogStage.setAlwaysOnTop(false);
 				dialogStage.close();
 		    }
 		});
@@ -970,13 +970,13 @@ public void showDialog(){
 		dialogStage.setScene(dialogScene);
 		
 		wall.setDisable(true);
-		dialogStage.setAlwaysOnTop(true);
+	//	dialogStage.setAlwaysOnTop(true);
 		dialogStage.show();
 		
 		yesBtn.setOnAction(new EventHandler<ActionEvent>() {
 	//		@Override
 			public void handle(ActionEvent event){
-				dialogStage.setAlwaysOnTop(false);
+			//	dialogStage.setAlwaysOnTop(false);
 				wall.setDisable(false);
 				login = new LoginController();
 				//login.btnLogin.setVisible(true);
@@ -992,7 +992,7 @@ public void showDialog(){
 			//@Override
 			public void handle(ActionEvent event){
 				wall.setDisable(false);
-				dialogStage.setAlwaysOnTop(false);
+			//	dialogStage.setAlwaysOnTop(false);
 				dialogStage.close();
 			}
 		});
@@ -1001,7 +1001,7 @@ public void showDialog(){
 			  //  @Override
 			    public void handle(WindowEvent event) {
 			    	wall.setDisable(false);
-					dialogStage.setAlwaysOnTop(false);
+					//dialogStage.setAlwaysOnTop(false);
 					dialogStage.close();
 			    }
 			});
