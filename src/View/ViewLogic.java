@@ -56,11 +56,13 @@ public final class ViewLogic  extends Application {
                 }
                
 	}
+	
 	@Override
 	public   void  start(Stage primaryStage)
 	{
 		openLogin(primaryStage);
 	}
+	
 	public static void openLogin(Stage primaryStage)
 	{
 		{
@@ -93,7 +95,7 @@ public final class ViewLogic  extends Application {
 		        scene.getStylesheets().add("/view/TableCss.css");
 		        primaryStage.setScene(scene);
 		        primaryStage.setTitle("Hello "+controller.getNickname()+" wellcome to the BlackJack game!");
-		       primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
+		        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 		        setWindowSize(primaryStage, 1000, 700);
 		        primaryStage.show();
 		} catch(Exception e) {

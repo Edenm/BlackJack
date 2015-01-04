@@ -143,6 +143,8 @@ public final class ModelLogic {
 			  player.playerBlackJack();
 			  throw new PlayerEndOfGameException("/photos/blackJack.gif");
 		  }
+		  if (player.isBlackJack() && dealer.isBlackJack())
+			  throw new PlayerEndOfGameException("/photos/Its_a_Tie.png");
 	  }
 	  
 	  /**

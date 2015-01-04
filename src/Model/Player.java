@@ -49,6 +49,7 @@ public class Player {
 					instance  = new Player(nick);
 					return instance;
 	            }
+	            instance.setNickname(nick);
 	            return instance;
 	}
 //////////////////////////////////////////////////////Getters and setters/////////////////////////////////////////////////////
@@ -98,6 +99,14 @@ public class Player {
 	public int getNumberOfLoses() {
 		return numberOfLoses;
 	}
+	
+	/**
+	 * set Nickname
+	 * @param nickname
+	 */
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 
 	/**
 	 * @param bet
@@ -124,7 +133,6 @@ public class Player {
 		chips=new Integer(0);
 		// player start with 500 chips every round;
 		this.chips=Constants.limitOfChips$;
-		this.nickname=nickname;
 	}
 	
 	/**
@@ -216,11 +224,4 @@ public class Player {
 		this.chips+=this.bets;
 		numberOfWins++;
 	 }
-	 
-	 /**
-	  * update the chips for nobody win case
-	  */
-	// public void nobodyWin(){
-		 
-	// }
 }
