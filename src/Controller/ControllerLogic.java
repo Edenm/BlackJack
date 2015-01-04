@@ -1,6 +1,7 @@
 package Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
@@ -86,7 +87,13 @@ public final class ControllerLogic {
 	public Integer dealerValueCards() {
 		return model.dealerValueCards();
 	}
-	
+	/**
+	 * @return the dealer cards
+	 */
+	public ArrayList<Card> getCards(){
+		return model.getCards();
+	}
+
 	
 	//----------------------------------- player methods ----------------------------------------------
 	/**

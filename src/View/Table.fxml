@@ -283,7 +283,7 @@
             <InnerShadow choke="0.29" color="#022c0e" height="25.45" radius="17.0425" width="44.72" />
          </effect>
          <children>
-            <Label fx:id="dealerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
+            <Label fx:id="dealerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Dealer:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
@@ -300,7 +300,7 @@
       </Pane>
       <Pane layoutX="227.0" layoutY="492.0" opacity="0.86" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
          <children>
-            <Label fx:id="playerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Value:">
+            <Label fx:id="playerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Player:">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>

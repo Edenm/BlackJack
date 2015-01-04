@@ -1,6 +1,7 @@
 package View;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -243,6 +244,13 @@ public final class ViewLogic  extends Application {
 	{
 		return controller.getNumberOfLoses();
 	}
+	/**
+	 * @return the dealer cards
+	 */
+	public static ArrayList<Card> getCards(){
+		return controller.getCards();
+	}
+
 
 		
 }

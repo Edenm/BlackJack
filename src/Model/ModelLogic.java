@@ -2,6 +2,7 @@ package Model;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import Exceptions.PlayerEndOfGameException;
 import Exceptions.WhoWinException;
@@ -92,6 +93,12 @@ public final class ModelLogic {
 	 */
 	public Integer dealerValueCards() {
 		return dealer.getValue();
+	}
+	/**
+	 * @return the dealer cards
+	 */
+	public ArrayList<Card> getCards(){
+		return dealer.getCards();
 	}
 
 	//----------------------------------- player methods ----------------------------------------------
