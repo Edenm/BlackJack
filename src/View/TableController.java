@@ -448,7 +448,7 @@ public class TableController implements Initializable {
 	 * @return KeyFrame
 	 */
 	private KeyFrame upDateLocationCard() {
-		return new KeyFrame(Duration.seconds(.0020),
+		return new KeyFrame(Duration.seconds(.0040),
 	            new EventHandler<ActionEvent>() {
 		
 	                public void handle(ActionEvent event) {
@@ -461,7 +461,8 @@ public class TableController implements Initializable {
 	                        if (xSrc>xTarg) {
 	                            pic.setTranslateX(pic.getTranslateX()-1);
 	                        }
-	                        if (user.equals(User.Player)){
+	                        ////////////////// case of deal card to player///////////////////////
+	                        if (user.equals(User.Player)){ 
 	                        	if (ySrc<yTarg) {
 	                        		pic.setTranslateY(pic.getTranslateY()+1);
 	                        	}
@@ -482,6 +483,7 @@ public class TableController implements Initializable {
 		                        		}
 	                        	}
 	                        }
+	                        ////////////////// case of deal card to dealer///////////////////////
 	                        else
 	                        {
 	                        	if (ySrc>yTarg) {
@@ -503,9 +505,6 @@ public class TableController implements Initializable {
 		                        		nextMove();			
 		                        		return;
 		                        	} 
-	                        		
-	                        		
-	                        		
 	                        	}
 	                        }
 	                }
