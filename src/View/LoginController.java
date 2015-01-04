@@ -37,6 +37,8 @@ public class LoginController implements Initializable {
 	
 	MediaPlayer mediaPlayer;
 	
+	private static boolean isFirstTime=true;
+	
 	/**
 	 * method intalize the page- disable the loggin buuton text field and background pic
 	 * until the video end
@@ -46,7 +48,14 @@ public class LoginController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		txtnameLogin.setVisible(false);
 		btnLogin.setVisible(false);
-		playVideo();
+		if(isFirstTime){
+			playVideo();
+			isFirstTime=false;
+		}
+		else{
+			LoginPic.setVisible(true);
+			videosTOP();
+		}
 		
 		
 		
@@ -97,7 +106,8 @@ public class LoginController implements Initializable {
 		txtnameLogin.setVisible(true);
 		btnLogin.setVisible(true);
 		video.setVisible(false);
-		mediaPlayer.stop();
+		if(mediaPlayer!=null)
+			mediaPlayer.stop();
         btnSkip.setVisible(false);
    
 	}

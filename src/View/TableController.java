@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -226,7 +227,7 @@ public class TableController implements Initializable {
 	@FXML
 	Pane p;
 	
-	LoginController login;
+	
 	
 	
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
@@ -439,7 +440,7 @@ public class TableController implements Initializable {
 		}
 		// the distance that the card should move 
 		mx = x-Constants.deckCardLayoutX;
-		
+		playSound("/photos/cardSlide.wav");
 	    tl.setCycleCount(Animation.INDEFINITE);
 	    
 	    KeyFrame moveCard = upDateLocationCard();
@@ -715,7 +716,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets100()
 	{
-		playSoundChips();
+		playSound("/photos/chips.wav");
 		UpDatebets(100);
 	}
 	/**
@@ -724,7 +725,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets50()
 	{
-		playSoundChips();
+		playSound("/photos/chips.wav");
 		UpDatebets(50);
 	}
 	/**
@@ -733,7 +734,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets25()
 	{
-		playSoundChips();
+		playSound("/photos/chips.wav");
 		UpDatebets(25);
 	}
 	/**
@@ -742,7 +743,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets5()
 	{
-		playSoundChips();
+		playSound("/photos/chips.wav");
 		UpDatebets(5);
 	}
    /**
@@ -751,15 +752,15 @@ public class TableController implements Initializable {
 	@FXML
 	public void RaiseBets1()
 	{
-		playSoundChips();
+		playSound("/photos/chips.wav");
 		UpDatebets(1);
 	}
 	/**
 	 * method play the sound on clicking the chips
 	 */
-	private void playSoundChips()
+	private void playSound(String url)
 	{
-		 URL thing = getClass().getResource("/photos/chips.wav");
+		 URL thing = getClass().getResource(url);
 		    Media audioFile = new Media( thing.toString() );     
 		    try
 		    {                                       
@@ -819,6 +820,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void clickNewRound()
 	{
+		playSound("/photos/clicked.wav");
 		ViewLogic.newRound();
 		init();
 		newTable();
@@ -829,6 +831,7 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	public void clickResetBet(){
+		playSound("/photos/clicked.wav");
 		p.toFront();
 		ViewLogic.resetBet();
 		updateBetValueOnTable();
@@ -978,13 +981,10 @@ public void showDialog(){
 			public void handle(ActionEvent event){
 			//	dialogStage.setAlwaysOnTop(false);
 				wall.setDisable(false);
-				login = new LoginController();
-				//login.btnLogin.setVisible(true);
-				//login.txtnameLogin.setVisible(true);
-				//login.playVideo();
+				ViewLogic.primaryStage.getScene().getWindow().hide();
+				ViewLogic.openLogin(new Stage());
 				dialogStage.close();
-				//ViewLogic.close();
-			//	login.videosTOP();
+			
 				
 			}
 		});
@@ -1086,7 +1086,9 @@ public void ShowNewButtonPanel()
 ////////////////////////////////////////////// open rules stage////////////////////////////
 @FXML
 public void clickRules()
+
 {
+	playSound("/photos/clicked.wav");
 	try{
 	    AnchorPane  page  = (AnchorPane) FXMLLoader.load(ViewLogic.class.getResource("Rules.fxml"));
 	    Scene scene = new Scene(page);
@@ -1126,6 +1128,7 @@ public void setWindowSize(Stage primaryStage,int width, int height)
  @FXML
 public void CloseWindow()
 {
+	 playSound("/photos/clicked.wav");
   if(btnExit.isVisible())
 	 ViewLogic.close();
 }

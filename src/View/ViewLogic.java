@@ -31,6 +31,7 @@ public final class ViewLogic  extends Application {
 	private static ControllerLogic controller;
 	/** root to the sence of the game */
 	private static  AnchorPane page;
+	public static Stage primaryStage;
 	
 	//***************************************** Constructors ******************************************
 	/**
@@ -56,7 +57,11 @@ public final class ViewLogic  extends Application {
                
 	}
 	@Override
-	public  void  start(Stage primaryStage)
+	public   void  start(Stage primaryStage)
+	{
+		openLogin(primaryStage);
+	}
+	public static void openLogin(Stage primaryStage)
 	{
 		{
 			try{
@@ -66,13 +71,14 @@ public final class ViewLogic  extends Application {
 			        primaryStage.setTitle("BlackJack Enjoy!");
 			        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 			        setWindowSize(primaryStage, 950, 600);
+			        ViewLogic.primaryStage=primaryStage;
 			        primaryStage.show();
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
+		
 	}
-
 	public static void startview()
 	{
 		launch();
