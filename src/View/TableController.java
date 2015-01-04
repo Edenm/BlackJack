@@ -148,7 +148,9 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	ImageView deckCard;
-	
+	/**
+	 * Image background Table
+	 */
 	@FXML
 	ImageView backgroudTable;
 	
@@ -243,6 +245,7 @@ public class TableController implements Initializable {
 	 */
 	public void Deal()
 	{
+		// checking that the player has a bets on the table
 		if(ViewLogic.getBets()>0)
 		{
 			status = Utils.Status.deal;
@@ -253,6 +256,7 @@ public class TableController implements Initializable {
 			// show buttons hot and stands
 			EnbledHitAndStandMenu(true);
 		
+			// start dealing 
 			dealCardsToGame();
 		}
 		else
@@ -265,12 +269,22 @@ public class TableController implements Initializable {
 	
 	 private void dealCardsToGame()
 	{
+		 // change status game too deal
 		status = Utils.Status.deal;
+		
+		// number of card that i want to deal
 	    numOfCards =4;
+	    
+	    // the user that should get the next card
 		user=User.Player;
+		
+		// start dealing cards
 		SetCardOntheTable();
 	}
 	 
+	 /**
+	  * check if there is a black jack to the player 
+	  */
 	 private void isBlackJack(){
 		 try {
 			ViewLogic.isBlackJack();
@@ -286,7 +300,7 @@ public class TableController implements Initializable {
 	  */
 	 private void newTable()
 	 {
-		
+		// enabling buttons
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);;
 		
@@ -388,7 +402,7 @@ public class TableController implements Initializable {
 			x = setDealerNewCard();
 			
 		}
-		
+		// the distance that the card should move 
 		mx = x-Constants.deckCardLayoutX;
 		
 	    tl.setCycleCount(Animation.INDEFINITE);
@@ -509,6 +523,7 @@ public class TableController implements Initializable {
 			x=dealerx;
 			
 		}
+		// the distance that the card should move 
 		dealerx+=Constants.diffXCard;
 		
 		my = Constants.cardDealerLayoutY-Constants.deckCardLayoutY;
@@ -782,7 +797,9 @@ public class TableController implements Initializable {
 
 	
 //----------------------------------- slide panel method ------------------------------------------------------------------//
-	
+	/**
+	 * this method animate the game over panel from, top to center
+	 */
 	private void SlideDownGameOverPanel() {
 		my=0;
 			//----------------------------------
@@ -990,14 +1007,18 @@ public void showDialog(){
 	
 //--------------------------- set Message method the End---------------------------------------------------------
 
-
+/**
+ * show new button panel
+ */
 @FXML
 public void ShowNewButtonPanel()
 {
 	panelNewButtons.setVisible(true);
 }
 
-
+/**
+ * loading the rule window and make the window visible
+ */
 ////////////////////////////////////////////// open rules stage////////////////////////////
 @FXML
 public void clickRules()
@@ -1018,7 +1039,12 @@ public void clickRules()
 }
 }
 
-
+/**
+ * setting the  max window size
+ * @param primaryStage
+ * @param width
+ * @param height
+ */
 public void setWindowSize(Stage primaryStage,int width, int height)
 {
 	// max
@@ -1030,6 +1056,9 @@ public void setWindowSize(Stage primaryStage,int width, int height)
     primaryStage.setMinWidth(width);
 }
 
+/**
+ * close app
+ */
  @FXML
 public void CloseWindow()
 {
