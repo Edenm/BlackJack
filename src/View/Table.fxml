@@ -155,7 +155,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Games option">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#clickNewRound" text="New round" />
+              <MenuItem fx:id="mnNewRound" mnemonicParsing="false" onAction="#clickNewRound" text="New round" />
                   <MenuItem mnemonicParsing="false" onAction="#newGameMsg" text="New game" />
                   <MenuItem mnemonicParsing="false" onAction="#createLogoutMsg" text="Logout" />
             </items>
@@ -213,22 +213,24 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Button>
-      <Label fx:id="msgToUser" layoutX="211.0" layoutY="319.0" prefHeight="84.0" prefWidth="758.0">
+      <Label fx:id="msgToUser" disable="true" layoutX="266.0" layoutY="319.0" opacity="0.61" prefHeight="84.0" prefWidth="758.0" textOverrun="LEADING_ELLIPSIS">
          <font>
-            <Font name="Gisha" size="60.0" />
+            <Font name="Candara Italic" size="60.0" />
          </font>
          <textFill>
             <RadialGradient centerX="0.5" centerY="0.5" focusAngle="90.0" focusDistance="-0.34883720930232553" radius="0.7790697674418605">
                <stops>
                   <Stop color="BLACK" />
-                  <Stop color="BLACK" offset="0.12260536398467432" />
-                  <Stop color="#424242" offset="0.3470790378006873" />
-                  <Stop color="#a41f10" offset="0.5326460481099656" />
-                  <Stop color="#804e49" offset="0.718213058419244" />
-                  <Stop color="#52241d" offset="1.0" />
+                  <Stop color="BLACK" offset="1.0" />
                </stops>
             </RadialGradient>
          </textFill>
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+         <effect>
+            <DropShadow height="47.69" radius="46.3225" spread="0.69" width="139.6" />
+         </effect>
       </Label>
       <ImageView fx:id="msgToUserPic" fitHeight="150.0" fitWidth="481.0" layoutX="260.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="deckCard" fitHeight="113.0" fitWidth="111.0" layoutX="820.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" />
@@ -278,29 +280,21 @@
             </Button>
          </children>
       </Pane>
-      <Pane layoutX="226.0" layoutY="132.0" opacity="0.86" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
+      <Pane layoutX="226.0" layoutY="132.0" opacity="0.8" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
          <effect>
             <InnerShadow choke="0.29" color="#022c0e" height="25.45" radius="17.0425" width="44.72" />
          </effect>
          <children>
-            <Label fx:id="dealerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Dealer:">
+            <Label fx:id="dealerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Dealer-">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#08f252" />
-                        <Stop color="#f6f9ff" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="227.0" layoutY="492.0" opacity="0.86" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
+      <Pane layoutX="227.0" layoutY="492.0" opacity="0.8" prefHeight="47.0" prefWidth="149.0" style="-fx-background-color: black;">
          <children>
-            <Label fx:id="playerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Player:">
+            <Label fx:id="playerCardsValue" layoutX="4.0" layoutY="-3.0" prefHeight="54.0" prefWidth="159.0" text="Player-">
                <font>
                   <Font name="AR BLANCA" size="28.0" />
                </font>

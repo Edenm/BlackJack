@@ -198,6 +198,9 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Button btnNewRound;
+	/** button new round menu bar**/
+	@FXML
+	MenuItem mnNewRound;
 	/**
 	 * Button New Game
 	 */
@@ -238,13 +241,13 @@ public class TableController implements Initializable {
 	@FXML
 	public void init(){
 		p.setTranslateY(-p.getPrefHeight());
+		mnNewRound.setDisable(false);
 		
 		// layout of the btn
 		btnNewGame.setVisible(false);
 		btnNewRound.setVisible(false);
 		EnabledDealMenuAndBtn(true);
 		EnbledHitAndStandMenu(false);
-		
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
 		msgToUserPic.setVisible(false);
@@ -372,6 +375,7 @@ public class TableController implements Initializable {
 	public void DealCard()
 	{
 		SetCardOntheTable();
+		mnNewRound.setDisable(true);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
 		if(ViewLogic.getCards().size()==2)
 			SetDealerCradsValue(ViewLogic.dealerValueCards()-secondCardDealer.getValue());
