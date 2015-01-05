@@ -14,7 +14,7 @@ public class PlayerTests {
 	@Test
 	public void PlayerTestsSetBets_HappyFlow() {
 		// arrange player has 500 chips in the start of the game 
-		Player player=new Player("test");
+		Player player=new Player();
 		
 		// action
 		player.setBets(400);
@@ -31,7 +31,7 @@ public class PlayerTests {
 	@Test
 	public void PlayerTestsSetBets_BetsTooHigh() {
 		// arrange player has 500 chips in the start of the game 
-		Player player=new Player("test");
+		Player player=new Player();
 		
 		// action--> 501 > 500
 		Boolean res=player.setBets(501);
@@ -47,9 +47,8 @@ public class PlayerTests {
 	@Test
 	public void PlayerTestsNewGame() {
 		
-		String name =new String("TestNo2");
 		// arrange player has 500 chips in the start of the game 
-		Player player=new Player("test");
+		Player player=new Player();
 		
 		Boolean res=player.setBets(100);
 		
@@ -57,7 +56,7 @@ public class PlayerTests {
 		assertTrue(res);
 		
 		// action
-		player.newGamePlayer(name);
+		player.newGamePlayer();
 		
 		//assert chips should be Constants limitOfChips
 		int testGets=player.getChips();
@@ -76,7 +75,7 @@ public class PlayerTests {
 	public void TestsPlayerAddCardFirstAceAndSecondAce()
 	{
 	// arrange 
-	 Player player= new Player("test");
+	 Player player= new Player();
 	 Card card= new Card(1,1, "Red", "", Suits.Club);
 	 
 	 //action
@@ -111,7 +110,7 @@ public class PlayerTests {
 	public void TestsPlayerOver21() throws Exception
 	{
 	// arrange 
-	 Player player= new Player("test");
+	 Player player= new Player();
 	 
 	 Card[] cardsOfPlayer= TestsHelper.getCardsOver21();
 	 TestsHelper.AddCardsToPlayer(cardsOfPlayer, player);
@@ -124,7 +123,7 @@ public class PlayerTests {
 	public void TestsPlayerunder21() throws Exception
 	{
 	// arrange 
-	 Player player= new Player("test");
+	 Player player= new Player();
 	 
 	 Card[] cardsOfPlayer= TestsHelper.getCardsUnder21();
 	 TestsHelper.AddCardsToPlayer(cardsOfPlayer, player);
@@ -138,7 +137,7 @@ public class PlayerTests {
 	{
 	// arrange 
 	 int bets=200;
-	 Player player= new Player("test");
+	 Player player= new Player();
 	 player.setBets(bets);
 	 // adding cards to player
 	 Card[] cardsOfPlayer= TestsHelper.getCardsForBlackJackTwoCards();

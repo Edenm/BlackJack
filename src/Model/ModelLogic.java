@@ -54,6 +54,7 @@ public final class ModelLogic {
 	public void login(String nickName) throws IOException{
 		dealer= Dealer.getInstance();
 		player= Player.getInstance(nickName);
+		newGame();
 	}
     //----------------------------------- Dealer methods -------------------------------------------------
 	
@@ -183,7 +184,7 @@ public final class ModelLogic {
 	public void newGame()
 	{
 		dealer.initializeDealer();
-		player.newGamePlayer("moshe");
+		player.newGamePlayer();
 		numOfRounds=0;
 	}
 	

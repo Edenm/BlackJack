@@ -33,8 +33,8 @@ public class Player {
 	 *  need only name all the other data initialize every game with new data
 	 * @param nickname
 	 */
-	public   Player(String nickname ){
-		newGamePlayer(nickname);
+	public   Player(){
+		newGamePlayer();
 	}
 
 	/**
@@ -46,7 +46,8 @@ public class Player {
 	            if(!exists)
 	            {
 					exists = true;
-					instance  = new Player(nick);
+					instance  = new Player();
+					instance.setNickname(nick);
 					return instance;
 	            }
 	            instance.setNickname(nick);
@@ -127,12 +128,14 @@ public class Player {
 	 * the method initialize the player for a new game
 	 * @param nickname
 	 */
-	public void newGamePlayer(String nickname){
-		this.nickname=new String(nickname);
+	public void newGamePlayer(){
+	//	this.nickname=new String();
 		newRoundPlayer();
 		chips=new Integer(0);
 		// player start with 500 chips every round;
 		this.chips=Constants.limitOfChips$;
+		numberOfLoses=0;
+		numberOfWins=0;
 	}
 	
 	/**
