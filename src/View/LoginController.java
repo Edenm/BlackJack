@@ -84,18 +84,13 @@ public class LoginController implements Initializable {
 	            	videosTOP();
 	               
 	            }}));
-	               
-	            
-	        
-	      
-	       
-	      
-	        
 	        
 		}
-		catch(Exception e){e.printStackTrace();}
-	       
-	    }
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	 * method open page after video to login
 	 * call by play video, when video finish

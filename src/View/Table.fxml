@@ -250,7 +250,7 @@
                   </LinearGradient>
                </textFill>
             </Button>
-            <Label layoutX="93.0" layoutY="-1.0" prefHeight="133.0" prefWidth="293.0" text="Game Over " textFill="#87c995" textOverrun="WORD_ELLIPSIS">
+            <Label layoutX="66.0" layoutY="-1.0" prefHeight="133.0" prefWidth="293.0" text="Game Over " textFill="#87c995" textOverrun="WORD_ELLIPSIS">
                <font>
                   <Font name="AR CENA" size="52.0" />
                </font>

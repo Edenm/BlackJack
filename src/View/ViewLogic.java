@@ -94,7 +94,7 @@ public final class ViewLogic  extends Application {
 			    Scene scene = new Scene(page);
 		        scene.getStylesheets().add("/view/TableCss.css");
 		        primaryStage.setScene(scene);
-		        primaryStage.setTitle("Hello "+controller.getNickname()+" wellcome to the BlackJack game!");
+		        primaryStage.setTitle("Hello "+controller.getNickname()+" Welcome to the BlackJack game!");
 		        primaryStage.getIcons().add(new Image("/view/photos/icon.png"));
 		        setWindowSize(primaryStage, 1000, 700);
 		        primaryStage.show();
