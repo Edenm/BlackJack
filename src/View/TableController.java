@@ -255,8 +255,8 @@ public class TableController implements Initializable {
 		// set status bar
 		totalPoints.setText("Total score: "+ViewLogic.getChips());
 		lblBet.setText("Bet: "+0);
-		playerCardsValue.setText("Player: "+0);
-		dealerCardsValue.setText("Dealer: "+0);
+		playerCardsValue.setText("Player- "+0);
+		dealerCardsValue.setText("Dealer- "+0);
 	
 		// init location of cards
 		playerx=new Double(Constants.cardXLayout);
@@ -1030,7 +1030,7 @@ public void showDialog(){
 	 `  */
 		private void SetPlayerCradsValue(int value)
      	 {
-			playerCardsValue.setText("Player:"+ value);
+			playerCardsValue.setText("Player-"+ value);
 		 }
 		
 		/**
@@ -1057,7 +1057,7 @@ public void showDialog(){
 	    */
 		private void SetDealerCradsValue(int value)
 		{
-			dealerCardsValue.setText("Dealer:"+ value);
+			dealerCardsValue.setText("Dealer-"+ value);
 		}
 	
 	
