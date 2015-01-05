@@ -21,6 +21,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -217,7 +218,11 @@ public class TableController implements Initializable {
 	 */
 	@FXML
 	Pane p;
-	
+	 /**
+	  * the menu bar
+	  */
+	@FXML
+	MenuBar menuBar;
 	////////////////////////////////////////////load method//////////////////////////////////////////////////////////////
 	/**
 	 * method initialize table form ( load)- initialize the total chips show to player
@@ -654,6 +659,7 @@ public class TableController implements Initializable {
 			btnExit.setDisable(false);
 			
 			EnbledHitAndStandMenu(false);
+			menuBar.setDisable(true);
 			SlideDownGameOverPanel();
 		}
 	}
@@ -797,6 +803,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void clickNewGame()
 	{
+		menuBar.setDisable(false);
 		btnExit.setVisible(false);
 		btnExit.setDisable(true);
 		ViewLogic.newGame();
