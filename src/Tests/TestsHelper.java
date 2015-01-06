@@ -94,6 +94,7 @@ public final class TestsHelper {
 			 Field field=instance.getClass().getDeclaredField("dealer");
 			 field.setAccessible(true);
 		     return (Dealer)field.get(instance);
+			
 	        
 	    }
 		

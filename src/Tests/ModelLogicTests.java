@@ -28,6 +28,7 @@ public class ModelLogicTests {
 	@Before public void setUp() throws Throwable
 	{
 		 model= ModelLogic.getInstance();
+		 model.login("test");
 		 player= TestsHelper.getPlayer(model);
 		 dealer = TestsHelper.getDelaer(model);
 	}
@@ -40,6 +41,7 @@ public class ModelLogicTests {
 	@Test
 	public void PlayerWin() throws Throwable {
 		
+		
 		 // create new game
 		model.newGame();
 		int chips= player.getChips();
@@ -48,15 +50,12 @@ public class ModelLogicTests {
 		// set the value of cards for the dealer and player
 		TestsHelper.AddCardsToPlayer(TestsHelper.getCards20Value() , player);
 		TestsHelper.AddCardsToDealer(TestsHelper.getCards18Value(), dealer);
-		
-		
-		System.out.println("p1: "+player.getValue());
 		// action
 		try{
 		model.checkWin();
 		}
 		catch (Exception e) {
-			 assertEquals(e.getMessage(), "Player has Won!");
+			 assertEquals(e.getMessage(), "/photos/Player_win.png");
 			 int playerChipAfterWiningGame= player.getChips();
 			 assertEquals(chips+betsGame, playerChipAfterWiningGame);
 			 
@@ -74,11 +73,10 @@ public class ModelLogicTests {
 		
 		
 	     int betsGame=2;
-	    
+	     
 		 // create new game
 		model.newGame();
 		 int chips= player.getChips();
-		System.out.println("ddd:"+chips);
 		model.setbets(betsGame);
 		// set the value of cards for the dealer and player
 		TestsHelper.AddCardsToPlayer(TestsHelper.getCards18Value() , player);
@@ -89,7 +87,7 @@ public class ModelLogicTests {
 			model.checkWin();
 			}
 			catch (Exception e) {
-				 assertEquals(e.getMessage(), "Dealer has Won!");
+				 assertEquals(e.getMessage(), "/photos/Dealer_win.png");
 				 int playerChipAfterWiningGame= player.getChips();
 				 assertEquals(chips-betsGame, playerChipAfterWiningGame);
 				 
@@ -120,7 +118,7 @@ public class ModelLogicTests {
 			model.checkWin();
 			}
 			catch (Exception e) {
-				 assertEquals(e.getMessage(), "The game end! Nobody won");
+				 assertEquals(e.getMessage(), "/photos/Its_a_Tie.png");
 				 int playerChipAfterWiningGame= player.getChips();
 				 assertEquals(chips, playerChipAfterWiningGame); 
 			}
