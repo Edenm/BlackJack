@@ -345,17 +345,16 @@ public class TableController implements Initializable {
 		user=User.Player;
 		SetCardOntheTable();
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		if(ViewLogic.getCards().size()==2)
-			SetDealerCradsValue(ViewLogic.dealerValueCards()-secondCardDealer.getValue());
-		else
-			SetDealerCradsValue(ViewLogic.dealerValueCards());
+		SetDealerCradsValue(ViewLogic.getCards().get(0).getValue());
 	}
+
 	
 	/**
 	 * the method is Happens after hit
 	 */
 	private void CheckAfterHit() {
 		try {
+
 			if(ViewLogic.isExactly21())
 			{
 				StandCard();
@@ -364,9 +363,11 @@ public class TableController implements Initializable {
 			ViewLogic.isOver21();
 		 } catch (PlayerEndOfGameException e) {
 			flipDealerCard();
+			SetDealerCradsValue(ViewLogic.dealerValueCards());
 			endOfRoundLayOut(e.getMessage());
 		 } 
 	}
+
 	
 	/**
 	 * method of deal button
@@ -377,13 +378,12 @@ public class TableController implements Initializable {
 		SetCardOntheTable();
 		mnNewRound.setDisable(true);
 		SetPlayerCradsValue(ViewLogic.playerValueCards());
-		if(ViewLogic.getCards().size()==2)
-			SetDealerCradsValue(ViewLogic.dealerValueCards()-secondCardDealer.getValue());
-		else
-			SetDealerCradsValue(ViewLogic.dealerValueCards());
+		SetDealerCradsValue(ViewLogic.getCards().get(0).getValue());
+		
 	
 		
 	}
+
 	
 	/**
 	 * method set buttons hit and stand invisible
@@ -409,12 +409,14 @@ public class TableController implements Initializable {
 	 */
 	private void CheckWhoWin()
 	{
+		SetDealerCradsValue(ViewLogic.dealerValueCards());
 		try {
 			ViewLogic.checkWin();
 		} catch (WhoWinException e) {
 			endOfRoundLayOut(e.getMessage());
 		}
 	}
+
 //-------------------------------------------layOut Method ----------------------------------------------------	
 	/**
 	 * create and setting new card on the table , player and dealer using in this method
@@ -629,7 +631,7 @@ public class TableController implements Initializable {
 	private void flipDealerCard()
 	{
 		picSecondCardDealer.setImage(new Image(secondCardDealer.getPic()));
-		SetDealerCradsValue(ViewLogic.dealerValueCards());	
+		SetDealerCradsValue(ViewLogic.getCards().get(0).getValue());
 	}
 
 	/**
