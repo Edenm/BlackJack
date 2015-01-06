@@ -3,6 +3,8 @@ package Model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import Exceptions.PlayerEndOfGameException;
 import Utils.Constants;
 import Utils.Suits;
 
@@ -20,8 +22,6 @@ public class Dealer {
 	 private ArrayList<Card> mycards;
 	 /** place to take the next card*/
 	 private int number=-1;
-	 /** boolean variable check if player already have an ace card* true- if there isnt card ( first card), false- if player have ace in the cards*/
-	 private boolean isFirstAce=true;
 	 
 ////////////////////////////////////////////////////////////////// constructor	//////////////////////////////////////// 
 	 /**
@@ -75,7 +75,6 @@ public class Dealer {
 		 shuffle();
 		 mycards=new ArrayList<Card>();
 		 value= new Integer(0);
-		 isFirstAce=true;
 	 }
 	 	
 	 	
@@ -115,17 +114,25 @@ public class Dealer {
 	   public void addcard(Card card) {
 		   // if the card is ace, check if its the first ace
 		   if(card.getValue()==1)
-			   if(isFirstAce)
-			   {
-				   this.value+=11;// if first ace, += 11 to th value
-				   isFirstAce=false;
-			   }
+			   if(isOver21())
+				   this.value+=1;// if with ace isOver21 add only 1
 			   else
-				   this.value+=1;// if its the second card ace add only 1
+				   this.value+=11;// else += 11 to the value
+				   
 		   else
 			   this.value +=card.getValue();
 		   mycards.add(card);
 	   }
+	   
+	   /**
+		  * @throws PlayerEndOfGameException if value of player is over 21
+		 */
+		private boolean isOver21() {
+			   if (value+11>21){
+				   return true;
+			   }
+			   return false;
+		 }
 
 	   /**
 	    * @return true if Dealer can take one more card, else otherwise

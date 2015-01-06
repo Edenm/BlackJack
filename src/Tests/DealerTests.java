@@ -35,7 +35,6 @@ public class DealerTests {
 				cardsForCheck.add(card);
 		}
 		
-		System.out.println(cards.size());		
 		
 	}
 	
