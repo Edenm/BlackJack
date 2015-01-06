@@ -276,9 +276,6 @@ public class TableController implements Initializable {
 			
 			// button deal will disappear after dealing the cards.
 			EnabledDealMenuAndBtn(false);
-			
-			// show buttons hot and stands
-			EnbledHitAndStandMenu(true);
 		
 			// start dealing 
 			dealCardsToGame();
@@ -341,6 +338,7 @@ public class TableController implements Initializable {
 	@FXML
 	public void hitCard()
 	{
+		btnHit.setDisable(true);
 		status = Utils.Status.hit;
 		user=User.Player;
 		SetCardOntheTable();
@@ -526,6 +524,7 @@ public class TableController implements Initializable {
 		switch (status) {
 		case deal:
 			  isBlackJack();
+			  EnbledHitAndStandMenu(true);
 			  break;
 			  
 		case stand:
@@ -533,6 +532,7 @@ public class TableController implements Initializable {
 			break;
 	    
 		case hit:
+			btnHit.setDisable(false);
 			CheckAfterHit();
 			break;
 			
