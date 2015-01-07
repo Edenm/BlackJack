@@ -123,5 +123,58 @@ public class ModelLogicTests {
 				 assertEquals(chips, playerChipAfterWiningGame); 
 			}
 	}
+	
+	/**
+	 * check the count of wining and losses
+	 * @throws Throwable
+	 */
+	@Test
+	public void NumberPlayerWinAndLosess() throws Throwable {
+		 // create new game
+		model.newGame();
+		// player win 5 times 
+		for(int i=0 ; i<5; i++)
+		{
+		model.newRound();
+		int betsGame=2;
+		model.setbets(betsGame);
+		// set the value of cards for the dealer and player
+		TestsHelper.AddCardsToPlayer(TestsHelper.getCards20Value() , player);
+		TestsHelper.AddCardsToDealer(TestsHelper.getCards18Value(), dealer);
+		// action
+		try{
+		model.checkWin();
+		}
+		catch (Exception e) {
+			 
+		}
+		}
+		
+		// dealer win 4 times 
+		for(int i=0; i<4;i++)
+		{
+			model.newRound();
+			   int betsGame=2;
+				model.setbets(betsGame);
+				// set the value of cards for the dealer and player
+				TestsHelper.AddCardsToPlayer(TestsHelper.getCards18Value() , player);
+				TestsHelper.AddCardsToDealer(TestsHelper.getCards20Value() , dealer);
+				
+				// action
+				try{
+					model.checkWin();
+					}
+					catch (Exception e) {
+						 
+					}
+		}
+		// check that wining count of the player is 5
+		assertEquals(model.getNumberOfWins(),5);
+		
+		// check that losses count of the player is 4
+		assertEquals(model.getNumberOfLoses(),4);
+	
+	}
+	
 
 }
