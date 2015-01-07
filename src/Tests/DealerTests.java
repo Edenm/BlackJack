@@ -45,24 +45,24 @@ public class DealerTests {
 	public void TestsDealerAddCardFirstAceAndSecondAce()
 	{
 	 Dealer dealer= new Dealer();
-	 Card card= new Card(1,1, "Red", "", Suits.Club);
+	 Card card= new Card(6,6, "Red", "", Suits.Club);
 	 
 	 dealer.addcard(card);
 	 
 	 int dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
-	 assertEquals(11, dealerCardValue);
+	 assertEquals(6, dealerCardValue);
 	 
 	 Card card2= new Card(1,1, "Black", "", Suits.Spade);
 	 
 	 dealer.addcard(card2);
 	 
 	 dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
-	 assertEquals(12, dealerCardValue);
+	 assertEquals(17, dealerCardValue);
 	 
      dealer.addcard(card2);
 	 
 	 dealerCardValue= TestsHelper.getDealerCardsValue(dealer);
-	 assertEquals(13, dealerCardValue);
+	 assertEquals(18, dealerCardValue);
 	 
 	}
 	

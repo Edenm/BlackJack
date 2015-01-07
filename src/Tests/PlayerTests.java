@@ -23,9 +23,6 @@ public class PlayerTests {
 		int testBets= player.getBets();
 		assertEquals(400, testBets);
 		
-	
-		
-		
 	}
 	
 	@Test
@@ -76,7 +73,7 @@ public class PlayerTests {
 	{
 	// arrange 
 	 Player player= new Player();
-	 Card card= new Card(1,1, "Red", "", Suits.Club);
+	 Card card= new Card(2,2, "Red", "", Suits.Club);
 	 
 	 //action
 	 player.addcard(card);
@@ -84,7 +81,7 @@ public class PlayerTests {
 	 int playerCardValue= player.getValue();
 	 
 	 // the first ace should cpint as 11;
-	 assertEquals(11, playerCardValue);
+	 assertEquals(2, playerCardValue);
 	 
 	 // arrange the second ace
 	 Card card2= new Card(1,1, "Black", "", Suits.Spade);
@@ -94,7 +91,7 @@ public class PlayerTests {
 	 
 	 // assert the second ace should count as 1; 
 	 playerCardValue= player.getValue();
-	 assertEquals(12, playerCardValue);
+	 assertEquals(13, playerCardValue);
 	 
 	  
 	 //action
@@ -102,7 +99,7 @@ public class PlayerTests {
 	 
 	 // assert the second ace should count as 1; 
 	 playerCardValue= player.getValue();
-	 assertEquals(13, playerCardValue);
+	 assertEquals(14, playerCardValue);
 	 
 	}
 	
